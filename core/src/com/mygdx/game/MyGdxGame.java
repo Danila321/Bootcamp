@@ -13,6 +13,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 	}
 
+
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
