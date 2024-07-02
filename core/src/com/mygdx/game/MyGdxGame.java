@@ -15,6 +15,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 	}
 
+
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
