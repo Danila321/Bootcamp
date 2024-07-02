@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.gamefield;
 
 public class Tile {
     private int x, y;
@@ -6,7 +6,6 @@ public class Tile {
     private boolean player;
     private boolean enemy;
     private boolean tower;
-    public String simbol = "/";
 
 
 

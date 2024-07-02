@@ -2,7 +2,7 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
-import utility.GameSettings;
+import com.mygdx.game.utility.GameSettings;
 
 public class MainHeroObject extends objects.GameObject {
     static int livesLeft;

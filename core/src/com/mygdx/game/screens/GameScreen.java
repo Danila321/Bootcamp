@@ -5,22 +5,20 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.GameField;
+import com.mygdx.game.gamefield.GameField;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Tile;
+import com.mygdx.game.ui.ImageView;
 import com.mygdx.game.utility.GameResourses;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
     GameField gameField;
+    ImageView bg;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         gameField = new GameField(16, 9);
-
+        bg = new ImageView(0, 0, GameResourses.BACK);
     }
 
     @Override
@@ -48,7 +46,7 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
 
         myGdxGame.batch.begin();
-//        myGdxGame.batch.draw("back.png", 0, 0, 1280, 720);
+        bg.draw(myGdxGame.batch);
         myGdxGame.batch.end();
     }
 

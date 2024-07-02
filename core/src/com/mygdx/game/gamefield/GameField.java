@@ -1,4 +1,6 @@
-package com.mygdx.game;
+package com.mygdx.game.gamefield;
+
+import com.mygdx.game.utility.GameSettings;
 
 public class GameField {
     private Tile[][] gameField;

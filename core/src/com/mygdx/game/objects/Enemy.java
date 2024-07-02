@@ -1,8 +1,8 @@
 package com.mygdx.game.objects;
 
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.utility.GameResourses;
-import com.mygdx.game.GameSettings;
+import com.mygdx.game.utility.GameSettings;
+
 
 public class Enemy extends objects.GameObject {
 
