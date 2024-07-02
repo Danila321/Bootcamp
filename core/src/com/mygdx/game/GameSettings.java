@@ -4,7 +4,7 @@ public class GameSettings {
     public static final float SCALE = 0.05f;
 
     // Device settings
-    public static final int SCREEN_WIDTH = 1080;
+    public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
 
     // Physics settings

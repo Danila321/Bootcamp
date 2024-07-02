@@ -19,6 +19,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.screens.GameScreen;
 
+import javax.swing.Box;
+
 public class MyGdxGame extends Game {
 
 	public World world;
@@ -29,10 +31,16 @@ public class MyGdxGame extends Game {
 
 	public GameScreen gameScreen;
 
-	float accumulator = 0;
-
 	@Override
 	public void create() {
+		Box2D.init();
+		world = new World(new Vector2(0, 0), false);
 
+		camera = new OrthographicCamera();
+		camera.setToOrtho(true, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
+		batch = new SpriteBatch();
+
+		gameScreen = new GameScreen(this);
+		setScreen(gameScreen);
 	}
 }

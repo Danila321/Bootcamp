@@ -6,6 +6,7 @@ public class Tile {
     private boolean player;
     private boolean enemy;
     private boolean tower;
+    public String simbol = "/";
 
 
 
@@ -18,6 +19,14 @@ public class Tile {
         this.player = player;
         this.enemy = enemy;
         this.tower = tower;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY(){
+        return y;
     }
 
 }
