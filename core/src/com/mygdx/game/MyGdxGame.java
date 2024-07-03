@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2D;
@@ -25,7 +28,6 @@ public class MyGdxGame extends Game {
 	public Vector3 touch;
 	public SpriteBatch batch;
 	public OrthographicCamera camera;
-
 	public GameScreen gameScreen;
 
 	@Override
@@ -40,4 +42,5 @@ public class MyGdxGame extends Game {
 		gameScreen = new GameScreen(this);
 		setScreen(gameScreen);
 	}
+
 }
