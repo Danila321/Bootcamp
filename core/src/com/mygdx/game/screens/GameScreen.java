@@ -14,7 +14,8 @@ import com.mygdx.game.Money;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameSettings;
-
+import com.mygdx.game.BaseTowerObject;
+import com.mygdx.game.utility.GameResources;
 import java.util.ArrayList;
 
 public class GameScreen extends ScreenAdapter {
@@ -83,7 +84,7 @@ public class GameScreen extends ScreenAdapter {
                 System.out.println(Gdx.input.getX());
                 System.out.println(x_cord);
                 BaseTowerObject baseTower = new BaseTowerObject(Gdx.input.getX(), Gdx.input.getY(),
-                        33, 33, GameResourses.red_square, myGdxGame.world);
+                        33, 33, GameResources.red_square, myGdxGame.world);
                 TowerArrray.add(baseTower);
             }
         }
