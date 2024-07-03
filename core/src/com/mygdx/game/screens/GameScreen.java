@@ -15,6 +15,8 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameSettings;
 
+import java.util.ArrayList;
+
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
     //GameField gameField;
@@ -23,10 +25,13 @@ public class GameScreen extends ScreenAdapter {
     TextView balanceTextView;
     TiledMap tiledMap;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
-
+    ArrayList<BaseTowerObject> TowerArrray;
+    float x_cord=0, y_cord=0;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
+        TowerArrray = new ArrayList<>();
+        loadMap();
 
         balanceTextView = new TextView(myGdxGame.commonWhiteFont, 50, 100, "dfdf");
 
@@ -38,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void show() {
         restartGame();
+
     }
 
     public void loadMap() {
@@ -45,25 +51,40 @@ public class GameScreen extends ScreenAdapter {
         tiledMap = mapLoader.load("mapYesYes.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
+    private void draw() {
+
+        for (BaseTowerObject tower : TowerArrray) tower.draw(myGdxGame.batch);
+    }
 
     @Override
     public void render(float delta) {
-        loadMap();
-        draw();
-        handleInput();
+        myGdxGame.camera.update();
+        myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
+        ScreenUtils.clear(Color.CLEAR);
+        myGdxGame.batch.begin();
 
         balanceTextView.setText(String.valueOf("567567"));
 
         tiledMapRenderer.setView(myGdxGame.camera);
         tiledMapRenderer.render();
+
+        draw();
+
+        handleInput();
+        myGdxGame.batch.end();
+
     }
 
     private void handleInput() {
         if (Gdx.input.justTouched()) {
-            //myGdxGame.touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             if (hasObjectCoordinates("tower", touchPos)) {
-                System.out.println("click");
+                //System.out.println("click");
+                System.out.println(Gdx.input.getX());
+                System.out.println(x_cord);
+                BaseTowerObject baseTower = new BaseTowerObject(Gdx.input.getX(), Gdx.input.getY(),
+                        33, 33, GameResourses.red_square, myGdxGame.world);
+                TowerArrray.add(baseTower);
             }
         }
     }
@@ -72,7 +93,10 @@ public class GameScreen extends ScreenAdapter {
         MapObjects objects = tiledMap.getLayers().get(tower).getObjects();
         if (objects != null) {
             for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
-                if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE, touchPos.y/ GameSettings.MAP_SCALE)) {
+                if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE, touchPos.y / GameSettings.MAP_SCALE)) {
+                    System.out.println(object.getRectangle().x);
+                    x_cord = object.getRectangle().x / GameSettings.MAP_SCALE;
+                    y_cord = object.getRectangle().y / GameSettings.MAP_SCALE;
                     return true;
                 }
             }
@@ -80,16 +104,6 @@ public class GameScreen extends ScreenAdapter {
         return false;
     }
 
-    private void draw() {
-        myGdxGame.camera.update();
-        myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
-        ScreenUtils.clear(Color.CLEAR);
-
-        myGdxGame.batch.begin();
-        balanceTextView.draw(myGdxGame.batch);
-
-        myGdxGame.batch.end();
-    }
 
     private void restartGame() {
 
