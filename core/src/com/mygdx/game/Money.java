@@ -7,15 +7,15 @@ public class Money {
         this.count = startCount;
     }
 
-    void addBalance(int count) {
+    public void addBalance(int count) {
         this.count += count;
     }
 
-    void reduceBalance(int count) {
+    public void reduceBalance(int count) {
         this.count -= count;
     }
 
-    int getBalance() {
+    public int getBalance() {
         return count;
     }
 }
