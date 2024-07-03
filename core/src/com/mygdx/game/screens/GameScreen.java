@@ -71,7 +71,7 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
 
         myGdxGame.batch.begin();
-        //bg.draw(myGdxGame.batch);
+
         myGdxGame.batch.end();
     }
 
