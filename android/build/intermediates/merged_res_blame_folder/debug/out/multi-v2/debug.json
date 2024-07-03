@@ -4,7 +4,7 @@
             "outputFile": "com.mygdx.game.android-merged_res-4:/values-v21_values-v21.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\res\\values-v21\\styles.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values-v21\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -28,7 +28,24 @@
             "outputFile": "com.mygdx.game.android-merged_res-4:/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endColumns": "45",
+                        "endOffsets": "100"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "111",
+                        "endColumns": "45",
+                        "endOffsets": "152"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -47,24 +64,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "59",
-                        "endColumns": "45",
-                        "endOffsets": "100"
-                    },
-                    "to": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "111",
-                        "endColumns": "45",
-                        "endOffsets": "152"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\res\\values\\color.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values\\color.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

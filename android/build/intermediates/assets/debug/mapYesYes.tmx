@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="40">
+ <tileset firstgid="1" source="map.tsx"/>
+ <layer id="1" name="Слой тайлов 1" width="10" height="10">
+  <data encoding="csv">
+104,104,104,104,33,33,33,33,33,33,
+104,67,33,104,33,33,33,33,33,33,
+104,33,33,104,33,33,33,33,104,104,
+104,33,67,104,33,33,67,33,104,33,
+104,33,33,104,33,33,33,33,104,67,
+104,33,33,104,104,104,104,33,104,33,
+104,67,33,33,33,33,104,33,104,33,
+104,104,104,33,67,33,104,104,104,33,
+33,33,104,33,33,33,33,33,33,67,
+104,104,104,33,33,33,33,33,33,33
+</data>
+ </layer>
+ <objectgroup id="2" name="tower">
+  <object id="33" name="tower" type="tower" x="192.131" y="96.4742" width="31.068" height="31.068"/>
+  <object id="34" name="tower" type="tower" x="288" y="128" width="31.068" height="32.7031"/>
+  <object id="35" name="tower" type="tower" x="286.97" y="255.084" width="31.068" height="30.2504"/>
+  <object id="36" name="tower" type="tower" x="129.177" y="223.199" width="29.4328" height="31.068"/>
+  <object id="37" name="tower" type="tower" x="32.7031" y="191.313" width="30.2504" height="28.6152"/>
+  <object id="38" name="tower" type="tower" x="62.1359" y="94.0215" width="31.8855" height="33.5207"/>
+  <object id="39" name="tower" type="tower" x="32.7031" y="31.068" width="31.8855" height="31.068"/>
+ </objectgroup>
+ <objectgroup id="3" name="road"/>
+ <objectgroup id="4" name="player"/>
+</map>
