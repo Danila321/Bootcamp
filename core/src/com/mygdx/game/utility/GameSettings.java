@@ -14,5 +14,8 @@ public class GameSettings {
     public static final int POSITION_ITERATIONS = 6;
     public static final short ENEMY_BIT = 2;
     public static final short MAIN_HERO_BIT = 4;
+    public static final short BASE_TOWER_BIT = 8;
+    public static final int BASE_TOWER_ATTACK_COOL_DOWN = 500;
+    public static final int BASE_TOWER_ATTACK_RADIUS = 750;
     public static final float MAP_SCALE = 2.25f;
 }
