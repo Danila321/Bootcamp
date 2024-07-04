@@ -34,7 +34,7 @@ public class EnemyObject extends objects.GameObject {
                 currentIndex ++;
             }
         }else{
-            System.out.println("end end end");
+            //System.out.println("end end end");
         }
     }
 
