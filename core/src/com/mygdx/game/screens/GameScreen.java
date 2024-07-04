@@ -4,19 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.Money;
+import com.mygdx.game.Path;
+import com.mygdx.game.objects.EnemyObject;
+import com.mygdx.game.ui.Money;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.ui.ImageView;
 import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameSettings;
-import com.mygdx.game.BaseTowerObject;
+import com.mygdx.game.objects.BaseTowerObject;
 import com.mygdx.game.utility.GameResources;
 import java.util.ArrayList;
 
@@ -26,16 +28,32 @@ public class GameScreen extends ScreenAdapter {
     ImageView unitMenu;
     TextView balanceTextView;
     TiledMap tiledMap;
-    private OrthogonalTiledMapRenderer tiledMapRenderer;
+    Path path;
+    Vector2 startPos;
     ArrayList<BaseTowerObject> TowerArray;
     float x_cord = 0, y_cord = 0;
     float mapScale;
     boolean isMenuExecuted = false;
+    private EnemyObject enemy;
+    private OrthogonalTiledMapRenderer tiledMapRenderer;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         TowerArray = new ArrayList<>();
         loadMap();
+        path = new Path(tiledMap);
+        MapObjects objects = tiledMap.getLayers().get("enemy").getObjects();
+        if (objects != null) {
+            for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
+                startPos = new Vector2(object.getRectangle().x, object.getRectangle().y);
+                break;
+            }
+        }
+        enemy = new EnemyObject("red.png", myGdxGame.world, path,
+                (int)startPos.x, (int)startPos.y);
+
+
+
 
         balanceTextView = new TextView(myGdxGame.commonWhiteFont, 50, 100, "dfdf");
 
@@ -52,7 +70,7 @@ public class GameScreen extends ScreenAdapter {
 
     public void loadMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
-        tiledMap = mapLoader.load("mapq.tmx");
+        tiledMap = mapLoader.load("mapq (2).tmx");
 //        MapProperties properties = tiledMap.getProperties();
 //        int mapHeight = properties.get("height", Integer.class);
 //        int mapPixelHeight = properties.get("tileHeight", Integer.class);
@@ -61,7 +79,6 @@ public class GameScreen extends ScreenAdapter {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
     private void draw() {
-
 //        if (isMenuExecuted){
 //            unitMenu.draw(myGdxGame.batch);
 //        }
@@ -82,6 +99,9 @@ public class GameScreen extends ScreenAdapter {
 
         draw();
 
+        enemy.update(delta);
+        enemy.draw(myGdxGame.batch);
+
         handleInput();
         myGdxGame.batch.end();
 
@@ -99,8 +119,8 @@ public class GameScreen extends ScreenAdapter {
                     if (tileIsEmpty((int)x_cord, (int)y_cord) && (x_cord != -1 && y_cord != -1)) {
                         BaseTowerObject baseTower = new BaseTowerObject(
                                 x_cord, y_cord,
-                                (int) (33 * GameSettings.MAP_SCALE),
-                                (int) (33 * GameSettings.MAP_SCALE),
+                                (int) (32 * GameSettings.MAP_SCALE),
+                                (int) (32 * GameSettings.MAP_SCALE),
                                 GameResources.red_square, myGdxGame.world);
                         TowerArray.add(baseTower);
                         System.out.println("SPAWNED!!!!!");

@@ -18,4 +18,5 @@ public class GameSettings {
     public static final int BASE_TOWER_ATTACK_COOL_DOWN = 500;
     public static final int BASE_TOWER_ATTACK_RADIUS = 750;
     public static final float MAP_SCALE = 2.5f;
+    public static final int ENEMY_FORCE_RATIO = 5;
 }

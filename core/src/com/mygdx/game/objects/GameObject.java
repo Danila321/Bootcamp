@@ -31,6 +31,10 @@ public abstract class GameObject {
         batch.draw(texture, getX() - (width / 2f), getY() - (height / 2f), width, height);
     }
 
+    public Texture getTexture() {
+        return texture;
+    }
+
     public int getX() {
         return (int) (body.getPosition().x / GameSettings.SCALE);
     }

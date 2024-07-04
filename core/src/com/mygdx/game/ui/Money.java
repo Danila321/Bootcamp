@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.ui;
 
 public class Money {
     private int count;

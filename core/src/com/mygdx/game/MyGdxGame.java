@@ -10,10 +10,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.screens.GameScreen;
+import com.mygdx.game.ui.FontBuilder;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
-
-import javax.swing.Box;
 
 public class MyGdxGame extends Game {
 	public World world;
