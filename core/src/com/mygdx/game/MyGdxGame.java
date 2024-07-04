@@ -18,7 +18,7 @@ import javax.swing.Box;
 public class MyGdxGame extends Game {
 	public World world;
 
-	public BitmapFont commonWhiteFont;
+	public BitmapFont commonWhiteFont, commonRedFont;
 
 	public Vector3 touch;
 	public SpriteBatch batch;
@@ -32,6 +32,8 @@ public class MyGdxGame extends Game {
 
 		//Шрифты
 		commonWhiteFont = FontBuilder.generate(24, Color.WHITE, GameResources.FONT_PATH);
+		commonRedFont = FontBuilder.generate(24, Color.RED, GameResources.FONT_PATH);
+		commonRedFont.getData().setScale(1f, -1f);
 		commonWhiteFont.getData().setScale(1f, -1f);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(true, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
