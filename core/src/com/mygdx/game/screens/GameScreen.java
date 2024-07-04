@@ -96,16 +96,28 @@ public class GameScreen extends ScreenAdapter {
                 //System.out.println("click");
                 //System.out.println(Gdx.input.getX());
                 //System.out.println(x_cord);
-                if ((x_cord != -1 && y_cord != -1)) {
-                    BaseTowerObject baseTower = new BaseTowerObject(
-                            x_cord, y_cord,
-                            (int) (33 * GameSettings.MAP_SCALE),
-                            (int) (33 * GameSettings.MAP_SCALE),
-                            GameResources.red_square, myGdxGame.world);
-                    TowerArray.add(baseTower);
-                }
+                    if (tileIsEmpty((int)x_cord, (int)y_cord) && (x_cord != -1 && y_cord != -1)) {
+                        BaseTowerObject baseTower = new BaseTowerObject(
+                                x_cord, y_cord,
+                                (int) (33 * GameSettings.MAP_SCALE),
+                                (int) (33 * GameSettings.MAP_SCALE),
+                                GameResources.red_square, myGdxGame.world);
+                        TowerArray.add(baseTower);
+                        System.out.println("SPAWNED!!!!!");
+                    }
             }
         }
+    }
+
+    private boolean tileIsEmpty(int x, int y) {
+        for(BaseTowerObject tower : TowerArray) {
+            float xTower  = tower.getX();
+            float yTower  = tower.getY();
+            if (xTower== x && yTower == y) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean hasObjectCoordinates(String tower, Vector2 touchPos) {
@@ -130,5 +142,6 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose(){
         unitMenu.dispose();
+        tiledMap.dispose();
     }
 }
