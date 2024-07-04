@@ -11,7 +11,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Money;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.ui.ImageView;
 import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameSettings;
 import com.mygdx.game.BaseTowerObject;
@@ -23,11 +25,13 @@ public class GameScreen extends ScreenAdapter {
     //GameField gameField;
     //ImageView bg;
     Money balance;
+    ImageView unitMenu;
     TextView balanceTextView;
     TiledMap tiledMap;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     ArrayList<BaseTowerObject> TowerArrray;
-    float x_cord=0, y_cord=0;
+    float x_cord = 0, y_cord = 0;
+    boolean isMenuExecuted = false;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
@@ -37,8 +41,8 @@ public class GameScreen extends ScreenAdapter {
         balanceTextView = new TextView(myGdxGame.commonWhiteFont, 50, 100, "dfdf");
 
         balance = new Money(2000);
-        //gameField = new GameField(16, 9);
-        //bg = new ImageView(0, 0, GameResourses.BACK);
+        unitMenu = new ImageView(750, 0, GameResources.WHITE);
+
     }
 
     @Override
@@ -49,11 +53,14 @@ public class GameScreen extends ScreenAdapter {
 
     public void loadMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
-        tiledMap = mapLoader.load("mapYesYes.tmx");
+        tiledMap = mapLoader.load("mapq.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
     private void draw() {
 
+//        if (isMenuExecuted){
+//            unitMenu.draw(myGdxGame.batch);
+//        }
         for (BaseTowerObject tower : TowerArrray) tower.draw(myGdxGame.batch);
     }
 
@@ -80,6 +87,8 @@ public class GameScreen extends ScreenAdapter {
         if (Gdx.input.justTouched()) {
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             if (hasObjectCoordinates("tower", touchPos)) {
+                isMenuExecuted = true;
+
                 //System.out.println("click");
                 System.out.println(Gdx.input.getX());
                 System.out.println(x_cord);
@@ -108,5 +117,9 @@ public class GameScreen extends ScreenAdapter {
 
     private void restartGame() {
 
+    }
+    @Override
+    public void dispose(){
+        unitMenu.dispose();
     }
 }
