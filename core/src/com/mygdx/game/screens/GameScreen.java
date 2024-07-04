@@ -39,7 +39,6 @@ public class GameScreen extends ScreenAdapter {
     float x_cord = 0, y_cord = 0;
     float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
-    ArrayList<BaseTowerObject> TowerArrray;
     boolean isMenuExecuted = false;
     private EnemyObject enemy;
 
@@ -95,7 +94,7 @@ public class GameScreen extends ScreenAdapter {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
     private void draw() {
-        for (BaseTowerObject tower : TowerArrray) tower.draw(myGdxGame.batch);
+        for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
         if (haveMoney()) {
             balanceTextView.draw(myGdxGame.batch);
         }
