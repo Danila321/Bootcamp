@@ -16,5 +16,6 @@
       "outputFile": "android-debug.apk"
     }
   ],
-  "elementType": "File"
+  "elementType": "File",
+  "minSdkVersionForDexing": 24
 }

@@ -1,5 +1,7 @@
 package com.mygdx.game.screens;
 
+import static java.awt.SystemColor.text;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -28,7 +30,7 @@ public class GameScreen extends ScreenAdapter {
     Money balance;
     ButtonView button1, button2, button3, closeButton;
     ImageView unitMenu, tower1, tower2, tower3;
-    TextView balanceTextView;
+    TextView balanceTextView, balanceRedTextView;
     TiledMap tiledMap;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     ArrayList<BaseTowerObject> TowerArrray;
@@ -45,13 +47,14 @@ public class GameScreen extends ScreenAdapter {
         button3 = new ButtonView(1070, 300, 200, 50, myGdxGame.commonWhiteFont, GameResources.BUTTON, "700");
         closeButton = new ButtonView(1240, 20, 20, 20, GameResources.red_square);
 
-        tower1 = new ImageView(1100, 50, GameResources.red_square, 50, 50);
-        tower2 = new ImageView(1100, 150, GameResources.red_square, 50, 50);
-        tower3 = new ImageView(1100, 250, GameResources.red_square, 50, 50);
+        tower1 = new ImageView(1100, 50, GameResources.yellow_square, 50, 50);
+        tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
+        tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
 
-        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 50, 100, "dfdf");
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 150, 50, "dfdf");
+        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 150, 50, "dfdf");
 
-        balance = new Money(2000);
+        balance = new Money(1000);
         unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
 
     }
@@ -69,7 +72,12 @@ public class GameScreen extends ScreenAdapter {
     }
     private void draw() {
         for (BaseTowerObject tower : TowerArrray) tower.draw(myGdxGame.batch);
-
+        if (haveMoney()) {
+            balanceTextView.draw(myGdxGame.batch);
+        }
+        else {
+            balanceRedTextView.draw((myGdxGame.batch));
+        }
         if (isMenuExecuted){
             unitMenu.draw(myGdxGame.batch);
             button1.draw(myGdxGame.batch);
@@ -90,7 +98,8 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
         myGdxGame.batch.begin();
 
-        balanceTextView.setText(String.valueOf("567567"));
+        balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
+        balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
 
         tiledMapRenderer.setView(myGdxGame.camera);
         tiledMapRenderer.render();
@@ -100,6 +109,9 @@ public class GameScreen extends ScreenAdapter {
 
         myGdxGame.batch.end();
 
+    }
+    private boolean haveMoney() {
+        return balance.getBalance() > 500;
     }
 
     private void handleInput() {
@@ -115,14 +127,17 @@ public class GameScreen extends ScreenAdapter {
                         33, 33, GameResources.red_square, myGdxGame.world);
                 TowerArrray.add(baseTower);
             }
-            if (button1.isHit(touchPos.x, touchPos.y)){
-                System.out.println("500");
+            if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= GameSettings.TOWER1_COST){
+                balance.reduceBalance(GameSettings.TOWER1_COST);
+                isMenuExecuted = false;
             }
-            if (button2.isHit(touchPos.x, touchPos.y)){
-                System.out.println("600");
+            if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= GameSettings.TOWER2_COST){
+                balance.reduceBalance(GameSettings.TOWER2_COST);
+                isMenuExecuted = false;
             }
-            if (button3.isHit(touchPos.x, touchPos.y)){
-                System.out.println("700");
+            if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= GameSettings.TOWER3_COST){
+                balance.reduceBalance(GameSettings.TOWER3_COST);
+                isMenuExecuted = false;
             }
             if (closeButton.isHit(touchPos.x, touchPos.y)){
                 isMenuExecuted = false;
