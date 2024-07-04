@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="51">
+ <tileset firstgid="1" source="map.tsx"/>
+ <layer id="1" name="Слой тайлов 1" width="10" height="10">
+  <data encoding="csv">
+104,104,104,104,33,33,33,33,33,33,
+104,67,33,104,33,33,33,33,33,33,
+104,33,33,104,33,33,33,33,104,104,
+104,33,67,104,33,33,67,33,104,33,
+104,33,33,104,33,33,33,33,104,67,
+104,33,33,104,104,104,104,33,104,33,
+104,67,33,33,33,33,104,33,104,33,
+104,104,104,33,67,33,104,104,104,33,
+33,33,104,33,33,33,33,33,33,67,
+104,104,104,33,33,33,33,33,33,33
+</data>
+ </layer>
+ <objectgroup id="2" name="tower">
+  <object id="33" name="tower" type="tower" x="192.131" y="96.4742" width="31.068" height="31.068"/>
+  <object id="34" name="tower" type="tower" x="288" y="128" width="31.068" height="32.7031"/>
+  <object id="35" name="tower" type="tower" x="286.97" y="255.084" width="31.068" height="30.2504"/>
+  <object id="36" name="tower" type="tower" x="129.177" y="223.199" width="29.4328" height="31.068"/>
+  <object id="37" name="tower" type="tower" x="32.7031" y="191.313" width="30.2504" height="28.6152"/>
+  <object id="38" name="tower" type="tower" x="62.1359" y="94.0215" width="31.8855" height="33.5207"/>
+  <object id="39" name="tower" type="tower" x="32.7031" y="31.068" width="31.8855" height="31.068"/>
+ </objectgroup>
+ <objectgroup id="3" name="road">
+  <object id="40" name="road" type="road" x="0.572861" y="287.576" width="94.522" height="30.9345"/>
+  <object id="41" name="road" type="road" x="64.1604" y="256.069" width="30.9345" height="30.9345"/>
+  <object id="42" name="road" type="road" x="-0.572861" y="223.416" width="95.6677" height="30.9345"/>
+  <object id="43" name="road" type="road" x="0.572861" y="-0.572861" width="31.5073" height="222.27"/>
+  <object id="44" name="road" type="road" x="32.6531" y="0.572861" width="93.9492" height="29.7888"/>
+  <object id="45" name="road" type="road" x="96.2406" y="31.5073" width="31.5073" height="159.255"/>
+  <object id="46" name="road" type="road" x="127.748" y="158.682" width="96.8135" height="33.2259"/>
+  <object id="47" name="road" type="road" x="191.908" y="191.908" width="33.2259" height="63.5875"/>
+  <object id="48" name="road" type="road" x="224.561" y="223.416" width="62.4418" height="30.9345"/>
+  <object id="49" name="road" type="road" x="256.069" y="63.5875" width="30.9345" height="159.255"/>
+  <object id="50" name="road" type="road" x="287.576" y="63.0147" width="31.5073" height="32.0802"/>
+ </objectgroup>
+ <objectgroup id="4" name="player"/>
+</map>

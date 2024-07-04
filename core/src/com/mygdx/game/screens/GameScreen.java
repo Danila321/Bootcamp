@@ -1,5 +1,7 @@
 package com.mygdx.game.screens;
 
+import static java.awt.SystemColor.text;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -14,6 +16,7 @@ import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
 import com.mygdx.game.ui.Money;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.ui.ButtonView;
 import com.mygdx.game.ui.ImageView;
 import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameSettings;
@@ -23,18 +26,22 @@ import java.util.ArrayList;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
+    //GameField gameField;
+    //ImageView bg;
     Money balance;
-    ImageView unitMenu;
-    TextView balanceTextView;
+    ButtonView button1, button2, button3, closeButton;
+    ImageView unitMenu, tower1, tower2, tower3;
+    TextView balanceTextView, balanceRedTextView;
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
     ArrayList<BaseTowerObject> TowerArray;
     float x_cord = 0, y_cord = 0;
     float mapScale;
+    private OrthogonalTiledMapRenderer tiledMapRenderer;
+    ArrayList<BaseTowerObject> TowerArrray;
     boolean isMenuExecuted = false;
     private EnemyObject enemy;
-    private OrthogonalTiledMapRenderer tiledMapRenderer;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
@@ -54,10 +61,20 @@ public class GameScreen extends ScreenAdapter {
 
 
 
-        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 50, 100, "dfdf");
+        button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont, GameResources.BUTTON, "500");
+        button2 = new ButtonView(1070, 200, 200, 50, myGdxGame.commonWhiteFont, GameResources.BUTTON, "600");
+        button3 = new ButtonView(1070, 300, 200, 50, myGdxGame.commonWhiteFont, GameResources.BUTTON, "700");
+        closeButton = new ButtonView(1240, 20, 20, 20, GameResources.red_square);
 
-        balance = new Money(2000);
-        unitMenu = new ImageView(750, 0, GameResources.WHITE);
+        tower1 = new ImageView(1100, 50, GameResources.yellow_square, 50, 50);
+        tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
+        tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
+
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 150, 50, "dfdf");
+        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 150, 50, "dfdf");
+
+        balance = new Money(1000);
+        unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
 
     }
 
@@ -78,6 +95,24 @@ public class GameScreen extends ScreenAdapter {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
     private void draw() {
+        for (BaseTowerObject tower : TowerArrray) tower.draw(myGdxGame.batch);
+        if (haveMoney()) {
+            balanceTextView.draw(myGdxGame.batch);
+        }
+        else {
+            balanceRedTextView.draw((myGdxGame.batch));
+        }
+        if (isMenuExecuted){
+            unitMenu.draw(myGdxGame.batch);
+            button1.draw(myGdxGame.batch);
+            button2.draw(myGdxGame.batch);
+            button3.draw(myGdxGame.batch);
+            tower1.draw(myGdxGame.batch);
+            tower2.draw(myGdxGame.batch);
+            tower3.draw(myGdxGame.batch);
+            closeButton.draw(myGdxGame.batch);
+        }
+
 //        if (isMenuExecuted){
 //            unitMenu.draw(myGdxGame.batch);
 //        }
@@ -91,7 +126,8 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
         myGdxGame.batch.begin();
 
-        balanceTextView.setText(String.valueOf("567567"));
+        balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
+        balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
 
         tiledMapRenderer.setView(myGdxGame.camera);
         tiledMapRenderer.render();
@@ -104,6 +140,9 @@ public class GameScreen extends ScreenAdapter {
         handleInput();
         myGdxGame.batch.end();
 
+    }
+    private boolean haveMoney() {
+        return balance.getBalance() > 500;
     }
 
     private void handleInput() {
@@ -124,6 +163,21 @@ public class GameScreen extends ScreenAdapter {
                         TowerArray.add(baseTower);
                         System.out.println("SPAWNED!!!!!");
                     }
+            }
+            if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= GameSettings.TOWER1_COST){
+                balance.reduceBalance(GameSettings.TOWER1_COST);
+                isMenuExecuted = false;
+            }
+            if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= GameSettings.TOWER2_COST){
+                balance.reduceBalance(GameSettings.TOWER2_COST);
+                isMenuExecuted = false;
+            }
+            if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= GameSettings.TOWER3_COST){
+                balance.reduceBalance(GameSettings.TOWER3_COST);
+                isMenuExecuted = false;
+            }
+            if (closeButton.isHit(touchPos.x, touchPos.y)){
+                isMenuExecuted = false;
             }
         }
     }

@@ -17,6 +17,7 @@ public class View implements Disposable {
         this.y = y;
     }
 
+
     public View(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
@@ -28,5 +29,9 @@ public class View implements Disposable {
 
     @Override
     public void dispose() {
+    }
+
+    public boolean isHit(float tx, float ty) {
+        return (tx >= x && tx <= x + width && ty >= y && ty <= y + height);
     }
 }
