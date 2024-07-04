@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -11,7 +12,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Money;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.ui.ImageView;
 import com.mygdx.game.ui.TextView;
@@ -22,20 +22,19 @@ import java.util.ArrayList;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
-    //GameField gameField;
-    //ImageView bg;
     Money balance;
     ImageView unitMenu;
     TextView balanceTextView;
     TiledMap tiledMap;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
-    ArrayList<BaseTowerObject> TowerArrray;
+    ArrayList<BaseTowerObject> TowerArray;
     float x_cord = 0, y_cord = 0;
+    float mapScale;
     boolean isMenuExecuted = false;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
-        TowerArrray = new ArrayList<>();
+        TowerArray = new ArrayList<>();
         loadMap();
 
         balanceTextView = new TextView(myGdxGame.commonWhiteFont, 50, 100, "dfdf");
@@ -54,6 +53,11 @@ public class GameScreen extends ScreenAdapter {
     public void loadMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
         tiledMap = mapLoader.load("mapq.tmx");
+//        MapProperties properties = tiledMap.getProperties();
+//        int mapHeight = properties.get("height", Integer.class);
+//        int mapPixelHeight = properties.get("tileHeight", Integer.class);
+//
+//        mapScale = (float) GameSettings.SCREEN_HEIGHT / (mapHeight * mapPixelHeight);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
     private void draw() {
@@ -61,7 +65,7 @@ public class GameScreen extends ScreenAdapter {
 //        if (isMenuExecuted){
 //            unitMenu.draw(myGdxGame.batch);
 //        }
-        for (BaseTowerObject tower : TowerArrray) tower.draw(myGdxGame.batch);
+        for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
     }
 
     @Override
@@ -90,11 +94,16 @@ public class GameScreen extends ScreenAdapter {
                 isMenuExecuted = true;
 
                 //System.out.println("click");
-                System.out.println(Gdx.input.getX());
-                System.out.println(x_cord);
-                BaseTowerObject baseTower = new BaseTowerObject(Gdx.input.getX(), Gdx.input.getY(),
-                        33, 33, GameResources.red_square, myGdxGame.world);
-                TowerArrray.add(baseTower);
+                //System.out.println(Gdx.input.getX());
+                //System.out.println(x_cord);
+                if ((x_cord != -1 && y_cord != -1)) {
+                    BaseTowerObject baseTower = new BaseTowerObject(
+                            x_cord, y_cord,
+                            (int) (33 * GameSettings.MAP_SCALE),
+                            (int) (33 * GameSettings.MAP_SCALE),
+                            GameResources.red_square, myGdxGame.world);
+                    TowerArray.add(baseTower);
+                }
             }
         }
     }
@@ -105,8 +114,8 @@ public class GameScreen extends ScreenAdapter {
             for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
                 if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE, touchPos.y / GameSettings.MAP_SCALE)) {
                     System.out.println(object.getRectangle().x);
-                    x_cord = object.getRectangle().x / GameSettings.MAP_SCALE;
-                    y_cord = object.getRectangle().y / GameSettings.MAP_SCALE;
+                    x_cord = (object.getRectangle().x  + object.getRectangle().width / 2) * GameSettings.MAP_SCALE;
+                    y_cord = (object.getRectangle().y + object.getRectangle().height / 2) * GameSettings.MAP_SCALE;
                     return true;
                 }
             }
