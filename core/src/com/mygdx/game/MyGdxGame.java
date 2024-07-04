@@ -32,7 +32,7 @@ public class MyGdxGame extends Game {
 
 		//Шрифты
 		commonWhiteFont = FontBuilder.generate(24, Color.WHITE, GameResources.FONT_PATH);
-
+		commonWhiteFont.getData().setScale(1f, -1f);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(true, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
 		batch = new SpriteBatch();

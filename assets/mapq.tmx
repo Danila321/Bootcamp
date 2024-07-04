@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="28">
+ <tileset firstgid="1" source="13.tsx"/>
+ <tileset firstgid="21" source="123123.tsx"/>
+ <layer id="1" name="Слой тайлов 1" width="16" height="9">
+  <data encoding="csv">
+5,5,3,1,3,3,3,3,3,3,3,3,3,3,3,3,
+2684354565,1610612741,3,3,3,3,3,3,3,3,3,1,3,3,3,3,
+2684354565,1610612741,3,3,3,3,3,3,3,3,3,3,3,3221225490,17,17,
+2684354565,2147483752,3,3,3,3221225490,17,1610612754,3,3,3,3,3,2684354577,6,3,
+2684354565,2147483789,17,1610612754,3,2684354577,6,2684354577,3,3,3,3,3,2684354577,3,3,
+2684354565,1610612741,3,1610612753,6,2684354577,3,2684354578,17,1610612754,3,3,3,2684354577,3,3,
+2684354565,1610612741,3,2684354578,3221225489,18,3,3,3,2684354577,6,3,6,2684354577,3,3,
+2684354565,1610612741,3,3,3,3,3,1,3,2684354578,17,17,17,18,3,3,
+1073741829,1073741829,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+</data>
+ </layer>
+ <objectgroup id="2" name="tower">
+  <object id="2" name="tower" type="tower" x="448.182" y="96" width="32.4545" height="32.3636" visible="0"/>
+  <object id="3" name="tower" type="tower" x="384.273" y="192.273" width="31.6364" height="31.3636" visible="0"/>
+  <object id="4" name="tower" type="tower" x="320" y="192" width="32.0909" height="31.7273" visible="0"/>
+  <object id="5" name="tower" type="tower" x="192.182" y="128" width="31.7273" height="32.0909" visible="0"/>
+  <object id="6" name="tower" type="tower" x="127.909" y="159.727" width="32.0909" height="32.0909" visible="0"/>
+  <object id="7" name="tower" type="tower" x="448.182" y="95.9091" width="32.0909" height="32.3636" visible="0"/>
+  <object id="8" name="tower" type="tower" x="384.091" y="191.909" width="31.9091" height="32.2727" visible="0"/>
+  <object id="9" name="tower" type="tower" x="320.125" y="191.75" width="32" height="32.375" visible="0"/>
+  <object id="10" name="tower" type="tower" x="191.75" y="128.25" width="32.25" height="31.75" visible="0"/>
+  <object id="23" name="tower" type="tower" x="448.5" y="96" width="32" height="32"/>
+  <object id="24" name="tower" type="tower" x="384" y="191.25" width="32" height="32"/>
+  <object id="25" name="tower" type="tower" x="320.5" y="192" width="31.25" height="31.75"/>
+  <object id="26" name="tower" type="tower" x="192" y="128" width="31.75" height="31.75"/>
+  <object id="27" x="128.25" type="tower" y="159.75" width="30.75" height="31.75"/>
+ </objectgroup>
+ <objectgroup id="4" name="road">
+  <object id="11" name="road" type="road" x="416.5" y="63.75" width="95" height="32.5"/>
+  <object id="12" name="road" type="road" x="415.75" y="96.5" width="32.75" height="160"/>
+  <object id="13" name="road" type="road" x="288" y="223.75" width="127.75" height="33.25"/>
+  <object id="14" name="road" type="road" x="288.25" y="160.25" width="32.5" height="62.75"/>
+  <object id="15" name="road" type="road" x="223.25" y="159.75" width="65" height="32.75"/>
+  <object id="16" name="road" type="road" x="223.75" y="95.75" width="32.75" height="63.5"/>
+  <object id="17" name="road" type="road" x="160.25" y="95.75" width="62.75" height="32.5"/>
+  <object id="18" name="road" type="road" x="159.5" y="128" width="32.25" height="96.5"/>
+  <object id="19" name="road" type="road" x="95.75" y="192" width="64" height="32.75"/>
+  <object id="20" name="road" type="road" x="95.75" y="128.25" width="32.5" height="63"/>
+  <object id="21" name="road" type="road" x="63.5" y="127.5" width="32.25" height="32.75"/>
+ </objectgroup>
+</map>
