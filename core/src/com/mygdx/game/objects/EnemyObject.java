@@ -9,14 +9,13 @@ import com.mygdx.game.utility.GameSettings;
 
 public class EnemyObject extends objects.GameObject {
     private int currentIndex;
-    private int speed;
-
+    private float speed;
     private Path path;
 
-    public EnemyObject(String texturePath, World world, Path path, int x, int y) {
+    public EnemyObject(String texturePath, World world, Path path, int x, int y, float speed) {
         super(texturePath, x, y, 50, 50, GameSettings.ENEMY_BIT, world);
         currentIndex = 0;
-        speed = 2;
+        this.speed = speed;
         this.path = path;
     }
 

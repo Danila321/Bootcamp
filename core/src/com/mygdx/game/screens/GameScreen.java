@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.GameSession;
+import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
 import com.mygdx.game.ui.Money;
@@ -35,6 +35,7 @@ public class GameScreen extends ScreenAdapter {
     ButtonView button1, button2, button3, closeButton;
     ImageView unitMenu, tower1, tower2, tower3;
     TextView balanceTextView, balanceRedTextView;
+    TextView levelTextView;
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
@@ -44,7 +45,6 @@ public class GameScreen extends ScreenAdapter {
     float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
-    private EnemyObject enemy;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
@@ -74,8 +74,10 @@ public class GameScreen extends ScreenAdapter {
         tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
         tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
 
-        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 150, 50, "dfdf");
-        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 150, 50, "dfdf");
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 150, 50);
+        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 150, 50);
+
+        levelTextView = new TextView(myGdxGame.commonWhiteFont, 1000, 50);
 
         balance = new Money(10000);
         unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
@@ -101,11 +103,14 @@ public class GameScreen extends ScreenAdapter {
 
     private void draw() {
         for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
+
         if (haveMoney()) {
             balanceTextView.draw(myGdxGame.batch);
         } else {
-            balanceRedTextView.draw((myGdxGame.batch));
+            balanceRedTextView.draw(myGdxGame.batch);
         }
+
+        levelTextView.draw(myGdxGame.batch);
 
         for (EnemyObject enemy : EnemyArray) {
             enemy.update(2);
@@ -124,16 +129,20 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
         myGdxGame.batch.begin();
 
-        balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
-        balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
+        balanceTextView.setText("Money: " + balance.getBalance());
+        balanceRedTextView.setText("Money: " + balance.getBalance());
+
+        levelTextView.setText("Wave: " + gameSession.getLevel());
 
         tiledMapRenderer.setView(myGdxGame.camera);
         tiledMapRenderer.render();
 
-        if (gameSession.shouldSpawnEnemy()) {
-            enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                    (int) startPos.x, (int) startPos.y);
-            EnemyArray.add(enemy);
+        if (!gameSession.isRest()) {
+            if (gameSession.shouldSpawnEnemy()) {
+                EnemyObject enemy = new EnemyObject("red.png", myGdxGame.world, path,
+                        (int) startPos.x, (int) startPos.y, GameSettings.ENEMY_SPEED);
+                EnemyArray.add(enemy);
+            }
         }
 
         draw();
