@@ -45,6 +45,7 @@ public class GameScreen extends ScreenAdapter {
     float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
+    private EnemyObject enemy;
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
