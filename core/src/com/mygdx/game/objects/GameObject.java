@@ -59,6 +59,10 @@ public abstract class GameObject {
 
     }
 
+    public void returnXY() {
+
+    }
+
     private Body createBody(float x, float y, World world) {
         BodyDef def = new BodyDef();
 

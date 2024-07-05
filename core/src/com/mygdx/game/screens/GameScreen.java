@@ -10,6 +10,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.ContactManager;
+import com.mygdx.game.objects.BulletObject;
 import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
@@ -22,10 +24,12 @@ import com.mygdx.game.utility.GameSettings;
 import com.mygdx.game.objects.BaseTowerObject;
 import com.mygdx.game.utility.GameResources;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
     GameSession gameSession;
+    ContactManager contactManager;
     Money balance;
     ButtonView button1, button2, button3, closeButton;
     ImageView unitMenu, tower1, tower2, tower3;
@@ -43,6 +47,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         gameSession = new GameSession();
+        contactManager = new ContactManager(myGdxGame.world);
 
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
@@ -95,7 +100,6 @@ public class GameScreen extends ScreenAdapter {
     private void draw() {
         for (BaseTowerObject tower : towerArray) {
             tower.draw(myGdxGame.batch);
-            tower.shoot(enemyArray);
         }
         if (haveMoney()) {
             balanceTextView.draw(myGdxGame.batch);
@@ -120,6 +124,11 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
         myGdxGame.batch.begin();
 
+        for (BaseTowerObject tower : towerArray) {
+            tower.shoot(enemyArray);
+            tower.updateBullets();
+            tower.putInBox();
+        }
         balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
         balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
 
@@ -134,13 +143,14 @@ public class GameScreen extends ScreenAdapter {
 
         draw();
         handleInput();
+        update();
 
         myGdxGame.batch.end();
 
         myGdxGame.stepWorld();
     }
     private boolean haveMoney() {
-        return balance.getBalance() > 500;
+        return balance.getBalance() > 0;
     }
 
     private void handleInput() {
@@ -155,7 +165,6 @@ public class GameScreen extends ScreenAdapter {
                         (int) (32 * GameSettings.MAP_SCALE),
                         GameResources.yellow_square, myGdxGame.world);
                 towerArray.add(baseTower);
-                System.out.println("SPAWNED!!!!!");
                 isMenuExecuted = false;
             }
             if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
@@ -167,7 +176,6 @@ public class GameScreen extends ScreenAdapter {
                         (int) (32 * GameSettings.MAP_SCALE),
                         GameResources.green_square, myGdxGame.world);
                 towerArray.add(baseTower2);
-                System.out.println("SPAWNED!!!!!");
                 isMenuExecuted = false;
             }
             if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
@@ -179,7 +187,6 @@ public class GameScreen extends ScreenAdapter {
                         (int) (32 * GameSettings.MAP_SCALE),
                         GameResources.blue_square, myGdxGame.world);
                 towerArray.add(baseTower3);
-                System.out.println("SPAWNED!!!!!");
                 isMenuExecuted = false;
             }
             if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
@@ -201,7 +208,7 @@ public class GameScreen extends ScreenAdapter {
         for(BaseTowerObject tower : towerArray) {
             float xTower  = tower.getX();
             float yTower  = tower.getY();
-            if (xTower== x && yTower == y) {
+            if (xTower == x && yTower == y) {
                 return false;
             }
         }
@@ -237,6 +244,20 @@ public class GameScreen extends ScreenAdapter {
         closeButton.draw(myGdxGame.batch);
     }
 
+    private void update() {
+        Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();
+
+        while (enemyObjectIterator.hasNext()) {
+
+            EnemyObject nextEnemy = enemyObjectIterator.next();
+            if (!nextEnemy.isAlive()) {
+                gameSession.eliminationRegistration(balance);
+                myGdxGame.world.destroyBody(nextEnemy.body);
+                enemyObjectIterator.remove();
+            }
+        }
+
+    }
 
     private void restartGame() {
 
