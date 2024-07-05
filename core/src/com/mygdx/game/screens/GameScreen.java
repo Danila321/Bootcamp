@@ -10,6 +10,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.ContactManager;
+import com.mygdx.game.objects.BulletObject;
+import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
@@ -23,14 +26,12 @@ import com.mygdx.game.objects.BaseTowerObject;
 import com.mygdx.game.utility.GameResources;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
     GameSession gameSession;
-
-    //GameField gameField;
-    //ImageView bg;
-
+    ContactManager contactManager;
     Money balance;
     ButtonView button1, button2, button3, closeButton;
     ImageView unitMenu, tower1, tower2, tower3;
@@ -39,8 +40,8 @@ public class GameScreen extends ScreenAdapter {
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
-    ArrayList<BaseTowerObject> TowerArray;
-    ArrayList<EnemyObject> EnemyArray;
+    ArrayList<BaseTowerObject> towerArray;
+    ArrayList<EnemyObject> enemyArray;
     float x_cord = 0, y_cord = 0;
     float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
@@ -50,9 +51,10 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         gameSession = new GameSession();
+        contactManager = new ContactManager(myGdxGame.world);
 
-        TowerArray = new ArrayList<>();
-        EnemyArray = new ArrayList<>();
+        towerArray = new ArrayList<>();
+        enemyArray = new ArrayList<>();
         loadMap();
         path = new Path(tiledMap);
         MapObjects objects = tiledMap.getLayers().get("enemy").getObjects();
@@ -103,8 +105,9 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void draw() {
-        for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
-
+        for (BaseTowerObject tower : towerArray) {
+            tower.draw(myGdxGame.batch);
+        }
         if (haveMoney()) {
             balanceTextView.draw(myGdxGame.batch);
         } else {
@@ -113,7 +116,7 @@ public class GameScreen extends ScreenAdapter {
 
         levelTextView.draw(myGdxGame.batch);
 
-        for (EnemyObject enemy : EnemyArray) {
+        for (EnemyObject enemy : enemyArray) {
             enemy.update(2);
             enemy.draw(myGdxGame.batch);
         }
@@ -130,6 +133,13 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
         myGdxGame.batch.begin();
 
+        for (BaseTowerObject tower : towerArray) {
+            tower.shoot(enemyArray);
+            tower.updateBullets();
+            tower.putInBox();
+        }
+        balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
+        balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
         balanceTextView.setText("Money: " + balance.getBalance());
         balanceRedTextView.setText("Money: " + balance.getBalance());
 
@@ -148,116 +158,131 @@ public class GameScreen extends ScreenAdapter {
 
         draw();
         handleInput();
+        update();
 
         myGdxGame.batch.end();
     }
 
-    private boolean haveMoney() {
-        return balance.getBalance() > 500;
+        myGdxGame.stepWorld();
+}
+
+private boolean haveMoney() {
+    return balance.getBalance() > 0;
+}
+
+private void handleInput() {
+    if (Gdx.input.justTouched()) {
+        Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
+                && balance.getBalance() >= GameSettings.TOWER1_COST) {
+            balance.reduceBalance(GameSettings.TOWER1_COST);
+            BaseTowerObject baseTower = new BaseTowerObject(
+                    x_cord, y_cord,
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    GameResources.yellow_square, myGdxGame.world);
+            towerArray.add(baseTower);
+            isMenuExecuted = false;
+        }
+        if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
+                && balance.getBalance() >= GameSettings.TOWER2_COST) {
+            balance.reduceBalance(GameSettings.TOWER2_COST);
+            BaseTowerObject baseTower2 = new BaseTowerObject(
+                    x_cord, y_cord,
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    GameResources.green_square, myGdxGame.world);
+            towerArray.add(baseTower2);
+            isMenuExecuted = false;
+        }
+        if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
+                && balance.getBalance() >= GameSettings.TOWER3_COST) {
+            balance.reduceBalance(GameSettings.TOWER3_COST);
+            BaseTowerObject baseTower3 = new BaseTowerObject(
+                    x_cord, y_cord,
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    GameResources.blue_square, myGdxGame.world);
+            towerArray.add(baseTower3);
+            isMenuExecuted = false;
+        }
+        if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
+            if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
+                isMenuExecuted = true;
+
+
+            }
+
+        }
+
+        if (closeButton.isHit(touchPos.x, touchPos.y)) {
+            isMenuExecuted = false;
+        }
     }
+}
 
-    private void handleInput() {
-        if (Gdx.input.justTouched()) {
-            Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
-                    && balance.getBalance() >= GameSettings.TOWER1_COST) {
-                balance.reduceBalance(GameSettings.TOWER1_COST);
-                BaseTowerObject baseTower = new BaseTowerObject(
-                        x_cord, y_cord,
-                        (int) (32 * GameSettings.MAP_SCALE),
-                        (int) (32 * GameSettings.MAP_SCALE),
-                        GameResources.yellow_square, myGdxGame.world);
-                TowerArray.add(baseTower);
-                System.out.println("SPAWNED!!!!!");
-                isMenuExecuted = false;
-            }
-            if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
-                    && balance.getBalance() >= GameSettings.TOWER2_COST) {
-                balance.reduceBalance(GameSettings.TOWER2_COST);
-                BaseTowerObject baseTower2 = new BaseTowerObject(
-                        x_cord, y_cord,
-                        (int) (32 * GameSettings.MAP_SCALE),
-                        (int) (32 * GameSettings.MAP_SCALE),
-                        GameResources.green_square, myGdxGame.world);
-                TowerArray.add(baseTower2);
-                System.out.println("SPAWNED!!!!!");
-                isMenuExecuted = false;
-            }
-            if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
-                    && balance.getBalance() >= GameSettings.TOWER3_COST) {
-                balance.reduceBalance(GameSettings.TOWER3_COST);
-                BaseTowerObject baseTower3 = new BaseTowerObject(
-                        x_cord, y_cord,
-                        (int) (32 * GameSettings.MAP_SCALE),
-                        (int) (32 * GameSettings.MAP_SCALE),
-                        GameResources.blue_square, myGdxGame.world);
-                TowerArray.add(baseTower3);
-                System.out.println("SPAWNED!!!!!");
-                isMenuExecuted = false;
-            }
-            if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
-                if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
-                    isMenuExecuted = true;
+private boolean tileIsEmpty(int x, int y) {
+    for (BaseTowerObject tower : towerArray) {
+        float xTower = tower.getX();
+        float yTower = tower.getY();
+        if (xTower == x && yTower == y) {
+            return false;
+        }
+    }
+    return true;
+}
 
-
-                }
-
-            }
-
-            if (closeButton.isHit(touchPos.x, touchPos.y)) {
-                isMenuExecuted = false;
+private boolean hasObjectCoordinates(String tower, Vector2 touchPos) {
+    MapObjects objects = tiledMap.getLayers().get(tower).getObjects();
+    if (objects != null) {
+        for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
+            if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE,
+                    touchPos.y / GameSettings.MAP_SCALE)) {
+                System.out.println(object.getRectangle().x);
+                x_cord = (object.getRectangle().x + object.getRectangle().width / 2)
+                        * GameSettings.MAP_SCALE;
+                y_cord = (object.getRectangle().y + object.getRectangle().height / 2)
+                        * GameSettings.MAP_SCALE;
+                return true;
             }
         }
     }
+    return false;
+}
 
-    private boolean tileIsEmpty(int x, int y) {
-        for (BaseTowerObject tower : TowerArray) {
-            float xTower = tower.getX();
-            float yTower = tower.getY();
-            if (xTower == x && yTower == y) {
-                return false;
-            }
+public void drawMenu() {
+    unitMenu.draw(myGdxGame.batch);
+    button1.draw(myGdxGame.batch);
+    button2.draw(myGdxGame.batch);
+    button3.draw(myGdxGame.batch);
+    tower1.draw(myGdxGame.batch);
+    tower2.draw(myGdxGame.batch);
+    tower3.draw(myGdxGame.batch);
+    closeButton.draw(myGdxGame.batch);
+}
+
+private void update() {
+    Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();
+
+    while (enemyObjectIterator.hasNext()) {
+
+        EnemyObject nextEnemy = enemyObjectIterator.next();
+        if (!nextEnemy.isAlive()) {
+            gameSession.eliminationRegistration(balance);
+            myGdxGame.world.destroyBody(nextEnemy.body);
+            enemyObjectIterator.remove();
         }
-        return true;
     }
 
-    private boolean hasObjectCoordinates(String tower, Vector2 touchPos) {
-        MapObjects objects = tiledMap.getLayers().get(tower).getObjects();
-        if (objects != null) {
-            for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
-                if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE,
-                        touchPos.y / GameSettings.MAP_SCALE)) {
-                    System.out.println(object.getRectangle().x);
-                    x_cord = (object.getRectangle().x + object.getRectangle().width / 2)
-                            * GameSettings.MAP_SCALE;
-                    y_cord = (object.getRectangle().y + object.getRectangle().height / 2)
-                            * GameSettings.MAP_SCALE;
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+}
 
-    public void drawMenu() {
-        unitMenu.draw(myGdxGame.batch);
-        button1.draw(myGdxGame.batch);
-        button2.draw(myGdxGame.batch);
-        button3.draw(myGdxGame.batch);
-        tower1.draw(myGdxGame.batch);
-        tower2.draw(myGdxGame.batch);
-        tower3.draw(myGdxGame.batch);
-        closeButton.draw(myGdxGame.batch);
-    }
+private void restartGame() {
 
+}
 
-    private void restartGame() {
-
-    }
-
-    @Override
-    public void dispose() {
-        unitMenu.dispose();
-        tiledMap.dispose();
-    }
+@Override
+public void dispose() {
+    unitMenu.dispose();
+    tiledMap.dispose();
+}
 }

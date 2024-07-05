@@ -1,4 +1,4 @@
-com.mygdx.game.test.android-androidTest-0 C:\Users\L1d0ff\StudioProjects\Bootcamp\android\build\generated\res\resValues\androidTest\debug
-com.mygdx.game.test.android-mergeDebugAndroidTestResources-1 C:\Users\L1d0ff\StudioProjects\Bootcamp\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.mygdx.game.test.android-mergeDebugAndroidTestResources-2 C:\Users\L1d0ff\StudioProjects\Bootcamp\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.mygdx.game.test.android-debugAndroidTest-3 C:\Users\L1d0ff\StudioProjects\Bootcamp\android\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+com.mygdx.game.test.android-androidTest-0 C:\Users\Student\StudioProjects\Bootcamp\android\build\generated\res\resValues\androidTest\debug
+com.mygdx.game.test.android-mergeDebugAndroidTestResources-1 C:\Users\Student\StudioProjects\Bootcamp\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.mygdx.game.test.android-mergeDebugAndroidTestResources-2 C:\Users\Student\StudioProjects\Bootcamp\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.mygdx.game.test.android-debugAndroidTest-3 C:\Users\Student\StudioProjects\Bootcamp\android\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

@@ -1,6 +1,7 @@
 package com.mygdx.game.utility;
 
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.ui.Money;
 
 public class GameSession {
     public GameState state;
@@ -12,6 +13,7 @@ public class GameSession {
     private int level = 0;
 
     long startRestTime;
+    int eliminatedEnemiesNumber = 0;
 
     public GameSession() {
 
@@ -61,6 +63,8 @@ public class GameSession {
         }
     }
 
+    public void eliminationRegistration(Money balance) {
+        balance.addBalance(50);
     public void levelUp() {
         level++;
         GameSettings.ENEMY_SPAWN_TIME -= 200;

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.utility.GameSettings;
 
-public class MainHeroObject extends objects.GameObject {
+public class MainHeroObject extends GameObject {
     static int livesLeft;
     int maxHealth;
 
