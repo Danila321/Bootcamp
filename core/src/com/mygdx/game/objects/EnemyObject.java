@@ -7,7 +7,7 @@ import com.mygdx.game.utility.Path;
 import com.mygdx.game.utility.GameSettings;
 
 
-public class EnemyObject extends objects.GameObject {
+public class EnemyObject extends GameObject {
     private int currentIndex;
     private int speed;
     private Path path;

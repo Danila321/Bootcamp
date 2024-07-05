@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -23,6 +24,7 @@ public class MyGdxGame extends Game {
 	public SpriteBatch batch;
 	public OrthographicCamera camera;
 	public GameScreen gameScreen;
+	float accumulator = 0;
 
 	@Override
 	public void create() {
@@ -42,4 +44,13 @@ public class MyGdxGame extends Game {
 		setScreen(gameScreen);
 	}
 
+	public void stepWorld() {
+		float delta = Gdx.graphics.getDeltaTime();
+		accumulator += Math.min(delta, 0.25f);
+
+		if (accumulator >= GameSettings.STEP_TIME) {
+			accumulator -= GameSettings.STEP_TIME;
+			world.step(GameSettings.STEP_TIME, GameSettings.VELOCITY_ITERATIONS, GameSettings.POSITION_ITERATIONS);
+		}
+	}
 }

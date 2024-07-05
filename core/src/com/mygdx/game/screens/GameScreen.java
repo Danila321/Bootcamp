@@ -137,6 +137,7 @@ public class GameScreen extends ScreenAdapter {
 
         myGdxGame.batch.end();
 
+        myGdxGame.stepWorld();
     }
     private boolean haveMoney() {
         return balance.getBalance() > 500;

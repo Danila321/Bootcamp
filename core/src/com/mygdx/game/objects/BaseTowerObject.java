@@ -2,7 +2,7 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.utility.GameResources;
@@ -10,7 +10,7 @@ import com.mygdx.game.utility.GameSettings;
 
 import java.util.ArrayList;
 
-public class BaseTowerObject extends objects.GameObject {
+public class BaseTowerObject extends GameObject {
 
     public int attackCoolDown;
     public int attackRadius;
@@ -60,7 +60,7 @@ public class BaseTowerObject extends objects.GameObject {
                 }
             }
             if (target != null) {
-                BulletObject bullet = new BulletObject(getX(), getY(), 15, 15,
+                BulletObject bullet = new BulletObject(getX() - 35, getY() - 35, 15, 15,
                         direction.scl(GameSettings.BULLET_VELOCITY),
                         GameResources.red_square, world);
                 bulletArray.add(bullet);
