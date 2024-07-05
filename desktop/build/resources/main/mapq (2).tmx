@@ -34,8 +34,8 @@
  </objectgroup>
  <objectgroup id="4" name="road">
   <object id="19" name="road" type="road" x="32" y="128" width="32" height="32"/>
-  <object id="20" name="road" type="road" x="96" y="128" width="32" height="32"/>
-  <object id="21" name="road" type="road" x="64" y="128" width="32" height="32"/>
+  <object id="20" name="road" type="road" x="64" y="128" width="32" height="32"/>
+  <object id="21" name="road" type="road" x="96" y="128" width="32" height="32"/>
   <object id="28" name="road" type="road" x="96" y="160" width="32" height="32"/>
   <object id="29" name="road" type="road" x="96" y="192" width="32" height="32"/>
   <object id="30" name="road" type="road" x="128" y="192" width="32" height="32"/>

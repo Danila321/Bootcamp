@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="28">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="71">
  <tileset firstgid="1" source="13.tsx"/>
  <tileset firstgid="21" source="123123.tsx"/>
  <layer id="1" name="Слой тайлов 1" width="16" height="9">
@@ -7,8 +7,8 @@
 5,5,3,1,3,3,3,3,3,3,3,3,3,3,3,3,
 2684354565,1610612741,3,3,3,3,3,3,3,3,3,1,3,3,3,3,
 2684354565,1610612741,3,3,3,3,3,3,3,3,3,3,3,3221225490,17,17,
-2684354565,2147483752,3,3,3,3221225490,17,1610612754,3,3,3,3,3,2684354577,6,3,
-2684354565,2147483789,17,1610612754,3,2684354577,6,2684354577,3,3,3,3,3,2684354577,3,3,
+2684354565,2147483748,3,3,3,3221225490,17,1610612754,3,3,3,3,3,2684354577,6,3,
+2684354565,2147483783,17,1610612754,3,2684354577,6,2684354577,3,3,3,3,3,2684354577,3,3,
 2684354565,1610612741,3,1610612753,6,2684354577,3,2684354578,17,1610612754,3,3,3,2684354577,3,3,
 2684354565,1610612741,3,2684354578,3221225489,18,3,3,3,2684354577,6,3,6,2684354577,3,3,
 2684354565,1610612741,3,3,3,3,3,1,3,2684354578,17,17,17,18,3,3,
@@ -29,19 +29,40 @@
   <object id="24" name="tower" type="tower" x="384" y="191.25" width="32" height="32"/>
   <object id="25" name="tower" type="tower" x="320.5" y="192" width="31.25" height="31.75"/>
   <object id="26" name="tower" type="tower" x="192" y="128" width="31.75" height="31.75"/>
-  <object id="27" x="128.25" type="tower" y="159.75" width="30.75" height="31.75"/>
+  <object id="27" name="tower" type="tower" x="128.25" y="159.75" width="30.75" height="31.75"/>
  </objectgroup>
  <objectgroup id="4" name="road">
-  <object id="11" name="road" type="road" x="416.5" y="63.75" width="95" height="32.5"/>
-  <object id="12" name="road" type="road" x="415.75" y="96.5" width="32.75" height="160"/>
-  <object id="13" name="road" type="road" x="288" y="223.75" width="127.75" height="33.25"/>
-  <object id="14" name="road" type="road" x="288.25" y="160.25" width="32.5" height="62.75"/>
-  <object id="15" name="road" type="road" x="223.25" y="159.75" width="65" height="32.75"/>
-  <object id="16" name="road" type="road" x="223.75" y="95.75" width="32.75" height="63.5"/>
-  <object id="17" name="road" type="road" x="160.25" y="95.75" width="62.75" height="32.5"/>
-  <object id="18" name="road" type="road" x="159.5" y="128" width="32.25" height="96.5"/>
-  <object id="19" name="road" type="road" x="95.75" y="192" width="64" height="32.75"/>
-  <object id="20" name="road" type="road" x="95.75" y="128.25" width="32.5" height="63"/>
-  <object id="21" name="road" type="road" x="63.5" y="127.5" width="32.25" height="32.75"/>
+  <object id="20" name="road" type="road" x="96" y="128" width="32" height="32"/>
+  <object id="21" name="road" type="road" x="64" y="128" width="32" height="32"/>
+  <object id="28" name="road" type="road" x="96" y="160" width="32" height="32"/>
+  <object id="29" name="road" type="road" x="96" y="192" width="32" height="32"/>
+  <object id="30" name="road" type="road" x="128" y="192" width="32" height="32"/>
+  <object id="31" name="road" type="road" x="160" y="192" width="32" height="32"/>
+  <object id="32" name="road" type="road" x="160" y="160" width="32" height="32"/>
+  <object id="33" name="road" type="road" x="160" y="128" width="32" height="32"/>
+  <object id="34" name="road" type="road" x="160" y="96" width="32" height="32"/>
+  <object id="35" name="road" type="road" x="192" y="96" width="32" height="32"/>
+  <object id="36" name="road" type="road" x="224" y="96" width="32" height="32"/>
+  <object id="37" name="road" type="road" x="224" y="128" width="32" height="32"/>
+  <object id="38" name="road" type="road" x="224" y="160" width="32" height="32"/>
+  <object id="39" name="road" type="road" x="256" y="160" width="32" height="32"/>
+  <object id="40" name="road" type="road" x="288" y="160" width="32" height="32"/>
+  <object id="41" name="road" type="road" x="288" y="192" width="32" height="32"/>
+  <object id="42" name="road" type="road" x="288" y="224" width="32" height="32"/>
+  <object id="43" name="road" type="road" x="320" y="224" width="32" height="32"/>
+  <object id="44" name="road" type="road" x="354" y="224" width="32" height="32"/>
+  <object id="45" name="road" type="road" x="384" y="224" width="32" height="32"/>
+  <object id="46" name="road" type="road" x="416" y="224" width="32" height="32"/>
+  <object id="48" name="road" type="road" x="416" y="192" width="32" height="32"/>
+  <object id="49" name="road" type="road" x="416" y="160" width="32" height="32"/>
+  <object id="50" name="road" type="road" x="416" y="128" width="32" height="32"/>
+  <object id="51" name="road" type="road" x="416" y="96" width="32" height="32"/>
+  <object id="52" name="road" type="road" x="416" y="64" width="32" height="32"/>
+  <object id="53" name="road" type="road" x="448" y="64" width="32" height="32"/>
+  <object id="54" name="start" type="start" x="480" y="64" width="32" height="32"/>
+  <object id="57" gid="1073741829" x="32" y="96" width="32" height="32" rotation="90"/>
+  <object id="59" name="end" type="end" gid="3" x="32" y="160" width="32" height="32"/>
+  <object id="63" gid="6" x="192" y="224" width="32" height="32"/>
+  <object id="70" name="tower" type="tower" x="193.333" y="191.333" width="30.6667" height="32.6667"/>
  </objectgroup>
 </map>
