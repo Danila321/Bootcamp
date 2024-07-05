@@ -13,27 +13,27 @@ public class EnemyObject extends objects.GameObject {
 
     private Path path;
 
-    public EnemyObject(String texturePath, World world, Path path, int x, int y){
-        super(texturePath, x, y,50,50, GameSettings.ENEMY_BIT, world);
+    public EnemyObject(String texturePath, World world, Path path, int x, int y) {
+        super(texturePath, x, y, 50, 50, GameSettings.ENEMY_BIT, world);
         currentIndex = 0;
         speed = 2;
         this.path = path;
     }
 
-    public void update(float deltaTime){
+    public void update(float deltaTime) {
         Vector2 position = new Vector2(getX(), getY());
-        if (currentIndex < path.getLength()){
+        if (currentIndex < path.getLength()) {
             Vector2 target = path.getPoint(currentIndex);
             Vector2 direction = target.cpy().sub(position).nor();
 
             position.add(direction.scl(speed));
-            setX((int)position.x);
-            setY((int)position.y);
+            setX((int) position.x);
+            setY((int) position.y);
 
-            if (position.dst(target) < speed){
-                currentIndex ++;
+            if (position.dst(target) < speed) {
+                currentIndex++;
             }
-        }else{
+        } else {
             //System.out.println("end end end");
         }
     }

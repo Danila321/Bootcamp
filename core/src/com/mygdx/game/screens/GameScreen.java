@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.GameSession;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
 import com.mygdx.game.ui.Money;
@@ -20,12 +21,16 @@ import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameSettings;
 import com.mygdx.game.objects.BaseTowerObject;
 import com.mygdx.game.utility.GameResources;
+
 import java.util.ArrayList;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
+    GameSession gameSession;
+
     //GameField gameField;
     //ImageView bg;
+
     Money balance;
     ButtonView button1, button2, button3, closeButton;
     ImageView unitMenu, tower1, tower2, tower3;
@@ -34,6 +39,7 @@ public class GameScreen extends ScreenAdapter {
     Path path;
     Vector2 startPos;
     ArrayList<BaseTowerObject> TowerArray;
+    ArrayList<EnemyObject> EnemyArray;
     float x_cord = 0, y_cord = 0;
     float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
@@ -42,7 +48,10 @@ public class GameScreen extends ScreenAdapter {
 
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
+        gameSession = new GameSession();
+
         TowerArray = new ArrayList<>();
+        EnemyArray = new ArrayList<>();
         loadMap();
         path = new Path(tiledMap);
         MapObjects objects = tiledMap.getLayers().get("enemy").getObjects();
@@ -52,11 +61,6 @@ public class GameScreen extends ScreenAdapter {
                 break;
             }
         }
-        enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                (int)startPos.x, (int)startPos.y);
-
-
-
 
         button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "500");
@@ -94,18 +98,21 @@ public class GameScreen extends ScreenAdapter {
 //        mapScale = (float) GameSettings.SCREEN_HEIGHT / (mapHeight * mapPixelHeight);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
+
     private void draw() {
         for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
         if (haveMoney()) {
             balanceTextView.draw(myGdxGame.batch);
-        }
-        else {
+        } else {
             balanceRedTextView.draw((myGdxGame.batch));
         }
 
+        for (EnemyObject enemy : EnemyArray) {
+            enemy.update(2);
+            enemy.draw(myGdxGame.batch);
+        }
 
-        for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
-        if (isMenuExecuted){
+        if (isMenuExecuted) {
             drawMenu();
         }
     }
@@ -123,17 +130,18 @@ public class GameScreen extends ScreenAdapter {
         tiledMapRenderer.setView(myGdxGame.camera);
         tiledMapRenderer.render();
 
-
-
-        enemy.update(delta);
-        enemy.draw(myGdxGame.batch);
+        if (gameSession.shouldSpawnEnemy()) {
+            enemy = new EnemyObject("red.png", myGdxGame.world, path,
+                    (int) startPos.x, (int) startPos.y);
+            EnemyArray.add(enemy);
+        }
 
         draw();
         handleInput();
 
         myGdxGame.batch.end();
-
     }
+
     private boolean haveMoney() {
         return balance.getBalance() > 500;
     }
@@ -142,7 +150,7 @@ public class GameScreen extends ScreenAdapter {
         if (Gdx.input.justTouched()) {
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
-                    && balance.getBalance() >= GameSettings.TOWER1_COST){
+                    && balance.getBalance() >= GameSettings.TOWER1_COST) {
                 balance.reduceBalance(GameSettings.TOWER1_COST);
                 BaseTowerObject baseTower = new BaseTowerObject(
                         x_cord, y_cord,
@@ -154,7 +162,7 @@ public class GameScreen extends ScreenAdapter {
                 isMenuExecuted = false;
             }
             if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
-                    && balance.getBalance() >= GameSettings.TOWER2_COST){
+                    && balance.getBalance() >= GameSettings.TOWER2_COST) {
                 balance.reduceBalance(GameSettings.TOWER2_COST);
                 BaseTowerObject baseTower2 = new BaseTowerObject(
                         x_cord, y_cord,
@@ -166,7 +174,7 @@ public class GameScreen extends ScreenAdapter {
                 isMenuExecuted = false;
             }
             if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
-                    && balance.getBalance() >= GameSettings.TOWER3_COST){
+                    && balance.getBalance() >= GameSettings.TOWER3_COST) {
                 balance.reduceBalance(GameSettings.TOWER3_COST);
                 BaseTowerObject baseTower3 = new BaseTowerObject(
                         x_cord, y_cord,
@@ -178,25 +186,25 @@ public class GameScreen extends ScreenAdapter {
                 isMenuExecuted = false;
             }
             if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
-                    if (tileIsEmpty((int)x_cord, (int)y_cord) && (x_cord != -1 && y_cord != -1)) {
-                        isMenuExecuted = true;
+                if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
+                    isMenuExecuted = true;
 
 
-                    }
+                }
 
             }
 
-            if (closeButton.isHit(touchPos.x, touchPos.y)){
+            if (closeButton.isHit(touchPos.x, touchPos.y)) {
                 isMenuExecuted = false;
             }
         }
     }
 
     private boolean tileIsEmpty(int x, int y) {
-        for(BaseTowerObject tower : TowerArray) {
-            float xTower  = tower.getX();
-            float yTower  = tower.getY();
-            if (xTower== x && yTower == y) {
+        for (BaseTowerObject tower : TowerArray) {
+            float xTower = tower.getX();
+            float yTower = tower.getY();
+            if (xTower == x && yTower == y) {
                 return false;
             }
         }
@@ -210,7 +218,7 @@ public class GameScreen extends ScreenAdapter {
                 if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE,
                         touchPos.y / GameSettings.MAP_SCALE)) {
                     System.out.println(object.getRectangle().x);
-                    x_cord = (object.getRectangle().x  + object.getRectangle().width / 2)
+                    x_cord = (object.getRectangle().x + object.getRectangle().width / 2)
                             * GameSettings.MAP_SCALE;
                     y_cord = (object.getRectangle().y + object.getRectangle().height / 2)
                             * GameSettings.MAP_SCALE;
@@ -236,8 +244,9 @@ public class GameScreen extends ScreenAdapter {
     private void restartGame() {
 
     }
+
     @Override
-    public void dispose(){
+    public void dispose() {
         unitMenu.dispose();
         tiledMap.dispose();
     }
