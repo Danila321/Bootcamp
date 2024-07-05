@@ -10,13 +10,15 @@ import com.mygdx.game.utility.GameSettings;
 public class EnemyObject extends GameObject {
     private int currentIndex;
     private int speed;
+
     private Path path;
     private int livesLeft;
 
-    public EnemyObject(String texturePath, World world, Path path, int x, int y) {
-        super(texturePath, x, y, 32, 32, GameSettings.ENEMY_BIT, world);
+
+    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width, int height, int speed) {
+        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, world);
         currentIndex = 0;
-        speed = 2;
+        this.speed = speed;
         this.path = path;
         livesLeft = 1;
     }
@@ -42,7 +44,7 @@ public class EnemyObject extends GameObject {
 
     public void draw(SpriteBatch batch) {
         batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
-                getY() * GameSettings.MAP_SCALE, 32, 32);
+                getY() * GameSettings.MAP_SCALE, width, height);
     }
 
     public boolean isAlive() {

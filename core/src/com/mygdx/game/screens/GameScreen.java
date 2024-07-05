@@ -40,6 +40,7 @@ public class GameScreen extends ScreenAdapter {
     ArrayList<BaseTowerObject> towerArray;
     ArrayList<EnemyObject> enemyArray;
     float x_cord = 0, y_cord = 0;
+    float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
     private EnemyObject enemy;
@@ -60,11 +61,6 @@ public class GameScreen extends ScreenAdapter {
                 break;
             }
         }
-        enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                (int)startPos.x, (int)startPos.y);
-
-
-
 
         button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "500");
@@ -95,8 +91,14 @@ public class GameScreen extends ScreenAdapter {
     public void loadMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
         tiledMap = mapLoader.load("mapq (2).tmx");
+//        MapProperties properties = tiledMap.getProperties();
+//        int mapHeight = properties.get("height", Integer.class);
+//        int mapPixelHeight = properties.get("tileHeight", Integer.class);
+//
+//        mapScale = (float) GameSettings.SCREEN_HEIGHT / (mapHeight * mapPixelHeight);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
+
     private void draw() {
         for (BaseTowerObject tower : towerArray) {
             tower.draw(myGdxGame.batch);
@@ -137,7 +139,7 @@ public class GameScreen extends ScreenAdapter {
 
         if (gameSession.shouldSpawnEnemy()) {
             EnemyObject enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                    (int)startPos.x, (int)startPos.y);
+                    (int)startPos.x, (int)startPos.y, 32, 32, 6);
             enemyArray.add(enemy);
         }
 
@@ -262,6 +264,7 @@ public class GameScreen extends ScreenAdapter {
     private void restartGame() {
 
     }
+
     @Override
     public void dispose(){
         unitMenu.dispose();
