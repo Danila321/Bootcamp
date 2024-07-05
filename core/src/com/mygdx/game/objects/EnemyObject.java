@@ -10,7 +10,6 @@ import com.mygdx.game.utility.GameSettings;
 public class EnemyObject extends objects.GameObject {
     private int currentIndex;
     private int speed;
-
     private Path path;
 
     public EnemyObject(String texturePath, World world, Path path, int x, int y) {

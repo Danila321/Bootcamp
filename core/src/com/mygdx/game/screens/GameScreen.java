@@ -10,7 +10,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.GameSession;
+import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
 import com.mygdx.game.ui.Money;
@@ -26,10 +26,6 @@ import java.util.ArrayList;
 public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
     GameSession gameSession;
-
-    //GameField gameField;
-    //ImageView bg;
-
     Money balance;
     ButtonView button1, button2, button3, closeButton;
     ImageView unitMenu, tower1, tower2, tower3;
@@ -37,10 +33,9 @@ public class GameScreen extends ScreenAdapter {
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
-    ArrayList<BaseTowerObject> TowerArray;
-    ArrayList<EnemyObject> EnemyArray;
+    ArrayList<BaseTowerObject> towerArray;
+    ArrayList<EnemyObject> enemyArray;
     float x_cord = 0, y_cord = 0;
-    float mapScale;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
     private EnemyObject enemy;
@@ -49,8 +44,8 @@ public class GameScreen extends ScreenAdapter {
         this.myGdxGame = myGdxGame;
         gameSession = new GameSession();
 
-        TowerArray = new ArrayList<>();
-        EnemyArray = new ArrayList<>();
+        towerArray = new ArrayList<>();
+        enemyArray = new ArrayList<>();
         loadMap();
         path = new Path(tiledMap);
         MapObjects objects = tiledMap.getLayers().get("enemy").getObjects();
@@ -95,27 +90,25 @@ public class GameScreen extends ScreenAdapter {
     public void loadMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
         tiledMap = mapLoader.load("mapq (2).tmx");
-//        MapProperties properties = tiledMap.getProperties();
-//        int mapHeight = properties.get("height", Integer.class);
-//        int mapPixelHeight = properties.get("tileHeight", Integer.class);
-//
-//        mapScale = (float) GameSettings.SCREEN_HEIGHT / (mapHeight * mapPixelHeight);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
     private void draw() {
-        for (BaseTowerObject tower : TowerArray) tower.draw(myGdxGame.batch);
+        for (BaseTowerObject tower : towerArray) {
+            tower.draw(myGdxGame.batch);
+            tower.shoot(enemyArray);
+        }
         if (haveMoney()) {
             balanceTextView.draw(myGdxGame.batch);
         } else {
             balanceRedTextView.draw((myGdxGame.batch));
         }
 
-        for (EnemyObject enemy : EnemyArray) {
+        for(EnemyObject enemy : enemyArray) {
             enemy.update(2);
             enemy.draw(myGdxGame.batch);
         }
 
-        if (isMenuExecuted) {
+        if (isMenuExecuted){
             drawMenu();
         }
     }
@@ -134,9 +127,9 @@ public class GameScreen extends ScreenAdapter {
         tiledMapRenderer.render();
 
         if (gameSession.shouldSpawnEnemy()) {
-            enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                    (int) startPos.x, (int) startPos.y);
-            EnemyArray.add(enemy);
+            EnemyObject enemy = new EnemyObject("red.png", myGdxGame.world, path,
+                    (int)startPos.x, (int)startPos.y);
+            enemyArray.add(enemy);
         }
 
         draw();
@@ -160,7 +153,7 @@ public class GameScreen extends ScreenAdapter {
                         (int) (32 * GameSettings.MAP_SCALE),
                         (int) (32 * GameSettings.MAP_SCALE),
                         GameResources.yellow_square, myGdxGame.world);
-                TowerArray.add(baseTower);
+                towerArray.add(baseTower);
                 System.out.println("SPAWNED!!!!!");
                 isMenuExecuted = false;
             }
@@ -172,7 +165,7 @@ public class GameScreen extends ScreenAdapter {
                         (int) (32 * GameSettings.MAP_SCALE),
                         (int) (32 * GameSettings.MAP_SCALE),
                         GameResources.green_square, myGdxGame.world);
-                TowerArray.add(baseTower2);
+                towerArray.add(baseTower2);
                 System.out.println("SPAWNED!!!!!");
                 isMenuExecuted = false;
             }
@@ -184,7 +177,7 @@ public class GameScreen extends ScreenAdapter {
                         (int) (32 * GameSettings.MAP_SCALE),
                         (int) (32 * GameSettings.MAP_SCALE),
                         GameResources.blue_square, myGdxGame.world);
-                TowerArray.add(baseTower3);
+                towerArray.add(baseTower3);
                 System.out.println("SPAWNED!!!!!");
                 isMenuExecuted = false;
             }
@@ -204,7 +197,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private boolean tileIsEmpty(int x, int y) {
-        for(BaseTowerObject tower : TowerArray) {
+        for(BaseTowerObject tower : towerArray) {
             float xTower  = tower.getX();
             float yTower  = tower.getY();
             if (xTower== x && yTower == y) {
