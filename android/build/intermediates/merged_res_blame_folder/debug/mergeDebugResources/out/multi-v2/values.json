@@ -4,7 +4,7 @@
             "outputFile": "com.mygdx.game.android-mergeDebugResources-2:/values/values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -40,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\res\\values\\color.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values\\color.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
