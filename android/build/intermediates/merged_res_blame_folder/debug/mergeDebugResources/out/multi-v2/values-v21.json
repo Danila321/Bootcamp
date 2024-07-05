@@ -4,7 +4,7 @@
             "outputFile": "com.mygdx.game.android-mergeDebugResources-2:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Student\\StudioProjects\\BootcampMerged\\android\\res\\values-v21\\styles.xml",
+                    "source": "C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\res\\values-v21\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
