@@ -13,10 +13,10 @@ public class EnemyObject extends objects.GameObject {
 
     private Path path;
 
-    public EnemyObject(String texturePath, World world, Path path, int x, int y) {
-        super(texturePath, x, y, 50, 50, GameSettings.ENEMY_BIT, world);
+    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width, int height, int speed) {
+        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, world);
         currentIndex = 0;
-        speed = 2;
+        this.speed = speed;
         this.path = path;
     }
 
@@ -41,6 +41,6 @@ public class EnemyObject extends objects.GameObject {
 
     public void draw(SpriteBatch batch) {
         batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
-                getY() * GameSettings.MAP_SCALE, 32, 32);
+                getY() * GameSettings.MAP_SCALE, width, height);
     }
 }

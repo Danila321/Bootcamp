@@ -9,51 +9,51 @@
 9        android:targetSdkVersion="35" />
 10
 11    <uses-feature
-11-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:5:5-78
+11-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:5:5-78
 12        android:glEsVersion="0x00020000"
-12-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:5:19-51
+12-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:5:19-51
 13        android:required="true" />
-13-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:5:52-75
+13-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:5:52-75
 14
 15    <application
-15-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:7:5-27:19
+15-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:7:5-27:19
 16        android:allowBackup="true"
-16-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:8:9-35
+16-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:8:9-35
 17        android:appCategory="game"
-17-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:12:9-35
+17-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:12:9-35
 18        android:debuggable="true"
 19        android:extractNativeLibs="true"
 20        android:fullBackupContent="true"
-20-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:9:9-41
+20-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:9:9-41
 21        android:icon="@drawable/ic_launcher"
-21-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:10:9-45
+21-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:10:9-45
 22        android:isGame="true"
-22-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:11:9-30
+22-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:11:9-30
 23        android:label="@string/app_name"
-23-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:13:9-41
+23-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:13:9-41
 24        android:theme="@style/AppTheme" >
-24-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:14:9-40
+24-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:14:9-40
 25        <activity
-25-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:16:9-26:20
+25-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:16:9-26:20
 26            android:name="com.mygdx.game.AndroidLauncher"
-26-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:17:13-58
+26-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:17:13-58
 27            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
-27-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:20:13-107
+27-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:20:13-107
 28            android:exported="true"
-28-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:21:13-36
+28-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:21:13-36
 29            android:label="@string/app_name"
-29-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:18:13-45
+29-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:18:13-45
 30            android:screenOrientation="landscape" >
-30-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:19:13-50
+30-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:19:13-50
 31            <intent-filter>
-31-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:22:13-25:29
+31-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:22:13-25:29
 32                <action android:name="android.intent.action.MAIN" />
-32-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:17-69
-32-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:25-66
+32-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:17-69
+32-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:25-66
 33
 34                <category android:name="android.intent.category.LAUNCHER" />
-34-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:17-77
-34-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:27-74
+34-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:17-77
+34-->C:\Users\L1d0ff\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:27-74
 35            </intent-filter>
 36        </activity>
 37    </application>

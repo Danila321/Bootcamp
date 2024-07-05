@@ -131,8 +131,8 @@ public class GameScreen extends ScreenAdapter {
         tiledMapRenderer.render();
 
         if (gameSession.shouldSpawnEnemy()) {
-            enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                    (int) startPos.x, (int) startPos.y);
+            enemy = new EnemyObject("robot1.png", myGdxGame.world, path,
+                    (int) startPos.x, (int) startPos.y, 75, -80, 1);
             EnemyArray.add(enemy);
         }
 
