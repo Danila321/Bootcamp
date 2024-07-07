@@ -9,7 +9,7 @@ public class BulletObject extends GameObject {
 
     public boolean wasHit;
     BulletObject(float x, float y, int width, int height, Vector2 vector2, String texturePath, World world) {
-        super(texturePath, x, y, width, height, GameSettings.BULLET_BIT, world);
+        super(texturePath, x, y, width, height, GameSettings.BASE_BULLET_BIT, world);
         body.setLinearVelocity(vector2);
         body.setBullet(true);
         wasHit = false;
@@ -20,7 +20,7 @@ public class BulletObject extends GameObject {
         return wasHit || getY() - height / 2 > GameSettings.SCREEN_HEIGHT;
     }
 
-    public void hit() {
+    public void hit(int variable) {
         wasHit = true;
     }
 }
