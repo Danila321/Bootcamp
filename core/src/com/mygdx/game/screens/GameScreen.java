@@ -11,6 +11,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.ContactManager;
+import com.mygdx.game.Managers.AudioManager;
+import com.mygdx.game.Managers.MemoryManager;
 import com.mygdx.game.objects.BulletObject;
 import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.GameSession;
@@ -39,6 +41,7 @@ public class GameScreen extends ScreenAdapter {
     TextView levelTextView;
     TiledMap tiledMap;
     Path path;
+    AudioManager audioManager;
     Vector2 startPos;
     ArrayList<BaseTowerObject> towerArray;
     ArrayList<EnemyObject> enemyArray;
@@ -52,6 +55,7 @@ public class GameScreen extends ScreenAdapter {
         this.myGdxGame = myGdxGame;
         gameSession = new GameSession();
         contactManager = new ContactManager(myGdxGame.world);
+        audioManager = new AudioManager();
 
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
@@ -64,6 +68,7 @@ public class GameScreen extends ScreenAdapter {
                 break;
             }
         }
+
 
         button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "500");
@@ -152,7 +157,7 @@ public class GameScreen extends ScreenAdapter {
             if (gameSession.shouldSpawnEnemy()) {
                 EnemyObject enemy = new EnemyObject("red.png", myGdxGame.world, path,
                         (int) startPos.x, (int) startPos.y, GameSettings.ENEMY_SPEED);
-                EnemyArray.add(enemy);
+                enemyArray.add(enemy);
             }
         }
 
@@ -161,10 +166,11 @@ public class GameScreen extends ScreenAdapter {
         update();
 
         myGdxGame.batch.end();
+        myGdxGame.stepWorld();
     }
 
-        myGdxGame.stepWorld();
-}
+
+
 
 private boolean haveMoney() {
     return balance.getBalance() > 0;
@@ -182,6 +188,7 @@ private void handleInput() {
                     (int) (32 * GameSettings.MAP_SCALE),
                     GameResources.yellow_square, myGdxGame.world);
             towerArray.add(baseTower);
+            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
             isMenuExecuted = false;
         }
         if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
@@ -193,6 +200,7 @@ private void handleInput() {
                     (int) (32 * GameSettings.MAP_SCALE),
                     GameResources.green_square, myGdxGame.world);
             towerArray.add(baseTower2);
+            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
             isMenuExecuted = false;
         }
         if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
@@ -204,6 +212,7 @@ private void handleInput() {
                     (int) (32 * GameSettings.MAP_SCALE),
                     GameResources.blue_square, myGdxGame.world);
             towerArray.add(baseTower3);
+            audioManager.towerCreateSound.play(0.5f * MemoryManager.SoundValue());
             isMenuExecuted = false;
         }
         if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {

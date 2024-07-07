@@ -12,6 +12,8 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.screens.MenuScreen;
+import com.mygdx.game.screens.SettingsScreen;
+import com.mygdx.game.screens.SettingsScreen;
 import com.mygdx.game.ui.FontBuilder;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
@@ -27,6 +29,7 @@ public class MyGdxGame extends Game {
 	public GameScreen gameScreen;
 	float accumulator = 0;
 	public MenuScreen menuScreen;
+	public SettingsScreen settingsScreen;
 
 	@Override
 	public void create() {
@@ -48,6 +51,7 @@ public class MyGdxGame extends Game {
 
 		gameScreen = new GameScreen(this);
 		menuScreen = new MenuScreen(this);
+		settingsScreen = new SettingsScreen(this);
 		setScreen(menuScreen);
 	}
 

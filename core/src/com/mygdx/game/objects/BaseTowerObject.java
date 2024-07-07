@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.Managers.AudioManager;
+import com.mygdx.game.Managers.MemoryManager;
+import com.mygdx.game.screens.SettingsScreen;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
 
@@ -11,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BaseTowerObject extends GameObject {
-
+    AudioManager audioManager;
     public int attackCoolDown;
     public int attackRadius;
     long lastShotTime;
@@ -30,6 +33,7 @@ public class BaseTowerObject extends GameObject {
         bulletArray = new ArrayList<>();
         tempX = getX();
         tempY = getY();
+        audioManager = new AudioManager();
     }
 
     @Override
@@ -50,6 +54,7 @@ public class BaseTowerObject extends GameObject {
 
     public void shoot(ArrayList<EnemyObject> enemyArray) {
         if (needToShoot()) {
+
             int minVal = 1000000000;
             EnemyObject target = null;
             for (EnemyObject enemy : enemyArray) {
@@ -63,6 +68,7 @@ public class BaseTowerObject extends GameObject {
                 }
             }
             if (target != null) {
+                audioManager.shootSound.play(0.05f * MemoryManager.SoundValue());
                 BulletObject bullet = new BulletObject(getX() - 35, getY() - 35, -15, -15,
                         direction.scl(GameSettings.BULLET_VELOCITY),
                         GameResources.red_square, world);
