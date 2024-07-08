@@ -31,13 +31,13 @@ public class MenuScreen extends ScreenAdapter {
         //background = new ImageView(0, 0, GameResources.BACK, GameSettings.SCREEN_HEIGHT, GameSettings.SCREEN_WIDTH);
 
         startGameButton = new ButtonView(550, 300, 200, 68,
-                myGdxGame.commonBlackFont, "button_white.png", "START");
+                myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "START");
 
         settingsButton = new ButtonView(550, 400, 200, 68,
-                myGdxGame.commonBlackFont, "button_white.png", "SETTINGS");
+                myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "SETTINGS");
 
         exitButton = new ButtonView(550, 500, 200, 68,
-                myGdxGame.commonBlackFont, "button_white.png", "EXIT");
+                myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "EXIT");
     }
 
     @Override

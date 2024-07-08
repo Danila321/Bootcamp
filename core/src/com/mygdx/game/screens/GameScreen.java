@@ -64,7 +64,7 @@ public class GameScreen extends ScreenAdapter {
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
         hero = new MainHeroObject(1230, 490, 100, 100,
-                "blue.png", myGdxGame.world);
+                GameResources.blue_square, myGdxGame.world);
         loadMap();
         path = new Path(tiledMap);
 
@@ -111,14 +111,14 @@ public class GameScreen extends ScreenAdapter {
                 550, 300,
                 200, 70,
                 myGdxGame.commonBlackFont,
-                "button_white.png",
+                GameResources.WHITE_BUTTON,
                 "Home"
         );
         continueButton = new ButtonView(
                 550, 450,
                 200, 70,
                 myGdxGame.commonBlackFont,
-                "button_white.png",
+                GameResources.WHITE_BUTTON,
                 "Continue"
         );
 
@@ -132,7 +132,7 @@ public class GameScreen extends ScreenAdapter {
 
     public void loadMap() {
         TmxMapLoader mapLoader = new TmxMapLoader();
-        tiledMap = mapLoader.load("mapq (2).tmx");
+        tiledMap = mapLoader.load("tilemap/mapq (2).tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
     }
 
@@ -213,7 +213,7 @@ public class GameScreen extends ScreenAdapter {
 
         if (!gameSession.isRest()) {
             if (gameSession.shouldSpawnEnemy()) {
-                EnemyObject enemy = new EnemyObject("robot1.png", myGdxGame.world, path,
+                EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
                         (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED, 5);
                 enemyArray.add(enemy);
             }
