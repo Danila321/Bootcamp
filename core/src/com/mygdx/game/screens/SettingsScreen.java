@@ -29,7 +29,7 @@ public class SettingsScreen extends ScreenAdapter {
     public SettingsScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
 
-        backgroundView = new ImageView(0, 720, GameResources.BACKGROUND, -720, 1280);
+        backgroundView = new ImageView(0, 720, GameResources.red_square, -720, 1280);
         returnButton = new ButtonView(260, 250, 390, 70,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "return");
         blackoutMid = new ImageView(220, 200, GameResources.BUTTON, 400, 460);

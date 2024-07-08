@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.utility.GameSettings;
 
 public class MainHeroObject extends GameObject {
-    static int livesLeft;
+    public static int livesLeft;
     int maxHealth;
     public static int heroDamage;
 
@@ -34,8 +34,5 @@ public class MainHeroObject extends GameObject {
     }
     public void setLivesLeft(int lives) {
         livesLeft = lives;
-    }
-    public int getHeroDamage() {
-        return heroDamage;
     }
 }

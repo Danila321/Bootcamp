@@ -60,7 +60,9 @@ public class EnemyObject extends GameObject {
     public int getLiveLeft() {
         return livesLeft;
     }
-
+    public int getMaxHealth() {
+        return maxHealth;
+    }
     @Override
     public void hit(int damage) {
         livesLeft -= damage;
