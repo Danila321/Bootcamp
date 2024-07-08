@@ -5,26 +5,152 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b206b576-66ed-4dfb-bfad-92f1e764dd2f" name="Changes" comment="11">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/mygdx/game/screens/GameScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/mygdx/game/screens/GameScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/apk/debug/android-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/apk/debug/android-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/1645519570740.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/Tower 07.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/back.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/map.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/mapYesYes.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/mapq (2).tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/mapq (2).tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/mapq.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/photo_2024-07-05_11-59-00.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/robot1.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/robot1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/straight road.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/straight road.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/straight road.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/turn road 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/turn road 2.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/turn road 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/turn road.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/turn road.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/turn road.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-2 (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-2 (1).tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/безымянный.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/безымянный.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.psb" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.psb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/1645519570740.jpg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Tower 07.tsx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/back.jpg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/map.tsx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapYesYes.tmx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapq (2).tmx.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapq (2).tmx.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapq.tmx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/photo_2024-07-05_11-59-00.jpg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/robot1.png.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/robot1.png.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/straight road.png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/straight road.psd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/straight road.tsx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road 2.png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road 2.psd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road 3.png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road.png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road.psd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road.tsx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-1.png.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-1.png.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-2 (1).png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-2 (1).tsx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-2.png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/безымянный.png.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/безымянный.tmx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.png.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.png.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.psb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.psb.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.tsx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_10/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_11/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_2/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_3/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_4/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_5/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_6/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_7/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_8/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/dirs_bucket_9/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_0/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_1/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_10/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_11/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_2/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_3/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_4/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_5/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_6/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_7/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_8/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_4a113b00926ad16f13b1b9d13a916c4754589fc3b16add1adb1fd72621afe588_bucket_9/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_6e6bf3d3940dcab227c4e8db36573859a45679cb562c503e68f0e2ad0585f53d_bucket_0/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/desugar_graph/debug/dexBuilderDebug/out/currentProject/jar_6e6bf3d3940dcab227c4e8db36573859a45679cb562c503e68f0e2ad0585f53d_bucket_1/graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/11/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/11/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/13/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/13/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/14/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/4/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/4/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/6/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/6/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/7/classes.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/9/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex/debug/mergeLibDexDebug/9/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex_archive_input_jar_hashes/debug/dexBuilderDebug/out" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex_archive_input_jar_hashes/debug/dexBuilderDebug/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/dex_number_of_buckets_file/debug/dexBuilderDebug/out" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/dex_number_of_buckets_file/debug/dexBuilderDebug/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/2JCZtGmEmZLHe7Hcw4BPaApb9xM=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/HPE_NVpatQ4V+HZChQnImuNfvsA=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/K_e_S7VVCZiTBufTz6ZxfPiTXVo=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/M_NZd9mj4Kui5sfo_CjxzTPCZTI=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/P0ACGnmpd1R+pwEcTxGitvHKZP4=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ZQ4oPX0+b48xO+2xJvL4XN_DBWI=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/c2GmkWjNRCChRg0kUtSfWO6GzwM=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/kIrk1XbqQVcDgJySUuXDTHsjmh4=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/oM+yDv0lfXAr9Otvw3ykeaH7Esw=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/x29AZU91_fgF4kzcvHiarGcGcTw=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/javaResources0" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/javaResources0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/base.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/base.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/9664ad90ed4d2d6f622753376a20ef0fa77e5a5f7f1c7cdd26c00cfa89485fc1_11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/GameResources.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/GameSession.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/MyGdxGame.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/MyGdxGame.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/gamefield/GameField.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/gamefield/Tile.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/BaseTowerObject.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/BaseTowerObject.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/Enemy.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/EnemyObject.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/EnemyObject.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/MainHeroObject.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/MainHeroObject.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/screens/GameScreen.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/screens/GameScreen.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/ImageView.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/ImageView.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/TextView.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/TextView.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameResources.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameResources.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameResourses.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameSettings.dex" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameSettings.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/objects/GameObject.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/mygdx/game/Objects/EnemyObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/mygdx/game/Objects/EnemyObject.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/mygdx/game/utility/GameSettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/mygdx/game/utility/GameSettings.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/compileTransaction/stash-dir/EnemyObject.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/compileTransaction/stash-dir/MyGdxGame.class.uniqueId1" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/screens/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/utility/ContactManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/utility/ContactManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/utility/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/utility/GameSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktop/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +169,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Euhell"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Danila321/Bootcamp.git&quot;,
+    &quot;accountId&quot;: &quot;837bb833-1f62-49f1-aba1-9df1dee89839&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -55,28 +193,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.android.executor": "Run",
-    "Application.DesktopLauncher.executor": "Run",
-    "Gradle.Bootcamp2v:desktop [:desktop:DesktopLauncher.main()].executor": "Run",
-    "Gradle.Bootcamp:desktop [:desktop:DesktopLauncher.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "external.system.has.shared.sources": "true",
-    "git-widget-placeholder": "Euhell",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Program Files/Bootcamp2v/assets",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.android.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DesktopLauncher.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bootcamp2v:desktop [:desktop:DesktopLauncher.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bootcamp:desktop [:desktop:DesktopLauncher.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;external.system.has.shared.sources&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Euhell&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Program Files/Bootcamp2v/assets&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Program Files\Bootcamp2v\assets" />
@@ -181,9 +319,19 @@
       <option name="presentableId" value="Default" />
       <updated>1720280436213</updated>
     </task>
+    <task id="LOCAL-00001" summary="11">
+      <option name="closed" value="true" />
+      <created>1720430408026</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720430408026</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactoring, lives, end of the track, enemies HP" />
     <MESSAGE value="11" />
     <option name="LAST_COMMIT_MESSAGE" value="11" />
   </component>

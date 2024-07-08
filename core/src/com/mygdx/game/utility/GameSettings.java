@@ -12,11 +12,11 @@ public class GameSettings {
     public static final float STEP_TIME = 1f / 60f;
     public static final int VELOCITY_ITERATIONS = 6;
     public static final int POSITION_ITERATIONS = 6;
-    public static final short ENEMY_BIT = 2;
+    public static final short ENEMY_BIT = 20;
     public static final short MAIN_HERO_BIT = 4;
     public static final short BASE_TOWER_BIT = 8;
     public static final short BASE_BULLET_BIT = 16;
-    public static final int BASE_BULLET_DAMAGE = 1;
+    public static final int BASE_BULLET_DAMAGE = 5;
     public static final int BASE_TOWER_ATTACK_COOL_DOWN = 500;
     public static final float BASE_TOWER_ATTACK_RADIUS = 200;
     public static final int BULLET_VELOCITY = 50;
