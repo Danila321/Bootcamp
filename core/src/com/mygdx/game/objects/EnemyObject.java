@@ -40,6 +40,9 @@ public class EnemyObject extends GameObject {
         }
     }
 
+    public void setSpeed(int speed){
+        this.speed = speed;
+    }
 
     public void draw(SpriteBatch batch) {
         batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
