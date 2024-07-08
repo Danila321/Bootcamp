@@ -64,7 +64,8 @@ public class GameSession {
     }
 
     public void eliminationRegistration(Money balance) {
-        balance.addBalance(50);
+        balance.addBalance(50);}
+
     }
 
     public void levelUp() {

@@ -14,6 +14,8 @@ import com.mygdx.game.utility.ContactManager;
 import com.mygdx.game.objects.MainHeroObject;
 import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.ContactManager;
+import com.mygdx.game.Managers.AudioManager;
+import com.mygdx.game.Managers.MemoryManager;
 import com.mygdx.game.objects.BulletObject;
 import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.GameState;
@@ -42,6 +44,7 @@ public class GameScreen extends ScreenAdapter {
     TextView levelTextView;
     TiledMap tiledMap;
     Path path;
+    AudioManager audioManager;
     Vector2 startPos;
     MainHeroObject hero;
     ArrayList<BaseTowerObject> towerArray;
@@ -61,6 +64,7 @@ public class GameScreen extends ScreenAdapter {
         gameSession = new GameSession();
         gameSession.state = GameState.PLAYING;
         contactManager = new ContactManager(myGdxGame.world);
+        audioManager = new AudioManager();
 
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
@@ -76,6 +80,7 @@ public class GameScreen extends ScreenAdapter {
                 break;
             }
         }
+
 
         button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "500");
@@ -169,7 +174,6 @@ public class GameScreen extends ScreenAdapter {
         myGdxGame.camera.update();
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         ScreenUtils.clear(Color.CLEAR);
-
         myGdxGame.batch.begin();
 
         for (BaseTowerObject tower : towerArray) {
@@ -191,7 +195,7 @@ public class GameScreen extends ScreenAdapter {
             if (gameSession.shouldSpawnEnemy()) {
                 EnemyObject enemy = new EnemyObject("red.png", myGdxGame.world, path,
                         (int) startPos.x, (int) startPos.y, GameSettings.ENEMY_SPEED);
-                EnemyArray.add(enemy);
+                enemyArray.add(enemy);
             }
         }
 
@@ -223,21 +227,70 @@ public class GameScreen extends ScreenAdapter {
         handleInput();
         update();
 
-        if (!gameSession.isRest()) {
-            if (gameSession.shouldSpawnEnemy()) {
-                EnemyObject enemy = new EnemyObject("robot1.png", myGdxGame.world, path,
-                        (int) startPos.x, (int) startPos.y, 64, 64, GameSettings.ENEMY_SPEED);
-                enemyArray.add(enemy);
-            }
-        }
-
+        myGdxGame.batch.end();
         myGdxGame.stepWorld();
-}
+    }
+
+
+
 
 private boolean haveMoney() {
     return balance.getBalance() > 0;
 }
 
+private void handleInput() {
+    if (Gdx.input.justTouched()) {
+        Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
+                && balance.getBalance() >= GameSettings.TOWER1_COST) {
+            balance.reduceBalance(GameSettings.TOWER1_COST);
+            BaseTowerObject baseTower = new BaseTowerObject(
+                    x_cord, y_cord,
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    GameResources.yellow_square, myGdxGame.world);
+            towerArray.add(baseTower);
+            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
+            isMenuExecuted = false;
+        }
+        if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
+                && balance.getBalance() >= GameSettings.TOWER2_COST) {
+            balance.reduceBalance(GameSettings.TOWER2_COST);
+            BaseTowerObject baseTower2 = new BaseTowerObject(
+                    x_cord, y_cord,
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    GameResources.green_square, myGdxGame.world);
+            towerArray.add(baseTower2);
+            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
+            isMenuExecuted = false;
+        }
+        if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
+                && balance.getBalance() >= GameSettings.TOWER3_COST) {
+            balance.reduceBalance(GameSettings.TOWER3_COST);
+            BaseTowerObject baseTower3 = new BaseTowerObject(
+                    x_cord, y_cord,
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    (int) (32 * GameSettings.MAP_SCALE),
+                    GameResources.blue_square, myGdxGame.world);
+            towerArray.add(baseTower3);
+            audioManager.towerCreateSound.play(0.5f * MemoryManager.SoundValue());
+            isMenuExecuted = false;
+        }
+        if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
+            if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
+                isMenuExecuted = true;
+
+
+            }
+
+        }
+
+        if (closeButton.isHit(touchPos.x, touchPos.y)) {
+            isMenuExecuted = false;
+        }
+    }
+}
     private void handleInput() {
         if (Gdx.input.justTouched()) {
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
