@@ -19,13 +19,13 @@ public class GameResources {
     public static final String BUTTON = "images/black_button.png";
 
     public static final String FONT_PATH = "fonts/Montserrat-Bold.ttf";
-//    public static final String BACKGROUND = "background.png";
+    public static final String BACKGROUND = "images/background.png";
   //  public static final String PAUSE_IMG_PATH = "pause_icon.png";
 
 
     //звуки
     public static final String TOWER_CREATE = "sounds/laser-scan_fjjawtv_.mp3";
     public static final String SHOOT_SOUND_PATH = "sounds/laser-blast_zjrhvyvd.mp3";
-    public static final String BACKGROUND_MUSIC_PATH = "тут пока что ничего нет";
+    public static final String BACKGROUND_MUSIC_PATH = "sounds/laser-blast_zjrhvyvd.mp3";
 
 }
