@@ -12,7 +12,7 @@ public class GameSession {
     boolean levelFlag = true;
     private int level = 0;
 
-    long startRestTime;
+    long startRestTime = 0;
     int eliminatedEnemiesNumber = 0;
 
     public GameSession() {
@@ -66,6 +66,7 @@ public class GameSession {
     public void eliminationRegistration(Money balance) {
         balance.addBalance(50);
     }
+
     public void levelUp() {
         level++;
         GameSettings.ENEMY_SPAWN_TIME -= 200;

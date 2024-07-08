@@ -1,10 +1,15 @@
 package com.mygdx.game.utility;
 
 public class GameResources {
+    public static final String BLACKOUT = "blackout_background.png";
+    public static String WHITE = "white_background.png";
+
     public static final String red_square = "red.png";
     public static final String blue_square = "blue.png";
     public static final String green_square = "green.png";
     public static final String yellow_square = "yellow.png";
+
+    public static final String PAUSE_IMG_PATH = "pause_icon.png";
 
     public static String ENEMY = "enemy_0.png";
     public static String BACK = "back.jpg";
