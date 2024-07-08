@@ -51,7 +51,7 @@ public abstract class GameObject {
         body.setTransform(body.getPosition().x, y * GameSettings.SCALE, 0);
     }
 
-    public void hit() {
+    public void hit(int x) {
         // all physics objects could be hit
     }
 

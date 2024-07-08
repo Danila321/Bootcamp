@@ -12,6 +12,8 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.screens.MenuScreen;
+import com.mygdx.game.screens.SettingsScreen;
+import com.mygdx.game.screens.SettingsScreen;
 import com.mygdx.game.ui.FontBuilder;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
@@ -19,7 +21,7 @@ import com.mygdx.game.utility.GameSettings;
 public class MyGdxGame extends Game {
 	public World world;
 
-	public BitmapFont commonWhiteFont, commonRedFont, largeWhiteFont, commonBlackFont;
+	public BitmapFont commonWhiteFont, commonRedFont, largeWhiteFont, commonBlackFont, smallRedFont;
 
 	public Vector3 touch;
 	public SpriteBatch batch;
@@ -27,6 +29,7 @@ public class MyGdxGame extends Game {
 	public GameScreen gameScreen;
 	float accumulator = 0;
 	public MenuScreen menuScreen;
+	public SettingsScreen settingsScreen;
 
 	@Override
 	public void create() {
@@ -38,17 +41,25 @@ public class MyGdxGame extends Game {
 		commonRedFont = FontBuilder.generate(24, Color.RED, GameResources.FONT_PATH);
 		largeWhiteFont = FontBuilder.generate(52, Color.WHITE, GameResources.FONT_PATH);
 		commonBlackFont = FontBuilder.generate(24, Color.BLACK, GameResources.FONT_PATH);
+		smallRedFont = FontBuilder.generate(20, Color.RED, GameResources.FONT_PATH);
 		commonRedFont.getData().setScale(1f, -1f);
 		commonWhiteFont.getData().setScale(1f, -1f);
 		largeWhiteFont.getData().setScale(1f, -1f);
 		commonBlackFont.getData().setScale(1f, -1f);
+		smallRedFont.getData().setScale(1f, -1f);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(true, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
 		batch = new SpriteBatch();
 
 		gameScreen = new GameScreen(this);
 		menuScreen = new MenuScreen(this);
+		settingsScreen = new SettingsScreen(this);
 		setScreen(menuScreen);
+	}
+
+	@Override
+	public void dispose () {
+		batch.dispose();
 	}
 
 	public void stepWorld() {
