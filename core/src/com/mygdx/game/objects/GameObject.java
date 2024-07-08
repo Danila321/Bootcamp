@@ -1,4 +1,4 @@
-package objects;
+package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -51,11 +51,15 @@ public abstract class GameObject {
         body.setTransform(body.getPosition().x, y * GameSettings.SCALE, 0);
     }
 
-    public void hit() {
+    public void hit(int x) {
         // all physics objects could be hit
     }
 
     public void kill() {
+
+    }
+
+    public void returnXY() {
 
     }
 
