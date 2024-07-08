@@ -1,0 +1,640 @@
+Index: core/src/com/mygdx/game/objects/MainHeroObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.objects;\r\n\r\nimport com.badlogic.gdx.graphics.g2d.SpriteBatch;\r\nimport com.badlogic.gdx.physics.box2d.World;\r\nimport com.mygdx.game.utility.GameSettings;\r\n\r\npublic class MainHeroObject extends GameObject {\r\n    public static int livesLeft;\r\n    int maxHealth;\r\n    public static int heroDamage;\r\n\r\n    public MainHeroObject(int x, int y, int width, int height, String texturePath, World world) {\r\n        super(texturePath, x, y, width, height, GameSettings.MAIN_HERO_BIT, world);\r\n        maxHealth = 100;\r\n        livesLeft = 100;\r\n        heroDamage = 25;\r\n    }\r\n\r\n    @Override\r\n    public void draw(SpriteBatch batch) {\r\n        super.draw(batch);\r\n    }\r\n\r\n    @Override\r\n    public void hit(int damage) {\r\n        livesLeft -= damage;\r\n        System.out.println(\"Ouch!\");\r\n    }\r\n    public boolean isAlive() {\r\n        return livesLeft > 0;\r\n    }\r\n    public int getLiveLeft() {\r\n        return livesLeft;\r\n    }\r\n    public void setLivesLeft(int lives) {\r\n        livesLeft = lives;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/objects/MainHeroObject.java b/core/src/com/mygdx/game/objects/MainHeroObject.java
+--- a/core/src/com/mygdx/game/objects/MainHeroObject.java	
++++ b/core/src/com/mygdx/game/objects/MainHeroObject.java	
+@@ -10,7 +10,7 @@
+     public static int heroDamage;
+ 
+     public MainHeroObject(int x, int y, int width, int height, String texturePath, World world) {
+-        super(texturePath, x, y, width, height, GameSettings.MAIN_HERO_BIT, world);
++        super(texturePath, x, y, width, height, GameSettings.MAIN_HERO_BIT, 1000000, world);
+         maxHealth = 100;
+         livesLeft = 100;
+         heroDamage = 25;
+Index: core/src/com/mygdx/game/objects/GameObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.objects;\r\n\r\nimport com.badlogic.gdx.graphics.Texture;\r\nimport com.badlogic.gdx.graphics.g2d.SpriteBatch;\r\nimport com.badlogic.gdx.physics.box2d.Body;\r\nimport com.badlogic.gdx.physics.box2d.BodyDef;\r\nimport com.badlogic.gdx.physics.box2d.CircleShape;\r\nimport com.badlogic.gdx.physics.box2d.Fixture;\r\nimport com.badlogic.gdx.physics.box2d.FixtureDef;\r\nimport com.badlogic.gdx.physics.box2d.World;\r\n\r\nimport com.mygdx.game.utility.GameSettings;\r\n\r\npublic abstract class GameObject {\r\n    public int width, height;\r\n    public Body body;\r\n    public short cBits;\r\n\r\n    Texture texture;\r\n\r\n    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits, World world) {\r\n        this.width = width;\r\n        this.height = height;\r\n        this.cBits = cBits;\r\n\r\n        texture = new Texture(texturePath);\r\n        body = createBody(x, y, world);\r\n    }\r\n\r\n    public void draw(SpriteBatch batch) {\r\n        batch.draw(texture, getX() - (width / 2f), getY() - (height / 2f), width, height);\r\n    }\r\n\r\n    public Texture getTexture() {\r\n        return texture;\r\n    }\r\n\r\n    public int getX() {\r\n        return (int) (body.getPosition().x / GameSettings.SCALE);\r\n    }\r\n\r\n    public int getY() {\r\n        return (int) (body.getPosition().y / GameSettings.SCALE);\r\n    }\r\n\r\n    public void setX(int x) {\r\n        body.setTransform(x * GameSettings.SCALE, body.getPosition().y, 0);\r\n    }\r\n\r\n    public void setY(int y) {\r\n        body.setTransform(body.getPosition().x, y * GameSettings.SCALE, 0);\r\n    }\r\n\r\n    public void hit(int x) {\r\n        // all physics objects could be hit\r\n    }\r\n\r\n    public void kill() {\r\n\r\n    }\r\n\r\n    public void returnXY() {\r\n\r\n    }\r\n\r\n    private Body createBody(float x, float y, World world) {\r\n        BodyDef def = new BodyDef();\r\n\r\n        def.type = BodyDef.BodyType.DynamicBody;\r\n        def.fixedRotation = true;\r\n        Body body = world.createBody(def);\r\n\r\n        CircleShape circleShape = new CircleShape();\r\n        circleShape.setRadius(Math.max(width, height) * GameSettings.SCALE / 2f);\r\n\r\n        FixtureDef fixtureDef = new FixtureDef();\r\n        fixtureDef.shape = circleShape;\r\n        fixtureDef.density = 0.1f;\r\n        fixtureDef.friction = 1f;\r\n        fixtureDef.filter.categoryBits = cBits;\r\n\r\n        Fixture fixture = body.createFixture(fixtureDef);\r\n        fixture.setUserData(this);\r\n        circleShape.dispose();\r\n\r\n        body.setTransform(x * GameSettings.SCALE, y * GameSettings.SCALE, 0);\r\n        return body;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/objects/GameObject.java b/core/src/com/mygdx/game/objects/GameObject.java
+--- a/core/src/com/mygdx/game/objects/GameObject.java	
++++ b/core/src/com/mygdx/game/objects/GameObject.java	
+@@ -18,13 +18,13 @@
+ 
+     Texture texture;
+ 
+-    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits, World world) {
++    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits, int density, World world) {
+         this.width = width;
+         this.height = height;
+         this.cBits = cBits;
+ 
+         texture = new Texture(texturePath);
+-        body = createBody(x, y, world);
++        body = createBody(x, y, density, world);
+     }
+ 
+     public void draw(SpriteBatch batch) {
+@@ -63,7 +63,7 @@
+ 
+     }
+ 
+-    private Body createBody(float x, float y, World world) {
++    private Body createBody(float x, float y, int density, World world) {
+         BodyDef def = new BodyDef();
+ 
+         def.type = BodyDef.BodyType.DynamicBody;
+@@ -75,10 +75,12 @@
+ 
+         FixtureDef fixtureDef = new FixtureDef();
+         fixtureDef.shape = circleShape;
+-        fixtureDef.density = 0.1f;
++        fixtureDef.density = density;
+         fixtureDef.friction = 1f;
+         fixtureDef.filter.categoryBits = cBits;
+ 
++        body.resetMassData();
++
+         Fixture fixture = body.createFixture(fixtureDef);
+         fixture.setUserData(this);
+         circleShape.dispose();
+Index: core/src/com/mygdx/game/objects/EnemyObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.objects;\r\n\r\nimport com.badlogic.gdx.graphics.g2d.SpriteBatch;\r\nimport com.badlogic.gdx.math.Vector2;\r\nimport com.badlogic.gdx.physics.box2d.World;\r\nimport com.mygdx.game.screens.GameScreen;\r\nimport com.mygdx.game.utility.Path;\r\nimport com.mygdx.game.utility.GameSettings;\r\n\r\n\r\npublic class EnemyObject extends GameObject {\r\n    private int currentIndex;\r\n    private float speed;\r\n    private Path path;\r\n    private int livesLeft;\r\n    public static int maxHealth;\r\n    public boolean needToHitPLayer;\r\n\r\n    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width, int height, float speed) {\r\n        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, world);\r\n        currentIndex = 0;\r\n        this.speed = speed;\r\n        this.path = path;\r\n        maxHealth = 5;\r\n        livesLeft = 5;\r\n        needToHitPLayer = false;\r\n    }\r\n\r\n    public void update(float deltaTime) {\r\n        Vector2 position = new Vector2(getX(), getY());\r\n        if (currentIndex < path.getLength()) {\r\n            Vector2 target = path.getPoint(currentIndex);\r\n            Vector2 direction = target.cpy().sub(position).nor();\r\n\r\n            position.add(direction.scl(speed));\r\n            setX((int) position.x);\r\n            setY((int) position.y);\r\n\r\n            if (position.dst(target) < speed) {\r\n                currentIndex++;\r\n            }\r\n        } else {\r\n            hit(MainHeroObject.heroDamage);\r\n            needToHitPLayer = true;\r\n        }\r\n    }\r\n\r\n    public void setSpeed(int speed){\r\n        this.speed = speed;\r\n    }\r\n\r\n    public void draw(SpriteBatch batch) {\r\n        batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,\r\n                getY() * GameSettings.MAP_SCALE, 64, 64);\r\n    }\r\n\r\n    public boolean isAlive() {\r\n        return livesLeft > 0;\r\n    }\r\n    public int getLiveLeft() {\r\n        return livesLeft;\r\n    }\r\n    public int getMaxHealth() {\r\n        return maxHealth;\r\n    }\r\n    @Override\r\n    public void hit(int damage) {\r\n        livesLeft -= damage;\r\n    }\r\n\r\n    public boolean needToHit() {\r\n        return needToHitPLayer;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/objects/EnemyObject.java b/core/src/com/mygdx/game/objects/EnemyObject.java
+--- a/core/src/com/mygdx/game/objects/EnemyObject.java	
++++ b/core/src/com/mygdx/game/objects/EnemyObject.java	
+@@ -13,16 +13,16 @@
+     private float speed;
+     private Path path;
+     private int livesLeft;
+-    public static int maxHealth;
++    public int maxHealth;
+     public boolean needToHitPLayer;
+ 
+-    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width, int height, float speed) {
+-        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, world);
++    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width, int height, float speed, int health) {
++        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, 1000000, world);
+         currentIndex = 0;
+         this.speed = speed;
+         this.path = path;
+-        maxHealth = 5;
+-        livesLeft = 5;
++        maxHealth = health;
++        livesLeft = health;
+         needToHitPLayer = false;
+     }
+ 
+@@ -45,24 +45,27 @@
+         }
+     }
+ 
+-    public void setSpeed(int speed){
+-        this.speed = speed;
+-    }
+-
+     public void draw(SpriteBatch batch) {
+         batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
+                 getY() * GameSettings.MAP_SCALE, 64, 64);
+     }
+ 
++    public void setSpeed(int speed){
++        this.speed = speed;
++    }
++
+     public boolean isAlive() {
+         return livesLeft > 0;
+     }
++
+     public int getLiveLeft() {
+         return livesLeft;
+     }
++
+     public int getMaxHealth() {
+         return maxHealth;
+     }
++
+     @Override
+     public void hit(int damage) {
+         livesLeft -= damage;
+Index: core/src/com/mygdx/game/utility/GameSettings.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.utility;\r\n\r\npublic class GameSettings {\r\n    public static final float SCALE = 0.05f;\r\n\r\n    // Device settings\r\n    public static final int SCREEN_WIDTH = 1280;\r\n    public static final int SCREEN_HEIGHT = 720;\r\n\r\n    // Physics settings\r\n\r\n    public static final float STEP_TIME = 1f / 60f;\r\n    public static final int VELOCITY_ITERATIONS = 6;\r\n    public static final int POSITION_ITERATIONS = 6;\r\n    public static final short ENEMY_BIT = 2;\r\n    public static final short MAIN_HERO_BIT = 4;\r\n    public static final short BASE_TOWER_BIT = 8;\r\n    public static final short BASE_BULLET_BIT = 16;\r\n    public static final int BASE_BULLET_DAMAGE = 5;\r\n    public static final int BASE_TOWER_ATTACK_COOL_DOWN = 500;\r\n    public static final float BASE_TOWER_ATTACK_RADIUS = 200;\r\n    public static final int BULLET_VELOCITY = 50;\r\n    public static final float MAP_SCALE = 2.5f;\r\n\r\n    public static int ENEMY_SPAWN_TIME = 2000;\r\n    public static int ENEMY_COUNT = 1;\r\n    public static float ENEMY_SPEED = 1.0f;\r\n\r\n    public static long WAVE_REST_TIME = 8000;\r\n\r\n    public static final int TOWER1_COST = 500;\r\n    public static final int TOWER2_COST = 600;\r\n    public static final int TOWER3_COST = 700;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/utility/GameSettings.java b/core/src/com/mygdx/game/utility/GameSettings.java
+--- a/core/src/com/mygdx/game/utility/GameSettings.java	
++++ b/core/src/com/mygdx/game/utility/GameSettings.java	
+@@ -31,4 +31,8 @@
+     public static final int TOWER1_COST = 500;
+     public static final int TOWER2_COST = 600;
+     public static final int TOWER3_COST = 700;
++
++    public static final int TOWER1_DAMAGE = 2;
++    public static final int TOWER2_DAMAGE = 5;
++    public static final int TOWER3_DAMAGE = 10;
+ }
+Index: core/src/com/mygdx/game/screens/GameScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.screens;\r\n\r\nimport com.badlogic.gdx.Gdx;\r\nimport com.badlogic.gdx.ScreenAdapter;\r\nimport com.badlogic.gdx.graphics.Color;\r\nimport com.badlogic.gdx.maps.MapObjects;\r\nimport com.badlogic.gdx.maps.objects.RectangleMapObject;\r\nimport com.badlogic.gdx.maps.tiled.TiledMap;\r\nimport com.badlogic.gdx.maps.tiled.TmxMapLoader;\r\nimport com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;\r\nimport com.badlogic.gdx.math.Vector2;\r\nimport com.badlogic.gdx.utils.ScreenUtils;\r\nimport com.mygdx.game.utility.ContactManager;\r\nimport com.mygdx.game.objects.MainHeroObject;\r\nimport com.mygdx.game.utility.GameSession;\r\nimport com.mygdx.game.Managers.AudioManager;\r\nimport com.mygdx.game.Managers.MemoryManager;\r\nimport com.mygdx.game.objects.BulletObject;\r\nimport com.mygdx.game.utility.GameSession;\r\nimport com.mygdx.game.utility.GameState;\r\nimport com.mygdx.game.utility.Path;\r\nimport com.mygdx.game.objects.EnemyObject;\r\nimport com.mygdx.game.ui.Money;\r\nimport com.mygdx.game.MyGdxGame;\r\nimport com.mygdx.game.ui.ButtonView;\r\nimport com.mygdx.game.ui.ImageView;\r\nimport com.mygdx.game.ui.TextView;\r\nimport com.mygdx.game.utility.GameSettings;\r\nimport com.mygdx.game.objects.BaseTowerObject;\r\nimport com.mygdx.game.utility.GameResources;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Iterator;\r\n\r\npublic class GameScreen extends ScreenAdapter {\r\n    MyGdxGame myGdxGame;\r\n    GameSession gameSession;\r\n    ContactManager contactManager;\r\n    Money balance;\r\n    ButtonView button1, button2, button3, closeButton;\r\n    ImageView unitMenu, tower1, tower2, tower3, liveImageView;\r\n    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView;\r\n    TiledMap tiledMap;\r\n    Path path;\r\n    AudioManager audioManager;\r\n    Vector2 startPos;\r\n    MainHeroObject hero;\r\n    ArrayList<BaseTowerObject> towerArray;\r\n    ArrayList<EnemyObject> enemyArray;\r\n    private OrthogonalTiledMapRenderer tiledMapRenderer;\r\n    boolean isMenuExecuted = false;\r\n    float x_cord = 0, y_cord = 0;\r\n    ButtonView pauseButton;\r\n\r\n    ImageView fullBlackoutView;\r\n    TextView pauseTextView;\r\n    ButtonView homeButton;\r\n    ButtonView continueButton;\r\n\r\n    public GameScreen(MyGdxGame myGdxGame) {\r\n        this.myGdxGame = myGdxGame;\r\n        gameSession = new GameSession();\r\n        gameSession.state = GameState.PLAYING;\r\n        contactManager = new ContactManager(myGdxGame.world);\r\n        audioManager = new AudioManager();\r\n\r\n        towerArray = new ArrayList<>();\r\n        enemyArray = new ArrayList<>();\r\n        hero = new MainHeroObject(1230, 490, 100, 100,\r\n                \"blue.png\", myGdxGame.world);\r\n        loadMap();\r\n        path = new Path(tiledMap);\r\n\r\n        MapObjects objects = tiledMap.getLayers().get(\"enemy\").getObjects();\r\n        if (objects != null) {\r\n            for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {\r\n                startPos = new Vector2(object.getRectangle().x, object.getRectangle().y);\r\n                break;\r\n            }\r\n        }\r\n\r\n\r\n        button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont,\r\n                GameResources.BUTTON, \"500\");\r\n        button2 = new ButtonView(1070, 200, 200, 50, myGdxGame.commonWhiteFont,\r\n                GameResources.BUTTON, \"600\");\r\n        button3 = new ButtonView(1070, 300, 200, 50, myGdxGame.commonWhiteFont,\r\n                GameResources.BUTTON, \"700\");\r\n        closeButton = new ButtonView(1240, 20, 20, 20, GameResources.red_square);\r\n\r\n        tower1 = new ImageView(1100, 50, GameResources.yellow_square, 50, 50);\r\n        tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);\r\n        tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);\r\n\r\n        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);\r\n        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);\r\n\r\n        liveImageView = new ImageView(170, 77, GameResources.red_square, -22, 25);\r\n        levelTextView = new TextView(myGdxGame.commonWhiteFont, 170, 40);\r\n        livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);\r\n\r\n        balance = new Money(1000);\r\n        unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);\r\n\r\n        pauseButton = new ButtonView(\r\n                30, 20,\r\n                92, 92,\r\n                GameResources.red_square\r\n        );\r\n\r\n        fullBlackoutView = new ImageView(0, 0, GameResources.red_square);\r\n        pauseTextView = new TextView(myGdxGame.largeWhiteFont, 550, 200, \"Pause\");\r\n        homeButton = new ButtonView(\r\n                550, 300,\r\n                200, 70,\r\n                myGdxGame.commonBlackFont,\r\n                \"button_white.png\",\r\n                \"Home\"\r\n        );\r\n        continueButton = new ButtonView(\r\n                550, 450,\r\n                200, 70,\r\n                myGdxGame.commonBlackFont,\r\n                \"button_white.png\",\r\n                \"Continue\"\r\n        );\r\n\r\n    }\r\n\r\n    @Override\r\n    public void show() {\r\n        restartGame();\r\n\r\n    }\r\n\r\n    public void loadMap() {\r\n        TmxMapLoader mapLoader = new TmxMapLoader();\r\n        tiledMap = mapLoader.load(\"mapq (2).tmx\");\r\n        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);\r\n    }\r\n\r\n    private void draw() {\r\n        myGdxGame.camera.update();\r\n        myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);\r\n        ScreenUtils.clear(Color.CLEAR);\r\n\r\n        myGdxGame.batch.begin();\r\n\r\n        balanceTextView.setText(String.valueOf(\"money:\" + balance.getBalance()));\r\n        balanceRedTextView.setText(String.valueOf(\"money:\" + balance.getBalance()));\r\n        balanceTextView.setText(\"Money: \" + balance.getBalance());\r\n        balanceRedTextView.setText(\"Money: \" + balance.getBalance());\r\n\r\n        levelTextView.setText(\"Wave: \" + gameSession.getLevel());\r\n        livesTextView.setText(\"Lives: \" + hero.getLiveLeft());\r\n\r\n\r\n\r\n        tiledMapRenderer.setView(myGdxGame.camera);\r\n        tiledMapRenderer.render();\r\n\r\n\r\n        levelTextView.draw(myGdxGame.batch);\r\n        livesTextView.draw(myGdxGame.batch);\r\n\r\n\r\n        for (EnemyObject enemy : enemyArray) {\r\n            enemy.update(2);\r\n            enemy.draw(myGdxGame.batch);\r\n            if (enemy.needToHit()) {\r\n                hero.hit(enemy.getMaxHealth());\r\n            }\r\n            TextView HPLeft = new TextView(myGdxGame.smallRedFont,\r\n                    enemy.getX() * GameSettings.MAP_SCALE,\r\n                    enemy.getY() * GameSettings.MAP_SCALE,\r\n                    enemy.getLiveLeft() + \" / \" + enemy.maxHealth);\r\n            HPLeft.draw(myGdxGame.batch);\r\n        }\r\n        liveImageView.draw(myGdxGame.batch);\r\n\r\n        for (BaseTowerObject tower : towerArray) {\r\n            tower.draw(myGdxGame.batch);\r\n            tower.shoot(enemyArray);\r\n            tower.updateBullets();\r\n            tower.putInBox();\r\n        }\r\n\r\n        hero.draw(myGdxGame.batch);\r\n\r\n        if (isMenuExecuted) {\r\n            drawMenu();\r\n        }\r\n\r\n        pauseButton.draw(myGdxGame.batch);\r\n\r\n        if (gameSession.state == GameState.PAUSED) {\r\n            fullBlackoutView.draw(myGdxGame.batch);\r\n            pauseTextView.draw(myGdxGame.batch);\r\n            homeButton.draw(myGdxGame.batch);\r\n            continueButton.draw(myGdxGame.batch);\r\n        }\r\n\r\n        if (haveMoney()) {\r\n            balanceTextView.draw(myGdxGame.batch);\r\n        } else {\r\n            balanceRedTextView.draw(myGdxGame.batch);\r\n        }\r\n\r\n        myGdxGame.batch.end();\r\n    }\r\n\r\n    @Override\r\n    public void render(float delta) {\r\n\r\n        handleInput();\r\n        update();\r\n\r\n        if (!gameSession.isRest()) {\r\n            if (gameSession.shouldSpawnEnemy()) {\r\n                EnemyObject enemy = new EnemyObject(\"robot1.png\", myGdxGame.world, path,\r\n                        (int) startPos.x, (int) startPos.y, 64, 64, GameSettings.ENEMY_SPEED);\r\n                enemyArray.add(enemy);\r\n            }\r\n        }\r\n\r\n        myGdxGame.stepWorld();\r\n\r\n        draw();\r\n    }\r\n\r\n\r\n    private boolean haveMoney() {\r\n        return balance.getBalance() > 0;\r\n    }\r\n\r\n\r\n    private void handleInput() {\r\n        if (Gdx.input.justTouched()) {\r\n            Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());\r\n\r\n            switch (gameSession.state) {\r\n                case PLAYING:\r\n                    if (pauseButton.isHit(touchPos.x, touchPos.y)) {\r\n                        gameSession.pauseGame();\r\n                    }\r\n                    if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)\r\n                            && balance.getBalance() >= GameSettings.TOWER1_COST) {\r\n                        balance.reduceBalance(GameSettings.TOWER1_COST);\r\n                        BaseTowerObject baseTower = new BaseTowerObject(\r\n                                x_cord, y_cord,\r\n                                (int) (32 * GameSettings.MAP_SCALE),\r\n                                (int) (32 * GameSettings.MAP_SCALE),\r\n                                GameResources.yellow_square, myGdxGame.world);\r\n                        towerArray.add(baseTower);\r\n                        isMenuExecuted = false;\r\n                    }\r\n                    if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)\r\n                            && balance.getBalance() >= GameSettings.TOWER2_COST) {\r\n                        balance.reduceBalance(GameSettings.TOWER2_COST);\r\n                        BaseTowerObject baseTower2 = new BaseTowerObject(\r\n                                x_cord, y_cord,\r\n                                (int) (32 * GameSettings.MAP_SCALE),\r\n                                (int) (32 * GameSettings.MAP_SCALE),\r\n                                GameResources.green_square, myGdxGame.world);\r\n                        towerArray.add(baseTower2);\r\n                        isMenuExecuted = false;\r\n                    }\r\n                    if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)\r\n                            && balance.getBalance() >= GameSettings.TOWER3_COST) {\r\n                        balance.reduceBalance(GameSettings.TOWER3_COST);\r\n                        BaseTowerObject baseTower3 = new BaseTowerObject(\r\n                                x_cord, y_cord,\r\n                                (int) (32 * GameSettings.MAP_SCALE),\r\n                                (int) (32 * GameSettings.MAP_SCALE),\r\n                                GameResources.blue_square, myGdxGame.world);\r\n                        towerArray.add(baseTower3);\r\n                        isMenuExecuted = false;\r\n                    }\r\n                    if (hasObjectCoordinates(\"tower\", touchPos) && !isMenuExecuted) {\r\n                        if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {\r\n                            isMenuExecuted = true;\r\n                        }\r\n                    }\r\n                    if (closeButton.isHit(touchPos.x, touchPos.y)) {\r\n                        isMenuExecuted = false;\r\n                    }\r\n                    break;\r\n\r\n                case PAUSED:\r\n                    if (continueButton.isHit(touchPos.x, touchPos.y)) {\r\n                        gameSession.resumeGame();\r\n                    }\r\n                    if (homeButton.isHit(touchPos.x, touchPos.y)) {\r\n                        myGdxGame.setScreen(myGdxGame.menuScreen);\r\n                    }\r\n                    break;\r\n            }\r\n        }\r\n    }\r\n\r\n    private boolean tileIsEmpty(int x, int y) {\r\n        for (BaseTowerObject tower : towerArray) {\r\n            float xTower = tower.getX();\r\n            float yTower = tower.getY();\r\n            if (xTower == x && yTower == y) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n\r\n    private boolean hasObjectCoordinates(String tower, Vector2 touchPos) {\r\n        MapObjects objects = tiledMap.getLayers().get(tower).getObjects();\r\n        if (objects != null) {\r\n            for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {\r\n                if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE,\r\n                        touchPos.y / GameSettings.MAP_SCALE)) {\r\n                    System.out.println(object.getRectangle().x);\r\n                    x_cord = (object.getRectangle().x + object.getRectangle().width / 2)\r\n                            * GameSettings.MAP_SCALE;\r\n                    y_cord = (object.getRectangle().y + object.getRectangle().height / 2)\r\n                            * GameSettings.MAP_SCALE;\r\n                    return true;\r\n                }\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public void drawMenu() {\r\n        unitMenu.draw(myGdxGame.batch);\r\n        button1.draw(myGdxGame.batch);\r\n        button2.draw(myGdxGame.batch);\r\n        button3.draw(myGdxGame.batch);\r\n        tower1.draw(myGdxGame.batch);\r\n        tower2.draw(myGdxGame.batch);\r\n        tower3.draw(myGdxGame.batch);\r\n        closeButton.draw(myGdxGame.batch);\r\n    }\r\n\r\n    private void update() {\r\n        Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();\r\n\r\n        while (enemyObjectIterator.hasNext()) {\r\n\r\n            EnemyObject nextEnemy = enemyObjectIterator.next();\r\n            if (!nextEnemy.isAlive()) {\r\n                gameSession.eliminationRegistration(balance);\r\n                myGdxGame.world.destroyBody(nextEnemy.body);\r\n                enemyObjectIterator.remove();\r\n                System.out.println(\"DELETED\");\r\n            }\r\n        }\r\n\r\n        if (!hero.isAlive()) {\r\n            System.out.println(\"DEAD!\");\r\n        }\r\n\r\n    }\r\n\r\n    private void restartGame() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void dispose() {\r\n        unitMenu.dispose();\r\n        tiledMap.dispose();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/screens/GameScreen.java b/core/src/com/mygdx/game/screens/GameScreen.java
+--- a/core/src/com/mygdx/game/screens/GameScreen.java	
++++ b/core/src/com/mygdx/game/screens/GameScreen.java	
+@@ -146,8 +146,8 @@
+ 
+         myGdxGame.batch.begin();
+ 
+-        balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
+-        balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
++        balanceTextView.setText("Money:" + balance.getBalance());
++        balanceRedTextView.setText("Money:" + balance.getBalance());
+         balanceTextView.setText("Money: " + balance.getBalance());
+         balanceRedTextView.setText("Money: " + balance.getBalance());
+ 
+@@ -173,7 +173,7 @@
+             TextView HPLeft = new TextView(myGdxGame.smallRedFont,
+                     enemy.getX() * GameSettings.MAP_SCALE,
+                     enemy.getY() * GameSettings.MAP_SCALE,
+-                    enemy.getLiveLeft() + " / " + enemy.maxHealth);
++                    enemy.getLiveLeft() + " / " + enemy.getMaxHealth());
+             HPLeft.draw(myGdxGame.batch);
+         }
+         liveImageView.draw(myGdxGame.batch);
+@@ -211,14 +211,13 @@
+ 
+     @Override
+     public void render(float delta) {
+-
+         handleInput();
+         update();
+ 
+         if (!gameSession.isRest()) {
+             if (gameSession.shouldSpawnEnemy()) {
+                 EnemyObject enemy = new EnemyObject("robot1.png", myGdxGame.world, path,
+-                        (int) startPos.x, (int) startPos.y, 64, 64, GameSettings.ENEMY_SPEED);
++                        (int) startPos.x, (int) startPos.y, 64, 64, GameSettings.ENEMY_SPEED, 3 + gameSession.getLevel() / 3);
+                 enemyArray.add(enemy);
+             }
+         }
+@@ -250,7 +249,7 @@
+                                 x_cord, y_cord,
+                                 (int) (32 * GameSettings.MAP_SCALE),
+                                 (int) (32 * GameSettings.MAP_SCALE),
+-                                GameResources.yellow_square, myGdxGame.world);
++                                GameResources.yellow_square, myGdxGame.world, GameSettings.TOWER1_DAMAGE);
+                         towerArray.add(baseTower);
+                         isMenuExecuted = false;
+                     }
+@@ -261,7 +260,7 @@
+                                 x_cord, y_cord,
+                                 (int) (32 * GameSettings.MAP_SCALE),
+                                 (int) (32 * GameSettings.MAP_SCALE),
+-                                GameResources.green_square, myGdxGame.world);
++                                GameResources.green_square, myGdxGame.world, GameSettings.TOWER2_DAMAGE);
+                         towerArray.add(baseTower2);
+                         isMenuExecuted = false;
+                     }
+@@ -272,7 +271,7 @@
+                                 x_cord, y_cord,
+                                 (int) (32 * GameSettings.MAP_SCALE),
+                                 (int) (32 * GameSettings.MAP_SCALE),
+-                                GameResources.blue_square, myGdxGame.world);
++                                GameResources.blue_square, myGdxGame.world, GameSettings.TOWER3_DAMAGE);
+                         towerArray.add(baseTower3);
+                         isMenuExecuted = false;
+                     }
+Index: core/src/com/mygdx/game/objects/BaseTowerObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.objects;\r\n\r\nimport com.badlogic.gdx.graphics.g2d.SpriteBatch;\r\nimport com.badlogic.gdx.math.Vector2;\r\nimport com.badlogic.gdx.physics.box2d.World;\r\nimport com.badlogic.gdx.utils.TimeUtils;\r\nimport com.mygdx.game.Managers.AudioManager;\r\nimport com.mygdx.game.Managers.MemoryManager;\r\nimport com.mygdx.game.screens.SettingsScreen;\r\nimport com.mygdx.game.utility.GameResources;\r\nimport com.mygdx.game.utility.GameSettings;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Iterator;\r\n\r\npublic class BaseTowerObject extends GameObject {\r\n    AudioManager audioManager;\r\n    public int attackCoolDown;\r\n    public float attackRadius;\r\n    long lastShotTime;\r\n    private final World world;\r\n    Vector2 direction;\r\n    public ArrayList<BulletObject> bulletArray;\r\n    private final int tempX, tempY;\r\n\r\n    public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world) {\r\n        super(texturePath, x, y, width, height, GameSettings.BASE_TOWER_BIT, world);\r\n        this.world = world;\r\n        attackCoolDown = GameSettings.BASE_TOWER_ATTACK_COOL_DOWN;\r\n        attackRadius = GameSettings.BASE_TOWER_ATTACK_RADIUS;\r\n        bulletArray = new ArrayList<>();\r\n        tempX = getX();\r\n        tempY = getY();\r\n        audioManager = new AudioManager();\r\n    }\r\n\r\n    @Override\r\n    public void draw(SpriteBatch batch) {\r\n        super.draw(batch);\r\n        for (BulletObject bullet : bulletArray) {\r\n            bullet.draw(batch);\r\n        }\r\n    }\r\n\r\n    private boolean needToShoot() {\r\n        if (TimeUtils.millis() - lastShotTime >= attackCoolDown) {\r\n            lastShotTime = TimeUtils.millis();\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public void shoot(ArrayList<EnemyObject> enemyArray) {\r\n        if (needToShoot()) {\r\n\r\n            int minVal = 1000000000;\r\n            EnemyObject target = null;\r\n            for (EnemyObject enemy : enemyArray) {\r\n                Vector2 posEnemy = new Vector2(enemy.getX(), enemy.getY());\r\n                Vector2 pos = new Vector2(getX(), getY());\r\n                float distancePos = pos.cpy().nor().dst(posEnemy);\r\n                if (distancePos < GameSettings.BASE_TOWER_ATTACK_RADIUS && distancePos < minVal) {\r\n                    minVal = (int)distancePos;\r\n                    target = enemy;\r\n                    direction = posEnemy.sub(pos).cpy().nor();\r\n                }\r\n            }\r\n            if (target != null) {\r\n                audioManager.shootSound.play(0.05f * MemoryManager.SoundValue());\r\n                BulletObject bullet = new BulletObject(getX() - 35, getY() - 35, -15, -15,\r\n                        direction.scl(GameSettings.BULLET_VELOCITY),\r\n                        GameResources.red_square, world);\r\n                bulletArray.add(bullet);\r\n            }\r\n        }\r\n    }\r\n\r\n    public void updateBullets() {\r\n        Iterator<BulletObject> bulletObjectIterator = bulletArray.iterator();\r\n\r\n        while (bulletObjectIterator.hasNext()) {\r\n\r\n            BulletObject nextBullet = bulletObjectIterator.next();\r\n            if (nextBullet.hasToBeDestroyed()) {\r\n                world.destroyBody(nextBullet.body);\r\n                bulletObjectIterator.remove();\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    public void putInBox() {\r\n        if (getX() != tempX && getY() != tempY) {\r\n            setX(tempX);\r\n            setY(tempY);\r\n        } else if (getX() != tempX) {\r\n            setX(tempX);\r\n            setY(tempY);\r\n        } else if (getY() != tempY) {\r\n            setY(tempY);\r\n            setX(tempX);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/objects/BaseTowerObject.java b/core/src/com/mygdx/game/objects/BaseTowerObject.java
+--- a/core/src/com/mygdx/game/objects/BaseTowerObject.java	
++++ b/core/src/com/mygdx/game/objects/BaseTowerObject.java	
+@@ -2,6 +2,7 @@
+ 
+ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+ import com.badlogic.gdx.math.Vector2;
++import com.badlogic.gdx.math.Vector4;
+ import com.badlogic.gdx.physics.box2d.World;
+ import com.badlogic.gdx.utils.TimeUtils;
+ import com.mygdx.game.Managers.AudioManager;
+@@ -18,16 +19,18 @@
+     public int attackCoolDown;
+     public float attackRadius;
+     long lastShotTime;
++    public int damage;
+     private final World world;
+     Vector2 direction;
+     public ArrayList<BulletObject> bulletArray;
+     private final int tempX, tempY;
+ 
+-    public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world) {
+-        super(texturePath, x, y, width, height, GameSettings.BASE_TOWER_BIT, world);
++    public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world, int damage) {
++        super(texturePath, x, y, width, height, GameSettings.BASE_TOWER_BIT, 1000000, world);
+         this.world = world;
+         attackCoolDown = GameSettings.BASE_TOWER_ATTACK_COOL_DOWN;
+         attackRadius = GameSettings.BASE_TOWER_ATTACK_RADIUS;
++        this.damage = damage;
+         bulletArray = new ArrayList<>();
+         tempX = getX();
+         tempY = getY();
+@@ -53,14 +56,14 @@
+     public void shoot(ArrayList<EnemyObject> enemyArray) {
+         if (needToShoot()) {
+ 
+-            int minVal = 1000000000;
++            int minVal = Integer.MAX_VALUE;
+             EnemyObject target = null;
+             for (EnemyObject enemy : enemyArray) {
+                 Vector2 posEnemy = new Vector2(enemy.getX(), enemy.getY());
+                 Vector2 pos = new Vector2(getX(), getY());
+                 float distancePos = pos.cpy().nor().dst(posEnemy);
+                 if (distancePos < GameSettings.BASE_TOWER_ATTACK_RADIUS && distancePos < minVal) {
+-                    minVal = (int)distancePos;
++                    minVal = (int) distancePos;
+                     target = enemy;
+                     direction = posEnemy.sub(pos).cpy().nor();
+                 }
+@@ -69,7 +72,7 @@
+                 audioManager.shootSound.play(0.05f * MemoryManager.SoundValue());
+                 BulletObject bullet = new BulletObject(getX() - 35, getY() - 35, -15, -15,
+                         direction.scl(GameSettings.BULLET_VELOCITY),
+-                        GameResources.red_square, world);
++                        GameResources.red_square, world, damage);
+                 bulletArray.add(bullet);
+             }
+         }
+Index: core/src/com/mygdx/game/objects/BulletObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.objects;\r\n\r\nimport com.badlogic.gdx.math.Vector2;\r\nimport com.badlogic.gdx.math.Vector3;\r\nimport com.badlogic.gdx.physics.box2d.World;\r\nimport com.mygdx.game.utility.GameSettings;\r\n\r\npublic class BulletObject extends GameObject {\r\n\r\n    public boolean wasHit;\r\n    BulletObject(float x, float y, int width, int height, Vector2 vector2, String texturePath, World world) {\r\n        super(texturePath, x, y, width, height, GameSettings.BASE_BULLET_BIT, world);\r\n        body.setLinearVelocity(vector2);\r\n        body.setBullet(true);\r\n        wasHit = false;\r\n    }\r\n\r\n\r\n    public boolean hasToBeDestroyed() {\r\n        return wasHit || getY() - height / 2 > GameSettings.SCREEN_HEIGHT;\r\n    }\r\n\r\n    public void hit(int variable) {\r\n        wasHit = true;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/objects/BulletObject.java b/core/src/com/mygdx/game/objects/BulletObject.java
+--- a/core/src/com/mygdx/game/objects/BulletObject.java	
++++ b/core/src/com/mygdx/game/objects/BulletObject.java	
+@@ -6,12 +6,14 @@
+ import com.mygdx.game.utility.GameSettings;
+ 
+ public class BulletObject extends GameObject {
+-
+     public boolean wasHit;
+-    BulletObject(float x, float y, int width, int height, Vector2 vector2, String texturePath, World world) {
+-        super(texturePath, x, y, width, height, GameSettings.BASE_BULLET_BIT, world);
++    public int damage;
++
++    BulletObject(float x, float y, int width, int height, Vector2 vector2, String texturePath, World world, int damage) {
++        super(texturePath, x, y, width, height, GameSettings.BASE_BULLET_BIT, 1, world);
+         body.setLinearVelocity(vector2);
+         body.setBullet(true);
++        this.damage = damage;
+         wasHit = false;
+     }
+ 
+@@ -23,4 +25,8 @@
+     public void hit(int variable) {
+         wasHit = true;
+     }
++
++    public int getDamage(){
++        return damage;
++    }
+ }
+Index: .idea/deploymentTargetSelector.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/deploymentTargetSelector.xml	
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="deploymentTargetSelector">
++    <selectionStates>
++      <SelectionState runConfigName="android">
++        <option name="selectionMode" value="DROPDOWN" />
++      </SelectionState>
++    </selectionStates>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/other.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/other.xml b/.idea/other.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/other.xml	
+@@ -0,0 +1,263 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="direct_access_persist.xml">
++    <option name="deviceSelectionList">
++      <list>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="27" />
++          <option name="brand" value="DOCOMO" />
++          <option name="codename" value="F01L" />
++          <option name="id" value="F01L" />
++          <option name="manufacturer" value="FUJITSU" />
++          <option name="name" value="F-01L" />
++          <option name="screenDensity" value="360" />
++          <option name="screenX" value="720" />
++          <option name="screenY" value="1280" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="28" />
++          <option name="brand" value="DOCOMO" />
++          <option name="codename" value="SH-01L" />
++          <option name="id" value="SH-01L" />
++          <option name="manufacturer" value="SHARP" />
++          <option name="name" value="AQUOS sense2 SH-01L" />
++          <option name="screenDensity" value="480" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2160" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="31" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="a51" />
++          <option name="id" value="a51" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy A51" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="34" />
++          <option name="brand" value="google" />
++          <option name="codename" value="akita" />
++          <option name="id" value="akita" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 8a" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="b0q" />
++          <option name="id" value="b0q" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy S22 Ultra" />
++          <option name="screenDensity" value="600" />
++          <option name="screenX" value="1440" />
++          <option name="screenY" value="3088" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="32" />
++          <option name="brand" value="google" />
++          <option name="codename" value="bluejay" />
++          <option name="id" value="bluejay" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 6a" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="29" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="crownqlteue" />
++          <option name="id" value="crownqlteue" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy Note9" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="2220" />
++          <option name="screenY" value="1080" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="34" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="dm3q" />
++          <option name="id" value="dm3q" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy S23 Ultra" />
++          <option name="screenDensity" value="600" />
++          <option name="screenX" value="1440" />
++          <option name="screenY" value="3088" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="google" />
++          <option name="codename" value="felix" />
++          <option name="id" value="felix" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel Fold" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="2208" />
++          <option name="screenY" value="1840" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="google" />
++          <option name="codename" value="felix_camera" />
++          <option name="id" value="felix_camera" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel Fold (Camera-enabled)" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="2208" />
++          <option name="screenY" value="1840" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="gts8uwifi" />
++          <option name="id" value="gts8uwifi" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy Tab S8 Ultra" />
++          <option name="screenDensity" value="320" />
++          <option name="screenX" value="1848" />
++          <option name="screenY" value="2960" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="34" />
++          <option name="brand" value="google" />
++          <option name="codename" value="husky" />
++          <option name="id" value="husky" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 8 Pro" />
++          <option name="screenDensity" value="390" />
++          <option name="screenX" value="1008" />
++          <option name="screenY" value="2244" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="30" />
++          <option name="brand" value="motorola" />
++          <option name="codename" value="java" />
++          <option name="id" value="java" />
++          <option name="manufacturer" value="Motorola" />
++          <option name="name" value="G20" />
++          <option name="screenDensity" value="280" />
++          <option name="screenX" value="720" />
++          <option name="screenY" value="1600" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="google" />
++          <option name="codename" value="lynx" />
++          <option name="id" value="lynx" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 7a" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="31" />
++          <option name="brand" value="google" />
++          <option name="codename" value="oriole" />
++          <option name="id" value="oriole" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 6" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="google" />
++          <option name="codename" value="panther" />
++          <option name="id" value="panther" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 7" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="31" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="q2q" />
++          <option name="id" value="q2q" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy Z Fold3" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1768" />
++          <option name="screenY" value="2208" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="34" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="q5q" />
++          <option name="id" value="q5q" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy Z Fold5" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1812" />
++          <option name="screenY" value="2176" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="30" />
++          <option name="brand" value="google" />
++          <option name="codename" value="r11" />
++          <option name="id" value="r11" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel Watch" />
++          <option name="screenDensity" value="320" />
++          <option name="screenX" value="384" />
++          <option name="screenY" value="384" />
++          <option name="type" value="WEAR_OS" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="30" />
++          <option name="brand" value="google" />
++          <option name="codename" value="redfin" />
++          <option name="id" value="redfin" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 5" />
++          <option name="screenDensity" value="440" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2340" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="34" />
++          <option name="brand" value="google" />
++          <option name="codename" value="shiba" />
++          <option name="id" value="shiba" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel 8" />
++          <option name="screenDensity" value="420" />
++          <option name="screenX" value="1080" />
++          <option name="screenY" value="2400" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="33" />
++          <option name="brand" value="google" />
++          <option name="codename" value="tangorpro" />
++          <option name="id" value="tangorpro" />
++          <option name="manufacturer" value="Google" />
++          <option name="name" value="Pixel Tablet" />
++          <option name="screenDensity" value="320" />
++          <option name="screenX" value="1600" />
++          <option name="screenY" value="2560" />
++        </PersistentDeviceSelectionData>
++        <PersistentDeviceSelectionData>
++          <option name="api" value="29" />
++          <option name="brand" value="samsung" />
++          <option name="codename" value="x1q" />
++          <option name="id" value="x1q" />
++          <option name="manufacturer" value="Samsung" />
++          <option name="name" value="Galaxy S20" />
++          <option name="screenDensity" value="480" />
++          <option name="screenX" value="1440" />
++          <option name="screenY" value="3200" />
++        </PersistentDeviceSelectionData>
++      </list>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">

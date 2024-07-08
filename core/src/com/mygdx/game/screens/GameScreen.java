@@ -143,6 +143,7 @@ public class GameScreen extends ScreenAdapter {
 
         myGdxGame.batch.begin();
 
+
         balanceTextView.setText("Money: " + balance.getBalance());
         balanceRedTextView.setText("Money: " + balance.getBalance());
 
@@ -168,7 +169,7 @@ public class GameScreen extends ScreenAdapter {
             TextView HPLeft = new TextView(myGdxGame.smallRedFont,
                     enemy.getX() * GameSettings.MAP_SCALE,
                     enemy.getY() * GameSettings.MAP_SCALE,
-                    enemy.getLiveLeft() + " / " + enemy.maxHealth);
+                    enemy.getLiveLeft() + " / " + enemy.getMaxHealth());
             HPLeft.draw(myGdxGame.batch);
         }
         liveImageView.draw(myGdxGame.batch);
@@ -213,7 +214,7 @@ public class GameScreen extends ScreenAdapter {
         if (!gameSession.isRest()) {
             if (gameSession.shouldSpawnEnemy()) {
                 EnemyObject enemy = new EnemyObject("robot1.png", myGdxGame.world, path,
-                        (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED);
+                        (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED, 5);
                 enemyArray.add(enemy);
             }
         }
@@ -245,7 +246,7 @@ public class GameScreen extends ScreenAdapter {
                                 x_cord, y_cord,
                                 (int) (32 * GameSettings.MAP_SCALE),
                                 (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.yellow_square, myGdxGame.world);
+                                GameResources.yellow_square, myGdxGame.world, GameSettings.TOWER1_DAMAGE);
                         towerArray.add(baseTower);
                         isMenuExecuted = false;
                     }
@@ -256,7 +257,7 @@ public class GameScreen extends ScreenAdapter {
                                 x_cord, y_cord,
                                 (int) (32 * GameSettings.MAP_SCALE),
                                 (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.green_square, myGdxGame.world);
+                                GameResources.green_square, myGdxGame.world, GameSettings.TOWER2_DAMAGE);
                         towerArray.add(baseTower2);
                         isMenuExecuted = false;
                     }
@@ -267,7 +268,7 @@ public class GameScreen extends ScreenAdapter {
                                 x_cord, y_cord,
                                 (int) (32 * GameSettings.MAP_SCALE),
                                 (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.blue_square, myGdxGame.world);
+                                GameResources.blue_square, myGdxGame.world, GameSettings.TOWER3_DAMAGE);
                         towerArray.add(baseTower3);
                         isMenuExecuted = false;
                     }

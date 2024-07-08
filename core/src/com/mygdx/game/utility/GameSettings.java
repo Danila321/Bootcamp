@@ -31,4 +31,8 @@ public class GameSettings {
     public static final int TOWER1_COST = 500;
     public static final int TOWER2_COST = 600;
     public static final int TOWER3_COST = 700;
+
+    public static final int TOWER1_DAMAGE = 2;
+    public static final int TOWER2_DAMAGE = 5;
+    public static final int TOWER3_DAMAGE = 10;
 }

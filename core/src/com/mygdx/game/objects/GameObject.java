@@ -18,8 +18,7 @@ public abstract class GameObject {
 
     Texture texture;
 
-    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits,
-                         int density, World world) {
+    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits, int density, World world) {
         this.width = width;
         this.height = height;
         this.cBits = cBits;

@@ -1,0 +1,45 @@
+Index: core/src/com/mygdx/game/utility/ContactManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.utility;\r\n\r\nimport com.badlogic.gdx.Game;\r\nimport com.badlogic.gdx.physics.box2d.Contact;\r\nimport com.badlogic.gdx.physics.box2d.ContactImpulse;\r\nimport com.badlogic.gdx.physics.box2d.ContactListener;\r\nimport com.badlogic.gdx.physics.box2d.Fixture;\r\nimport com.badlogic.gdx.physics.box2d.Manifold;\r\nimport com.badlogic.gdx.physics.box2d.World;\r\nimport com.mygdx.game.objects.GameObject;\r\nimport com.mygdx.game.utility.GameSettings;\r\n\r\n\r\npublic class ContactManager {\r\n    World world;\r\n\r\n    public ContactManager(World world) {\r\n        this.world = world;\r\n\r\n        world.setContactListener(new ContactListener() {\r\n            @Override\r\n            public void beginContact(Contact contact) {\r\n                //начало контакта\r\n                Fixture fixA = contact.getFixtureA();\r\n                Fixture fixB = contact.getFixtureB();\r\n\r\n                int cDef = fixA.getFilterData().categoryBits;\r\n                int cDef2 = fixB.getFilterData().categoryBits;\r\n\r\n                if (cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.ENEMY_BIT ||\r\n                cDef == GameSettings.ENEMY_BIT && cDef2 == GameSettings.BASE_BULLET_BIT ||\r\n                        cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.BASE_BULLET_BIT) {\r\n                    ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);\r\n                    ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);\r\n                }\r\n                if (cDef == GameSettings.BASE_BULLET_DAMAGE && cDef2 == GameSettings.BASE_TOWER_BIT) {\r\n                    ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);\r\n                }\r\n                if (cDef == GameSettings.BASE_TOWER_BIT && cDef2 == GameSettings.BASE_BULLET_DAMAGE) {\r\n                    ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void endContact(Contact contact) {\r\n                //завершение контакта\r\n            }\r\n\r\n            @Override\r\n            public void preSolve(Contact contact, Manifold oldManifold) {\r\n                //перед вычислением всех контактоа\r\n            }\r\n\r\n            @Override\r\n            public void postSolve(Contact contact, ContactImpulse impulse) {\r\n                // после вычислений контактов\r\n            }\r\n        });\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/core/src/com/mygdx/game/utility/ContactManager.java b/core/src/com/mygdx/game/utility/ContactManager.java
+--- a/core/src/com/mygdx/game/utility/ContactManager.java	
++++ b/core/src/com/mygdx/game/utility/ContactManager.java	
+@@ -7,6 +7,7 @@
+ import com.badlogic.gdx.physics.box2d.Fixture;
+ import com.badlogic.gdx.physics.box2d.Manifold;
+ import com.badlogic.gdx.physics.box2d.World;
++import com.mygdx.game.objects.BulletObject;
+ import com.mygdx.game.objects.GameObject;
+ import com.mygdx.game.utility.GameSettings;
+ 
+@@ -27,16 +28,22 @@
+                 int cDef = fixA.getFilterData().categoryBits;
+                 int cDef2 = fixB.getFilterData().categoryBits;
+ 
+-                if (cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.ENEMY_BIT ||
+-                cDef == GameSettings.ENEMY_BIT && cDef2 == GameSettings.BASE_BULLET_BIT ||
+-                        cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.BASE_BULLET_BIT) {
++                if (cDef == GameSettings.ENEMY_BIT && cDef2 == GameSettings.BASE_BULLET_BIT) {
++                    System.out.println(((BulletObject) fixB.getUserData()).getDamage());
++                    ((GameObject) fixA.getUserData()).hit(((BulletObject) fixB.getUserData()).getDamage());
++                    ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
++                } else if (cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.ENEMY_BIT) {
++                    ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
++                    ((GameObject) fixB.getUserData()).hit(((BulletObject) fixA.getUserData()).getDamage());
++                }
++                if (cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.BASE_BULLET_BIT){
+                     ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
+                     ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
+                 }
+-                if (cDef == GameSettings.BASE_BULLET_DAMAGE && cDef2 == GameSettings.BASE_TOWER_BIT) {
++
++                if (cDef == GameSettings.BASE_BULLET_DAMAGE && cDef2 == GameSettings.BASE_TOWER_BIT ||
++                        cDef == GameSettings.BASE_TOWER_BIT && cDef2 == GameSettings.BASE_BULLET_DAMAGE) {
+                     ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
+-                }
+-                if (cDef == GameSettings.BASE_TOWER_BIT && cDef2 == GameSettings.BASE_BULLET_DAMAGE) {
+                     ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
+                 }
+             }

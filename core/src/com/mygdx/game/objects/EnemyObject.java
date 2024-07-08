@@ -13,17 +13,17 @@ public class EnemyObject extends GameObject {
     private float speed;
     private Path path;
     private int livesLeft;
-    public static int maxHealth;
+    public int maxHealth;
     public boolean needToHitPLayer;
 
     public EnemyObject(String texturePath, World world, Path path, int x, int y, int width,
-                       int height, float speed) {
+                       int height, float speed, int health) {
         super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, 1000000000, world);
         currentIndex = 0;
         this.speed = speed;
         this.path = path;
-        maxHealth = 5;
-        livesLeft = 5;
+        maxHealth = health;
+        livesLeft = health;
         needToHitPLayer = false;
     }
 
@@ -59,12 +59,15 @@ public class EnemyObject extends GameObject {
     public boolean isAlive() {
         return livesLeft > 0;
     }
+
     public int getLiveLeft() {
         return livesLeft;
     }
+
     public int getMaxHealth() {
         return maxHealth;
     }
+
     @Override
     public void hit(int damage) {
         livesLeft -= damage;
