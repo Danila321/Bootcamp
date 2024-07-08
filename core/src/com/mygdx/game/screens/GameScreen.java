@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.utility.ContactManager;
 import com.mygdx.game.objects.MainHeroObject;
 import com.mygdx.game.utility.GameSession;
-import com.mygdx.game.ContactManager;
 import com.mygdx.game.Managers.AudioManager;
 import com.mygdx.game.Managers.MemoryManager;
 import com.mygdx.game.objects.BulletObject;
@@ -100,7 +99,7 @@ public class GameScreen extends ScreenAdapter {
         levelTextView = new TextView(myGdxGame.commonWhiteFont, 1000, 50);
 
         levelTextView = new TextView(myGdxGame.commonWhiteFont, 170, 40);
-        livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);
+//        livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);
 
         balance = new Money(1000);
         unitMenu = new ImageView(1050, 0, GameResources.BLACK, 1000, 1000);
@@ -174,6 +173,7 @@ public class GameScreen extends ScreenAdapter {
         myGdxGame.camera.update();
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         ScreenUtils.clear(Color.CLEAR);
+
         myGdxGame.batch.begin();
 
         for (BaseTowerObject tower : towerArray) {
@@ -194,7 +194,7 @@ public class GameScreen extends ScreenAdapter {
         if (!gameSession.isRest()) {
             if (gameSession.shouldSpawnEnemy()) {
                 EnemyObject enemy = new EnemyObject("red.png", myGdxGame.world, path,
-                        (int) startPos.x, (int) startPos.y, GameSettings.ENEMY_SPEED);
+                        (int) startPos.x, (int) startPos.y, 20, 20, GameSettings.ENEMY_SPEED);
                 enemyArray.add(enemy);
             }
         }
@@ -221,76 +221,22 @@ public class GameScreen extends ScreenAdapter {
         myGdxGame.batch.end();
     }
 
-    @Override
-    public void render(float delta) {
+//    @Override
+//    public void render(float delta) {
+//
+//        handleInput();
+//        update();
+//
+//        myGdxGame.batch.end();
+//        myGdxGame.stepWorld();
+//    }
 
-        handleInput();
-        update();
 
-        myGdxGame.batch.end();
-        myGdxGame.stepWorld();
+    private boolean haveMoney() {
+        return balance.getBalance() > 0;
     }
 
 
-
-
-private boolean haveMoney() {
-    return balance.getBalance() > 0;
-}
-
-private void handleInput() {
-    if (Gdx.input.justTouched()) {
-        Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-        if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
-                && balance.getBalance() >= GameSettings.TOWER1_COST) {
-            balance.reduceBalance(GameSettings.TOWER1_COST);
-            BaseTowerObject baseTower = new BaseTowerObject(
-                    x_cord, y_cord,
-                    (int) (32 * GameSettings.MAP_SCALE),
-                    (int) (32 * GameSettings.MAP_SCALE),
-                    GameResources.yellow_square, myGdxGame.world);
-            towerArray.add(baseTower);
-            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
-            isMenuExecuted = false;
-        }
-        if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
-                && balance.getBalance() >= GameSettings.TOWER2_COST) {
-            balance.reduceBalance(GameSettings.TOWER2_COST);
-            BaseTowerObject baseTower2 = new BaseTowerObject(
-                    x_cord, y_cord,
-                    (int) (32 * GameSettings.MAP_SCALE),
-                    (int) (32 * GameSettings.MAP_SCALE),
-                    GameResources.green_square, myGdxGame.world);
-            towerArray.add(baseTower2);
-            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
-            isMenuExecuted = false;
-        }
-        if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
-                && balance.getBalance() >= GameSettings.TOWER3_COST) {
-            balance.reduceBalance(GameSettings.TOWER3_COST);
-            BaseTowerObject baseTower3 = new BaseTowerObject(
-                    x_cord, y_cord,
-                    (int) (32 * GameSettings.MAP_SCALE),
-                    (int) (32 * GameSettings.MAP_SCALE),
-                    GameResources.blue_square, myGdxGame.world);
-            towerArray.add(baseTower3);
-            audioManager.towerCreateSound.play(0.5f * MemoryManager.SoundValue());
-            isMenuExecuted = false;
-        }
-        if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
-            if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
-                isMenuExecuted = true;
-
-
-            }
-
-        }
-
-        if (closeButton.isHit(touchPos.x, touchPos.y)) {
-            isMenuExecuted = false;
-        }
-    }
-}
     private void handleInput() {
         if (Gdx.input.justTouched()) {
             Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -355,50 +301,50 @@ private void handleInput() {
         }
     }
 
-private boolean tileIsEmpty(int x, int y) {
-    for (BaseTowerObject tower : towerArray) {
-        float xTower = tower.getX();
-        float yTower = tower.getY();
-        if (xTower == x && yTower == y) {
-            return false;
-        }
-    }
-    return true;
-}
-
-private boolean hasObjectCoordinates(String tower, Vector2 touchPos) {
-    MapObjects objects = tiledMap.getLayers().get(tower).getObjects();
-    if (objects != null) {
-        for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
-            if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE,
-                    touchPos.y / GameSettings.MAP_SCALE)) {
-                System.out.println(object.getRectangle().x);
-                x_cord = (object.getRectangle().x + object.getRectangle().width / 2)
-                        * GameSettings.MAP_SCALE;
-                y_cord = (object.getRectangle().y + object.getRectangle().height / 2)
-                        * GameSettings.MAP_SCALE;
-                return true;
+    private boolean tileIsEmpty(int x, int y) {
+        for (BaseTowerObject tower : towerArray) {
+            float xTower = tower.getX();
+            float yTower = tower.getY();
+            if (xTower == x && yTower == y) {
+                return false;
             }
         }
+        return true;
     }
-    return false;
-}
 
-public void drawMenu() {
-    unitMenu.draw(myGdxGame.batch);
-    button1.draw(myGdxGame.batch);
-    button2.draw(myGdxGame.batch);
-    button3.draw(myGdxGame.batch);
-    tower1.draw(myGdxGame.batch);
-    tower2.draw(myGdxGame.batch);
-    tower3.draw(myGdxGame.batch);
-    closeButton.draw(myGdxGame.batch);
-}
+    private boolean hasObjectCoordinates(String tower, Vector2 touchPos) {
+        MapObjects objects = tiledMap.getLayers().get(tower).getObjects();
+        if (objects != null) {
+            for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
+                if (object.getRectangle().contains(touchPos.x / GameSettings.MAP_SCALE,
+                        touchPos.y / GameSettings.MAP_SCALE)) {
+                    System.out.println(object.getRectangle().x);
+                    x_cord = (object.getRectangle().x + object.getRectangle().width / 2)
+                            * GameSettings.MAP_SCALE;
+                    y_cord = (object.getRectangle().y + object.getRectangle().height / 2)
+                            * GameSettings.MAP_SCALE;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-private void update() {
-    Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();
+    public void drawMenu() {
+        unitMenu.draw(myGdxGame.batch);
+        button1.draw(myGdxGame.batch);
+        button2.draw(myGdxGame.batch);
+        button3.draw(myGdxGame.batch);
+        tower1.draw(myGdxGame.batch);
+        tower2.draw(myGdxGame.batch);
+        tower3.draw(myGdxGame.batch);
+        closeButton.draw(myGdxGame.batch);
+    }
 
-    while (enemyObjectIterator.hasNext()) {
+    private void update() {
+        Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();
+
+        while (enemyObjectIterator.hasNext()) {
 
             EnemyObject nextEnemy = enemyObjectIterator.next();
             if (!nextEnemy.isAlive()) {
@@ -413,15 +359,15 @@ private void update() {
             System.out.println("DEAD!");
         }
 
-}
+    }
 
-private void restartGame() {
+    private void restartGame() {
 
-}
+    }
 
-@Override
-public void dispose() {
-    unitMenu.dispose();
-    tiledMap.dispose();
-}
+    @Override
+    public void dispose() {
+        unitMenu.dispose();
+        tiledMap.dispose();
+    }
 }

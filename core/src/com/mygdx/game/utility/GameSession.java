@@ -23,7 +23,7 @@ public class GameSession {
         state = GameState.PLAYING;
         level = 0;
         /*nextTrashSpawnTime = sessionStartTime + (long) (GameSettings.STARTING_TRASH_APPEARANCE_COOL_DOWN
-                * getTrashPeriodCoolDown());*/
+         * getTrashPeriodCoolDown());*/
     }
 
     public void pauseGame() {
@@ -64,7 +64,7 @@ public class GameSession {
     }
 
     public void eliminationRegistration(Money balance) {
-        balance.addBalance(50);}
+        balance.addBalance(50);
 
     }
 
