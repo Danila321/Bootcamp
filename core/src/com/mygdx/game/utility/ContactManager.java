@@ -1,6 +1,5 @@
 package com.mygdx.game.utility;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -8,8 +7,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.objects.GameObject;
-import com.mygdx.game.utility.GameSettings;
-
 
 public class ContactManager {
     World world;

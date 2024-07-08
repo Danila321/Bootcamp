@@ -71,13 +71,13 @@ public class GameScreen extends ScreenAdapter {
                 GameResources.BUTTON, "600");
         button3 = new ButtonView(1070, 300, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "700");
-        closeButton = new ButtonView(1240, 20, 30, 30, GameResources.close_button);
+        closeButton = new ButtonView(1240, 20, 30, 30, GameResources.red_square);
 
         tower1 = new ImageView(1100, 50, GameResources.yellow_square, 50, 50);
         tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
         tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
 
-        liveImageView = new ImageView(170, 77, GameResources.LIVE, -22, 25);
+        liveImageView = new ImageView(170, 77, GameResources.red_square, -22, 25);
 
         balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
         balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
@@ -86,7 +86,7 @@ public class GameScreen extends ScreenAdapter {
         livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);
 
         balance = new Money(1000);
-        unitMenu = new ImageView(1050, 0, GameResources.BLACK, 1000, 1000);
+        unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
 
     }
 
@@ -130,7 +130,7 @@ public class GameScreen extends ScreenAdapter {
             enemy.update(2);
             enemy.draw(myGdxGame.batch);
             if (enemy.needToHit()) {
-                hero.hit(enemy.maxHealth);
+                hero.hit(enemy.getLiveLeft());
             }
             TextView HPLeft = new TextView(myGdxGame.smallRedFont,
                     enemy.getX() * GameSettings.MAP_SCALE,
