@@ -10,13 +10,10 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.utility.ContactManager;
+import com.mygdx.game.Managers.ContactManager;
 import com.mygdx.game.objects.MainHeroObject;
 import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.Managers.AudioManager;
-import com.mygdx.game.Managers.MemoryManager;
-import com.mygdx.game.objects.BulletObject;
-import com.mygdx.game.utility.GameSession;
 import com.mygdx.game.utility.GameState;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.objects.EnemyObject;
@@ -146,8 +143,6 @@ public class GameScreen extends ScreenAdapter {
 
         myGdxGame.batch.begin();
 
-        balanceTextView.setText(String.valueOf("money:" + balance.getBalance()));
-        balanceRedTextView.setText(String.valueOf("money:" + balance.getBalance()));
         balanceTextView.setText("Money: " + balance.getBalance());
         balanceRedTextView.setText("Money: " + balance.getBalance());
 
@@ -218,7 +213,7 @@ public class GameScreen extends ScreenAdapter {
         if (!gameSession.isRest()) {
             if (gameSession.shouldSpawnEnemy()) {
                 EnemyObject enemy = new EnemyObject("robot1.png", myGdxGame.world, path,
-                        (int) startPos.x, (int) startPos.y, 64, 64, GameSettings.ENEMY_SPEED);
+                        (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED);
                 enemyArray.add(enemy);
             }
         }

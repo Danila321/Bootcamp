@@ -10,7 +10,7 @@ public class MainHeroObject extends GameObject {
     public static int heroDamage;
 
     public MainHeroObject(int x, int y, int width, int height, String texturePath, World world) {
-        super(texturePath, x, y, width, height, GameSettings.MAIN_HERO_BIT, world);
+        super(texturePath, x, y, width, height, GameSettings.MAIN_HERO_BIT, 1, world);
         maxHealth = 100;
         livesLeft = 100;
         heroDamage = 25;

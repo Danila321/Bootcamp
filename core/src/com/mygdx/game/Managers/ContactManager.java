@@ -1,6 +1,5 @@
-package com.mygdx.game.utility;
+package com.mygdx.game.Managers;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -33,10 +32,10 @@ public class ContactManager {
                     ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
                     ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
                 }
-                if (cDef == GameSettings.BASE_BULLET_DAMAGE && cDef2 == GameSettings.BASE_TOWER_BIT) {
+                if (cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.BASE_TOWER_BIT) {
                     ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
                 }
-                if (cDef == GameSettings.BASE_TOWER_BIT && cDef2 == GameSettings.BASE_BULLET_DAMAGE) {
+                if (cDef == GameSettings.BASE_TOWER_BIT && cDef2 == GameSettings.BASE_BULLET_BIT) {
                     ((GameObject) fixB.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
                 }
             }

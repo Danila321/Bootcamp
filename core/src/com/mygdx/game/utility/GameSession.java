@@ -70,7 +70,9 @@ public class GameSession {
 
     public void levelUp() {
         level++;
-        GameSettings.ENEMY_SPAWN_TIME -= 200;
+        if (GameSettings.ENEMY_SPAWN_TIME >= 700) {
+            GameSettings.ENEMY_SPAWN_TIME -= 200;
+        }
         GameSettings.ENEMY_SPEED += 0.3f;
         GameSettings.ENEMY_COUNT++;
     }

@@ -18,13 +18,14 @@ public abstract class GameObject {
 
     Texture texture;
 
-    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits, World world) {
+    protected GameObject(String texturePath, float x, float y, int width, int height, short cBits,
+                         int density, World world) {
         this.width = width;
         this.height = height;
         this.cBits = cBits;
 
         texture = new Texture(texturePath);
-        body = createBody(x, y, world);
+        body = createBody(x, y, density, world);
     }
 
     public void draw(SpriteBatch batch) {
@@ -63,7 +64,7 @@ public abstract class GameObject {
 
     }
 
-    private Body createBody(float x, float y, World world) {
+    private Body createBody(float x, float y, int density, World world) {
         BodyDef def = new BodyDef();
 
         def.type = BodyDef.BodyType.DynamicBody;
@@ -75,9 +76,11 @@ public abstract class GameObject {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
-        fixtureDef.density = 0.1f;
+        fixtureDef.density = density;
         fixtureDef.friction = 1f;
         fixtureDef.filter.categoryBits = cBits;
+
+        body.resetMassData();
 
         Fixture fixture = body.createFixture(fixtureDef);
         fixture.setUserData(this);

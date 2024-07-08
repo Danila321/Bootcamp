@@ -16,8 +16,9 @@ public class EnemyObject extends GameObject {
     public static int maxHealth;
     public boolean needToHitPLayer;
 
-    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width, int height, float speed) {
-        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, world);
+    public EnemyObject(String texturePath, World world, Path path, int x, int y, int width,
+                       int height, float speed) {
+        super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, 1000000000, world);
         currentIndex = 0;
         this.speed = speed;
         this.path = path;
@@ -51,7 +52,8 @@ public class EnemyObject extends GameObject {
 
     public void draw(SpriteBatch batch) {
         batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
-                getY() * GameSettings.MAP_SCALE, 64, 64);
+                getY() * GameSettings.MAP_SCALE, 32 * GameSettings.MAP_SCALE,
+                32 * GameSettings.MAP_SCALE);
     }
 
     public boolean isAlive() {
