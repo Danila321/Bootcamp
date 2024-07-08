@@ -13,7 +13,7 @@ import java.util.Iterator;
 public class BaseTowerObject extends GameObject {
 
     public int attackCoolDown;
-    public int attackRadius;
+    public float attackRadius;
     long lastShotTime;
     private final World world;
     Vector2 direction;
@@ -22,8 +22,6 @@ public class BaseTowerObject extends GameObject {
 
     public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world) {
         super(texturePath, x, y, width, height, GameSettings.BASE_TOWER_BIT, world);
-        this.width = width;
-        this.height = height;
         this.world = world;
         attackCoolDown = GameSettings.BASE_TOWER_ATTACK_COOL_DOWN;
         attackRadius = GameSettings.BASE_TOWER_ATTACK_RADIUS;

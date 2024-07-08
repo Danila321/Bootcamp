@@ -24,5 +24,8 @@ public class ImageView extends View {
         batch.draw(texture, x, y, width, height);
     }
 
-    @Override public void dispose() { texture.dispose(); }
+    @Override public void dispose() {
+        texture.dispose();
+    }
+
 }
