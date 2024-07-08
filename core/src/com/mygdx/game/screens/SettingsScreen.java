@@ -2,6 +2,9 @@ package com.mygdx.game.screens;
 
 
 
+import static com.mygdx.game.Managers.MemoryManager.MusicValue;
+import static com.mygdx.game.Managers.MemoryManager.SoundValue;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -66,11 +69,13 @@ public class SettingsScreen extends ScreenAdapter {
         slider.setWidth(400);
         slider.setX(250);
         slider.setY(335);
+        slider.setValue(SoundValue());
 
         stage.addActor(slider2);
         slider2.setWidth(400);
         slider2.setX(250);
         slider2.setY(300);
+        slider.setValue(MusicValue());
         stage.draw();
 
     }

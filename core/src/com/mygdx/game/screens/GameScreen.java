@@ -188,7 +188,7 @@ private void handleInput() {
                     (int) (32 * GameSettings.MAP_SCALE),
                     GameResources.yellow_square, myGdxGame.world);
             towerArray.add(baseTower);
-            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
+            audioManager.towerCreateSound.play(10f * MemoryManager.SoundValue());
             isMenuExecuted = false;
         }
         if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
@@ -200,7 +200,7 @@ private void handleInput() {
                     (int) (32 * GameSettings.MAP_SCALE),
                     GameResources.green_square, myGdxGame.world);
             towerArray.add(baseTower2);
-            audioManager.towerCreateSound.play(0.05f * MemoryManager.SoundValue());
+            audioManager.towerCreateSound.play(10f * MemoryManager.SoundValue());
             isMenuExecuted = false;
         }
         if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
@@ -212,7 +212,7 @@ private void handleInput() {
                     (int) (32 * GameSettings.MAP_SCALE),
                     GameResources.blue_square, myGdxGame.world);
             towerArray.add(baseTower3);
-            audioManager.towerCreateSound.play(0.5f * MemoryManager.SoundValue());
+            audioManager.towerCreateSound.play(10f * MemoryManager.SoundValue());
             isMenuExecuted = false;
         }
         if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted) {
