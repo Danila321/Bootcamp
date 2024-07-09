@@ -1,27 +1,25 @@
 package com.mygdx.game.utility;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mygdx.game.ui.Money;
 
 import java.sql.Time;
 
 public class GameSession {
     public GameState state;
 
+    int balance;
+
     long nextEnemySpawnTime;
     long nextEnemySpawnTime2 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME2;
     long nextEnemySpawnTime3 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME3;
-    int countReleasedEnemies = 0;
-    int countReleasedEnemies2 = 0;
-    int countReleasedEnemies3 = 0;
+    int countReleasedEnemies;
+    int countReleasedEnemies2;
+    int countReleasedEnemies3;
 
+    int countReleasedEnemies;
     boolean levelFlag = true;
-    private int level = 0;
-    long sessionStartTime;
-    long pauseStartTime;
-    long startRestTime = 0;
-
-    int eliminatedEnemiesNumber = 0;
+    private int level;
+    long startRestTime;
 
     public GameSession() {
 
@@ -29,23 +27,24 @@ public class GameSession {
 
     public void startGame() {
         state = GameState.PLAYING;
-        sessionStartTime = TimeUtils.millis();
+        balance = 1000;
+        countReleasedEnemies = 0;
+        countReleasedEnemies2 = 0;
+        countReleasedEnemies3 = 0;
         level = 0;
+        startRestTime = 0;
     }
 
     public void pauseGame() {
         state = GameState.PAUSED;
-        pauseStartTime = TimeUtils.millis();
     }
 
     public void resumeGame() {
         state = GameState.PLAYING;
-        sessionStartTime += TimeUtils.millis() - pauseStartTime;
     }
 
     public void endGame() {
         state = GameState.ENDED;
-
     }
 
     public boolean shouldSpawnEnemy() {
@@ -99,16 +98,24 @@ public class GameSession {
         }
     }
 
-    public void eliminationRegistration(Money balance) {
-        balance.addBalance(50);
+    public int getBalance(){
+        return balance;
+    }
+
+    public void addBalance(int balance){
+        this.balance += balance;
+    }
+
+    public void reduceBalance(int balance){
+        this.balance -= balance;
     }
 
     public void levelUp() {
         level++;
-        //if (GameSettings.ENEMY_SPAWN_TIME >= 1000) {
-         //   GameSettings.ENEMY_SPAWN_TIME -= 200;
-        //}
-        //GameSettings.ENEMY_SPEED += 0.2f;
+        if (GameSettings.ENEMY_SPAWN_TIME > 600) {
+            GameSettings.ENEMY_SPAWN_TIME -= 200;
+        }
+        GameSettings.ENEMY_SPEED += 0.3f;
         GameSettings.ENEMY_COUNT++;
         GameSettings.ENEMY2_COUNT++;
         //GameSettings.ENEMY2_SPEED += 0.1f;
@@ -116,8 +123,5 @@ public class GameSession {
 
     public int getLevel() {
         return level;
-    }
-    public void setLevel(int level) {
-        this.level = level;
     }
 }

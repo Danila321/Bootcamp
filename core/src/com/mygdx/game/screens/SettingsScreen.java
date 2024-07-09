@@ -41,7 +41,7 @@ public class SettingsScreen extends ScreenAdapter {
         musicText = new TextView(myGdxGame.commonWhiteFont, 615, 320, "Music");
         slider = new Slider(0, 100, 1, false, skin);
 
-        Container<Slider> container=new Container<Slider>(slider);
+        Container<Slider> container = new Container<Slider>(slider);
         container.setTransform(true);   // for enabling scaling and rotation
         container.size(250, 60);
         container.setOrigin(container.getWidth() / 2, container.getHeight() / 2);
@@ -54,14 +54,11 @@ public class SettingsScreen extends ScreenAdapter {
         container2.setTransform(true);   // for enabling scaling and rotation
         container2.size(250, 60);
         container2.setOrigin(container.getWidth() / 2, container.getHeight() / 2);
-        container2.setPosition( 640,370);
+        container2.setPosition(640, 370);
         container2.setScale(1.5f);  //scale according to your requirement
 
         stage = new Stage();
-        Gdx.input.setInputProcessor (stage);
-
-
-
+        Gdx.input.setInputProcessor(stage);
 
 
         stage.addActor(container);
@@ -69,7 +66,6 @@ public class SettingsScreen extends ScreenAdapter {
 
         stage.addActor(container2);
     }
-
     @Override
     public void render(float delta) {
 
@@ -79,6 +75,8 @@ public class SettingsScreen extends ScreenAdapter {
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         ScreenUtils.clear(Color.CLEAR);
 
+        slider.setValue(MemoryManager.SoundValue());
+        slider2.setValue(MemoryManager.MusicValue());
 
         myGdxGame.batch.begin();
 
@@ -122,7 +120,7 @@ public class SettingsScreen extends ScreenAdapter {
         if (slider2.isDragging()) {
             AudioManager.updateMusicFlag(getMusic());
             MemoryManager.saveMusicSettings(getMusic());
-            AudioManager.backgroundMusic.setVolume(0.1f * getMusic());
+            AudioManager.backgroundMusic.setVolume(0.01f * MemoryManager.MusicValue());
         }
 
     }

@@ -1,0 +1,57 @@
+Index: core/src/com/mygdx/game/utility/GameResources.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.utility;\r\n\r\npublic class GameResources {\r\n    public static final String BLACKOUT = \"images/blackout_background.png\";\r\n    public static String WHITE = \"images/white_background.png\";\r\n\r\n    public static final String red_square = \"images/red.png\";\r\n    public static final String blue_square = \"images/blue.png\";\r\n    public static final String green_square = \"images/green.png\";\r\n    public static final String yellow_square = \"images/yellow.png\";\r\n    public static final String WHITE_BUTTON = \"images/button_white.png\";\r\n\r\n\r\n//    public static String ENEMY = \"enemy_0.png\";\r\n  //  public static String BACK = \"back.jpg\";\r\n//    public static String WHITE = \"white_background.png\";\r\n   // public static String BLACK = \"dark_background (1).png\";\r\n    //public static String close_button = \"CLOSE_BUTTON.png\";\r\n    public static final String BUTTON = \"images/black_button.png\";\r\n\r\n    public static final String FONT_PATH = \"fonts/Montserrat-Bold.ttf\";\r\n    public static final String BACKGROUND = \"images/background.png\";\r\n  //  public static final String PAUSE_IMG_PATH = \"pause_icon.png\";\r\n\r\n\r\n    //звуки\r\n    public static final String TOWER_CREATE = \"sounds/laser-scan_fjjawtv_.mp3\";\r\n    public static final String SHOOT_SOUND_PATH = \"sounds/laser-blast_zjrhvyvd.mp3\";\r\n    public static final String BACKGROUND_MUSIC_PATH = \"sounds/laser-blast_zjrhvyvd.mp3\";\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/utility/GameResources.java b/core/src/com/mygdx/game/utility/GameResources.java
+--- a/core/src/com/mygdx/game/utility/GameResources.java	(revision fb7a990c8475960de0dc326882f698164e0f9120)
++++ b/core/src/com/mygdx/game/utility/GameResources.java	(date 1720514726748)
+@@ -26,6 +26,6 @@
+     //звуки
+     public static final String TOWER_CREATE = "sounds/laser-scan_fjjawtv_.mp3";
+     public static final String SHOOT_SOUND_PATH = "sounds/laser-blast_zjrhvyvd.mp3";
+-    public static final String BACKGROUND_MUSIC_PATH = "sounds/laser-blast_zjrhvyvd.mp3";
++    public static final String BACKGROUND_MUSIC_PATH = "sounds/24977514.mp3";
+ 
+ }
+Index: local.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>## This file must *NOT* be checked into Version Control Systems,\r\n# as it contains information specific to your local configuration.\r\n#\r\n# Location of the SDK. This is only used by Gradle.\r\n# For customization when using a Version Control System, please read the\r\n# header note.\r\n#Mon Jul 08 17:51:45 MSK 2024\r\nsdk.dir=C\\:\\\\Users\\\\L1d0ff\\\\AppData\\\\Local\\\\Android\\\\Sdk\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/local.properties b/local.properties
+--- a/local.properties	(revision fb7a990c8475960de0dc326882f698164e0f9120)
++++ b/local.properties	(date 1720514136350)
+@@ -4,5 +4,5 @@
+ # Location of the SDK. This is only used by Gradle.
+ # For customization when using a Version Control System, please read the
+ # header note.
+-#Mon Jul 08 17:51:45 MSK 2024
+-sdk.dir=C\:\\Users\\L1d0ff\\AppData\\Local\\Android\\Sdk
++#Tue Jul 09 11:35:36 MSK 2024
++sdk.dir=C\:\\Users\\Student\\AppData\\Local\\Android\\Sdk
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel target=\"1.8\">\r\n      <module name=\"Bootcamp.android\" target=\"17\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision fb7a990c8475960de0dc326882f698164e0f9120)
++++ b/.idea/compiler.xml	(date 1720514579302)
+@@ -1,8 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="1.8">
+-      <module name="Bootcamp.android" target="17" />
+-    </bytecodeTargetLevel>
++    <bytecodeTargetLevel target="1.8" />
+   </component>
+ </project>
+\ No newline at end of file

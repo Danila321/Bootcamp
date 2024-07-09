@@ -27,11 +27,6 @@ public class MemoryManager {
         return preferences.getInteger("Music");
     }
 
-
-
-
-
-    //я оставил потому что возможно пригодится для сохранения рекрда волны
     public static void saveTableOfRecords(ArrayList<Integer> table) {
         Json json = new Json();
         String tableInString = json.toJson(table);

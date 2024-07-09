@@ -27,9 +27,12 @@ public class AudioManager {
         shootSound = Gdx.audio.newSound(Gdx.files.internal(GameResources.SHOOT_SOUND_PATH));
         towerCreateSound = Gdx.audio.newSound(Gdx.files.internal(GameResources.TOWER_CREATE));
 
-        AudioManager.backgroundMusic.setVolume(0f);
-        backgroundMusic.setLooping(true);
-        backgroundMusic.play();
 
+        backgroundMusic.setLooping(true);
+
+
+    }
+    public static void playMusic(){
+        backgroundMusic.play();
     }
 }

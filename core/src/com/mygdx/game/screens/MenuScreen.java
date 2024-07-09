@@ -5,9 +5,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.Managers.MemoryManager;
+import com.mygdx.game.Managers.AudioManager;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.ui.ButtonView;
 import com.mygdx.game.ui.ImageView;
+import com.mygdx.game.ui.RecordsListView;
 import com.mygdx.game.ui.TextView;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
@@ -22,7 +25,8 @@ public class MenuScreen extends ScreenAdapter {
     ButtonView settingsButton;
     ButtonView exitButton;
 
-
+    TextView recordsTextView;
+    RecordsListView recordsListView;
 
     public MenuScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
@@ -30,19 +34,22 @@ public class MenuScreen extends ScreenAdapter {
         gameName = new TextView(myGdxGame.largeWhiteFont, 100, 167, "BLack square with rounded corners png");
         //background = new ImageView(0, 0, GameResources.BACK, GameSettings.SCREEN_HEIGHT, GameSettings.SCREEN_WIDTH);
 
-        startGameButton = new ButtonView(550, 300, 200, 68,
+        startGameButton = new ButtonView(250, 300, 200, 68,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "START");
 
-        settingsButton = new ButtonView(550, 400, 200, 68,
+        settingsButton = new ButtonView(250, 400, 200, 68,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "SETTINGS");
 
-        exitButton = new ButtonView(550, 500, 200, 68,
+        exitButton = new ButtonView(250, 500, 200, 68,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "EXIT");
+
+        recordsTextView = new TextView(myGdxGame.largeWhiteFont, 650, 300, "Last records");
+        recordsListView = new RecordsListView(myGdxGame.commonWhiteFont, 650, 350);
     }
 
     @Override
     public void show() {
-
+        AudioManager.playMusic();
     }
 
     @Override
@@ -60,6 +67,7 @@ public class MenuScreen extends ScreenAdapter {
         exitButton.draw(myGdxGame.batch);
         myGdxGame.batch.end();
 
+        //recordsListView.setRecords(MemoryManager.loadRecordsTable());
     }
 
     private void handleInput() {
