@@ -17,7 +17,7 @@ public class RecordsListView extends TextView {
         int countOfRows = Math.min(recordsList.size(), 5);
         for (int i = 0; i < countOfRows; i++) {
             System.out.println(recordsList.get(i));
-            text += (i + 1) + ". - " + recordsList.get(i) + "\n";
+            text += (i + 1) + ".  " + recordsList.get(i) + "\n";
         }
 
         GlyphLayout glyphLayout = new GlyphLayout(font, text);
