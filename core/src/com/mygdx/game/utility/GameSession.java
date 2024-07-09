@@ -5,13 +5,20 @@ import com.mygdx.game.Managers.MemoryManager;
 
 import java.util.ArrayList;
 
+import java.sql.Time;
+
 public class GameSession {
     public GameState state;
 
     int balance;
 
     long nextEnemySpawnTime;
+    long nextEnemySpawnTime2 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME2;
+    long nextEnemySpawnTime3 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME3;
     int countReleasedEnemies;
+    int countReleasedEnemies2;
+    int countReleasedEnemies3;
+
     boolean levelFlag = true;
     private int level;
     long startRestTime;
@@ -24,6 +31,8 @@ public class GameSession {
         state = GameState.PLAYING;
         balance = 1000;
         countReleasedEnemies = 0;
+        countReleasedEnemies2 = 0;
+        countReleasedEnemies3 = 0;
         level = 0;
         startRestTime = 0;
     }
@@ -63,6 +72,28 @@ public class GameSession {
         return false;
     }
 
+    public boolean shouldSpawnEnemy2() {
+        if (countReleasedEnemies2 < GameSettings.ENEMY2_COUNT) {
+            if (nextEnemySpawnTime2 <= TimeUtils.millis()) {
+                nextEnemySpawnTime2 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME2;
+                countReleasedEnemies2++;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean shouldSpawnEnemy3() {
+        if (countReleasedEnemies3 < GameSettings.ENEMY3_COUNT) {
+            if (nextEnemySpawnTime3 <= TimeUtils.millis()) {
+                nextEnemySpawnTime3 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME3;
+                countReleasedEnemies3++;
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isRest() {
         if (startRestTime + GameSettings.WAVE_REST_TIME > TimeUtils.millis()) {
             levelFlag = true;
@@ -70,6 +101,8 @@ public class GameSession {
         } else {
             if (levelFlag) {
                 countReleasedEnemies = 0;
+                countReleasedEnemies2 = 0;
+                countReleasedEnemies3 = 0;
                 levelUp();
                 levelFlag = false;
             }
@@ -96,6 +129,8 @@ public class GameSession {
         }
         GameSettings.ENEMY_SPEED += 0.3f;
         GameSettings.ENEMY_COUNT++;
+        GameSettings.ENEMY2_COUNT++;
+        //GameSettings.ENEMY2_SPEED += 0.1f;
     }
 
     public int getLevel() {

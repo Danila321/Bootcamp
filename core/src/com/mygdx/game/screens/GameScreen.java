@@ -50,7 +50,7 @@ public class GameScreen extends ScreenAdapter {
     //Play UI
     ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton;
     ImageView unitMenu, tower1, tower2, tower3, liveImageView;
-    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView;
+    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView;
 
     //Paused UI
     ImageView fullBlackoutView;
@@ -102,6 +102,7 @@ public class GameScreen extends ScreenAdapter {
 
         balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
         balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
+        notificationTextView = new TextView(myGdxGame.largeRedFont, 380, 60);
 
         liveImageView = new ImageView(170, 77, GameResources.red_square, -22, 25);
         levelTextView = new TextView(myGdxGame.commonWhiteFont, 170, 40);
@@ -154,11 +155,12 @@ public class GameScreen extends ScreenAdapter {
 
     private void draw() {
         myGdxGame.camera.update();
-        myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
+        myGdxGame.batch.setProjectionMatrix(MyGdxGame.camera.combined);
         ScreenUtils.clear(Color.CLEAR);
 
         myGdxGame.batch.begin();
 
+        notificationTextView.setText("ENEMY HAS PASSED!!!");
         balanceTextView.setText("Money: " + gameSession.getBalance());
         balanceRedTextView.setText("Money: " + gameSession.getBalance());
 
@@ -168,6 +170,9 @@ public class GameScreen extends ScreenAdapter {
         livesTextView.setText("Lives: " + hero.getLiveLeft());
 
         tiledMapRenderer.setView(myGdxGame.camera);
+
+
+        tiledMapRenderer.setView(MyGdxGame.camera);
         tiledMapRenderer.render();
 
         levelTextView.draw(myGdxGame.batch);
@@ -223,6 +228,11 @@ public class GameScreen extends ScreenAdapter {
             homeButton2.draw(myGdxGame.batch);
         }
 
+        hero.notifyCheck();
+        if (MainHeroObject.needToNotify) {
+            notificationTextView.draw(myGdxGame.batch);
+        }
+
         myGdxGame.batch.end();
     }
 
@@ -235,9 +245,23 @@ public class GameScreen extends ScreenAdapter {
             if (!gameSession.isRest()) {
                 if (gameSession.shouldSpawnEnemy()) {
                     EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
-                            (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED, 5);
+                            (int) startPos.x, (int) startPos.y, 32, 32,
+                            GameSettings.ENEMY_SPEED, 5);
                     enemyArray.add(enemy);
                 }
+                if (gameSession.shouldSpawnEnemy2() && gameSession.getLevel() % 3 == 0) {
+                    EnemyObject enemy2 = new EnemyObject("images/blue.png",
+                            myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
+                            64, 64, GameSettings.ENEMY2_SPEED, 8);
+                    enemyArray.add(enemy2);
+                }
+                if (gameSession.shouldSpawnEnemy3() && gameSession.getLevel() % 10 == 0) {
+                    EnemyObject enemy3 = new EnemyObject("images/red.png",
+                            myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
+                            96, 96, GameSettings.ENEMY3_SPEED, 20);
+                    enemyArray.add(enemy3);
+                }
+
             }
 
             if (!hero.isAlive()) {
@@ -443,5 +467,6 @@ public class GameScreen extends ScreenAdapter {
     public void dispose() {
         unitMenu.dispose();
         tiledMap.dispose();
+        notificationTextView.dispose();
     }
 }

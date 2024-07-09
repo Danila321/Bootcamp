@@ -19,12 +19,19 @@ public class GameSettings {
     public static final int BASE_BULLET_DAMAGE = 5;
     public static final int BASE_TOWER_ATTACK_COOL_DOWN = 500;
     public static final float BASE_TOWER_ATTACK_RADIUS = 200;
-    public static final int BULLET_VELOCITY = 50;
+    public static final int BULLET_VELOCITY = 100;
     public static final float MAP_SCALE = 2.5f;
 
-    public static int ENEMY_SPAWN_TIME = 2000;
+    public static int ENEMY_SPAWN_TIME = 2500;
+    public static int ENEMY_SPAWN_TIME2 = 3000;
+    public static int ENEMY_SPAWN_TIME3 = 11000;
     public static int ENEMY_COUNT = 1;
+    public static int ENEMY2_COUNT = 1;
+    public static int ENEMY3_COUNT = 1;
     public static float ENEMY_SPEED = 1.0f;
+    public static float ENEMY2_SPEED = 2.0f;
+    public static float ENEMY3_SPEED = 1.0f;
+    public static long wasd = 1500;
 
     public static long WAVE_REST_TIME = 8000;
 
