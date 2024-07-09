@@ -11,8 +11,10 @@ public class GameSession {
 
     boolean levelFlag = true;
     private int level = 0;
-
+    long sessionStartTime;
+    long pauseStartTime;
     long startRestTime = 0;
+
     int eliminatedEnemiesNumber = 0;
 
     public GameSession() {
@@ -21,17 +23,23 @@ public class GameSession {
 
     public void startGame() {
         state = GameState.PLAYING;
+        sessionStartTime = TimeUtils.millis();
         level = 0;
-        /*nextTrashSpawnTime = sessionStartTime + (long) (GameSettings.STARTING_TRASH_APPEARANCE_COOL_DOWN
-         * getTrashPeriodCoolDown());*/
     }
 
     public void pauseGame() {
         state = GameState.PAUSED;
+        pauseStartTime = TimeUtils.millis();
     }
 
     public void resumeGame() {
         state = GameState.PLAYING;
+        sessionStartTime += TimeUtils.millis() - pauseStartTime;
+    }
+
+    public void endGame() {
+        state = GameState.ENDED;
+
     }
 
     public boolean shouldSpawnEnemy() {
@@ -79,5 +87,9 @@ public class GameSession {
 
     public int getLevel() {
         return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

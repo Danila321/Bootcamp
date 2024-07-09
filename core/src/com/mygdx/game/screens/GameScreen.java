@@ -208,20 +208,22 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
 
-        handleInput();
-        update();
+        if (gameSession.state == GameState.PLAYING) {
+            update();
 
-        if (!gameSession.isRest()) {
-            if (gameSession.shouldSpawnEnemy()) {
-                EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
-                        (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED, 5);
-                enemyArray.add(enemy);
+            if (!gameSession.isRest()) {
+                if (gameSession.shouldSpawnEnemy()) {
+                    EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
+                            (int) startPos.x, (int) startPos.y, 32, 32, GameSettings.ENEMY_SPEED, 5);
+                    enemyArray.add(enemy);
+                }
             }
+
+            myGdxGame.stepWorld();
         }
 
-        myGdxGame.stepWorld();
-
         draw();
+        handleInput();
     }
 
 
@@ -355,7 +357,17 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void restartGame() {
+        for (int i = 0; i < enemyArray.size(); i++) {
+            myGdxGame.world.destroyBody(enemyArray.get(i).body);
+            enemyArray.remove(i--);
+        }
 
+        for (int i = 0; i < towerArray.size(); i++) {
+            myGdxGame.world.destroyBody(towerArray.get(i).body);
+            towerArray.remove(i--);
+        }
+        gameSession.setLevel(1);
+        gameSession.state = GameState.PLAYING;
     }
 
     @Override
