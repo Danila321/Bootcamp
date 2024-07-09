@@ -1,0 +1,261 @@
+Index: core/src/com/mygdx/game/utility/GameSession.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.mygdx.game.utility;\r\n\r\nimport com.badlogic.gdx.utils.TimeUtils;\r\nimport com.mygdx.game.ui.Money;\r\n\r\npublic class GameSession {\r\n    public GameState state;\r\n\r\n    long nextEnemySpawnTime;\r\n    int countReleasedEnemies = 0;\r\n\r\n    boolean levelFlag = true;\r\n    private int level = 0;\r\n    long sessionStartTime;\r\n    long pauseStartTime;\r\n    long startRestTime = 0;\r\n\r\n    int eliminatedEnemiesNumber = 0;\r\n\r\n    public GameSession() {\r\n\r\n    }\r\n\r\n    public void startGame() {\r\n        state = GameState.PLAYING;\r\n        sessionStartTime = TimeUtils.millis();\r\n        level = 0;\r\n    }\r\n\r\n    public void pauseGame() {\r\n        state = GameState.PAUSED;\r\n        pauseStartTime = TimeUtils.millis();\r\n    }\r\n\r\n    public void resumeGame() {\r\n        state = GameState.PLAYING;\r\n        sessionStartTime += TimeUtils.millis() - pauseStartTime;\r\n    }\r\n\r\n    public void endGame() {\r\n        state = GameState.ENDED;\r\n\r\n    }\r\n\r\n    public boolean shouldSpawnEnemy() {\r\n        if (countReleasedEnemies < GameSettings.ENEMY_COUNT) {\r\n            if (nextEnemySpawnTime <= TimeUtils.millis()) {\r\n                System.out.println(GameSettings.ENEMY_COUNT);\r\n                System.out.println(countReleasedEnemies);\r\n                nextEnemySpawnTime = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME;\r\n                countReleasedEnemies++;\r\n                return true;\r\n            }\r\n        } else {\r\n            startRestTime = TimeUtils.millis();\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean isRest() {\r\n        if (startRestTime + GameSettings.WAVE_REST_TIME > TimeUtils.millis()) {\r\n            levelFlag = true;\r\n            return true;\r\n        } else {\r\n            if (levelFlag) {\r\n                countReleasedEnemies = 0;\r\n                levelUp();\r\n                levelFlag = false;\r\n            }\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public void eliminationRegistration(Money balance) {\r\n        balance.addBalance(50);\r\n\r\n    }\r\n\r\n    public void levelUp() {\r\n        level++;\r\n        if (GameSettings.ENEMY_SPAWN_TIME >= 700) {\r\n            GameSettings.ENEMY_SPAWN_TIME -= 200;\r\n        }\r\n        GameSettings.ENEMY_SPEED += 0.3f;\r\n        GameSettings.ENEMY_COUNT++;\r\n    }\r\n\r\n    public int getLevel() {\r\n        return level;\r\n    }\r\n\r\n    public void setLevel(int level) {\r\n        this.level = level;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/com/mygdx/game/utility/GameSession.java b/core/src/com/mygdx/game/utility/GameSession.java
+--- a/core/src/com/mygdx/game/utility/GameSession.java	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/core/src/com/mygdx/game/utility/GameSession.java	(date 1720515072704)
+@@ -88,7 +88,6 @@
+     public int getLevel() {
+         return level;
+     }
+-
+     public void setLevel(int level) {
+         this.level = level;
+     }
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel target=\"1.8\">\r\n      <module name=\"Bootcamp.android\" target=\"17\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/.idea/compiler.xml	(date 1720514840784)
+@@ -1,8 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="1.8">
+-      <module name="Bootcamp.android" target="17" />
+-    </bytecodeTargetLevel>
++    <bytecodeTargetLevel target="1.8" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Fri Jul 05 18:13:48 MSK 2024\r\ncom.mygdx.game.android-android-4\\:/drawable-anydpi-v26/ic_launcher.xml=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-anydpi-v26\\\\ic_launcher.xml\r\ncom.mygdx.game.android-android-4\\:/drawable-anydpi-v26/ic_launcher_foreground.xml=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-anydpi-v26\\\\ic_launcher_foreground.xml\r\ncom.mygdx.game.android-android-4\\:/drawable-hdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-hdpi-v4\\\\ic_launcher.png\r\ncom.mygdx.game.android-android-4\\:/drawable-mdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-mdpi-v4\\\\ic_launcher.png\r\ncom.mygdx.game.android-android-4\\:/drawable-xhdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-xhdpi-v4\\\\ic_launcher.png\r\ncom.mygdx.game.android-android-4\\:/drawable-xxhdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-xxhdpi-v4\\\\ic_launcher.png\r\ncom.mygdx.game.android-android-4\\:/drawable-xxxhdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\packaged_res\\\\debug\\\\packageDebugResources\\\\drawable-xxxhdpi-v4\\\\ic_launcher.png\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+--- a/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties	(date 1720513982674)
+@@ -1,4 +1,4 @@
+-#Fri Jul 05 18:13:48 MSK 2024
++#Tue Jul 09 11:33:02 MSK 2024
+ com.mygdx.game.android-android-4\:/drawable-anydpi-v26/ic_launcher.xml=C\:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\packaged_res\\debug\\packageDebugResources\\drawable-anydpi-v26\\ic_launcher.xml
+ com.mygdx.game.android-android-4\:/drawable-anydpi-v26/ic_launcher_foreground.xml=C\:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\packaged_res\\debug\\packageDebugResources\\drawable-anydpi-v26\\ic_launcher_foreground.xml
+ com.mygdx.game.android-android-4\:/drawable-hdpi/ic_launcher.png=C\:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\packaged_res\\debug\\packageDebugResources\\drawable-hdpi-v4\\ic_launcher.png
+Index: android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Fri Jul 05 18:13:48 MSK 2024\r\ncom.mygdx.game.android-android-5\\:/drawable-anydpi-v26/ic_launcher.xml=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-anydpi-v26_ic_launcher.xml.flat\r\ncom.mygdx.game.android-android-5\\:/drawable-hdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-hdpi_ic_launcher.png.flat\r\ncom.mygdx.game.android-android-5\\:/drawable-mdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-mdpi_ic_launcher.png.flat\r\ncom.mygdx.game.android-android-5\\:/drawable-xhdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-xhdpi_ic_launcher.png.flat\r\ncom.mygdx.game.android-android-5\\:/drawable-xxhdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-xxhdpi_ic_launcher.png.flat\r\ncom.mygdx.game.android-android-5\\:/drawable-xxxhdpi/ic_launcher.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-xxxhdpi_ic_launcher.png.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-anydpi-v21/ic_launcher_foreground.xml=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-anydpi-v21_ic_launcher_foreground.xml.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-hdpi/ic_launcher_foreground.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-hdpi_ic_launcher_foreground.png.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-ldpi/ic_launcher_foreground.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-ldpi_ic_launcher_foreground.png.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-mdpi/ic_launcher_foreground.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-mdpi_ic_launcher_foreground.png.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-xhdpi/ic_launcher_foreground.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-xhdpi_ic_launcher_foreground.png.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-xxhdpi/ic_launcher_foreground.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-xxhdpi_ic_launcher_foreground.png.flat\r\ncom.mygdx.game.android-pngs-0\\:/drawable-xxxhdpi/ic_launcher_foreground.png=C\\:\\\\Users\\\\Student\\\\StudioProjects\\\\Bootcamp\\\\android\\\\build\\\\intermediates\\\\merged_res\\\\debug\\\\mergeDebugResources\\\\drawable-xxxhdpi_ic_launcher_foreground.png.flat\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties b/android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties
+--- a/android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/incremental/debug/mergeDebugResources/compile-file-map.properties	(date 1720513982141)
+@@ -1,4 +1,4 @@
+-#Fri Jul 05 18:13:48 MSK 2024
++#Tue Jul 09 11:33:02 MSK 2024
+ com.mygdx.game.android-android-5\:/drawable-anydpi-v26/ic_launcher.xml=C\:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\merged_res\\debug\\mergeDebugResources\\drawable-anydpi-v26_ic_launcher.xml.flat
+ com.mygdx.game.android-android-5\:/drawable-hdpi/ic_launcher.png=C\:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\merged_res\\debug\\mergeDebugResources\\drawable-hdpi_ic_launcher.png.flat
+ com.mygdx.game.android-android-5\:/drawable-mdpi/ic_launcher.png=C\:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\merged_res\\debug\\mergeDebugResources\\drawable-mdpi_ic_launcher.png.flat
+Index: android/build/intermediates/incremental/mergeDebugAssets/merger.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<merger version=\"3\"><dataSet config=\"main\" ignore_pattern=\"!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~\"><source path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\"><file name=\"123123.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\123123.tsx\"/><file name=\"13.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\13.tsx\"/><file name=\"back.jpg\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\back.jpg\"/><file name=\"black_button.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\black_button.png\"/><file name=\"blue.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\blue.png\"/><file name=\"fonts/Montserrat-Bold.ttf\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\fonts\\Montserrat-Bold.ttf\"/><file name=\"green.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\green.png\"/><file name=\"map.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\map.tsx\"/><file name=\"mapq (2).tmx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\mapq (2).tmx\"/><file name=\"mapq.tmx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\mapq.tmx\"/><file name=\"mapYesYes.tmx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\mapYesYes.tmx\"/><file name=\"red.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\red.png\"/><file name=\"robot1.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\robot1.png\"/><file name=\"tileset 1.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\tileset 1.png\"/><file name=\"tileset_x1.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\tileset_x1.png\"/><file name=\"white_background.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\white_background.png\"/><file name=\"yellow.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\yellow.png\"/><file name=\"1645519570740.jpg\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\1645519570740.jpg\"/><file name=\"1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg\"/><file name=\"button_white.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\button_white.png\"/><file name=\"photo_2024-07-05_11-59-00.jpg\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\photo_2024-07-05_11-59-00.jpg\"/><file name=\"straight road.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\straight road.png\"/><file name=\"straight road.psd\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\straight road.psd\"/><file name=\"straight road.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\straight road.tsx\"/><file name=\"Tower 07.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\Tower 07.tsx\"/><file name=\"turn road 2.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\turn road 2.png\"/><file name=\"turn road 2.psd\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\turn road 2.psd\"/><file name=\"turn road 3.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\turn road 3.png\"/><file name=\"turn road.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\turn road.png\"/><file name=\"turn road.psd\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\turn road.psd\"/><file name=\"turn road.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\turn road.tsx\"/><file name=\"Без имени-1.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\Без имени-1.png\"/><file name=\"Без имени-1.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\Без имени-1.tsx\"/><file name=\"Без имени-2 (1).png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\Без имени-2 (1).png\"/><file name=\"Без имени-2 (1).tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\Без имени-2 (1).tsx\"/><file name=\"Без имени-2.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\Без имени-2.png\"/><file name=\"безымянный.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\безымянный.png\"/><file name=\"безымянный.tmx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\безымянный.tmx\"/><file name=\"фывфыв.png\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\фывфыв.png\"/><file name=\"фывфыв.psb\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\фывфыв.psb\"/><file name=\"фывфыв.tsx\" path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\assets\\фывфыв.tsx\"/></source></dataSet><dataSet config=\"debug\" ignore_pattern=\"!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~\"><source path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\src\\debug\\assets\"/></dataSet><dataSet config=\"generated\" ignore_pattern=\"!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~\"><source path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\build\\intermediates\\shader_assets\\debug\\compileDebugShaders\\out\"/></dataSet></merger>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android/build/intermediates/incremental/mergeDebugAssets/merger.xml b/android/build/intermediates/incremental/mergeDebugAssets/merger.xml
+--- a/android/build/intermediates/incremental/mergeDebugAssets/merger.xml	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/incremental/mergeDebugAssets/merger.xml	(date 1720513987488)
+@@ -1,2 +1,2 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets"><file name="123123.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\123123.tsx"/><file name="13.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\13.tsx"/><file name="back.jpg" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\back.jpg"/><file name="black_button.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\black_button.png"/><file name="blue.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\blue.png"/><file name="fonts/Montserrat-Bold.ttf" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\fonts\Montserrat-Bold.ttf"/><file name="green.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\green.png"/><file name="map.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\map.tsx"/><file name="mapq (2).tmx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\mapq (2).tmx"/><file name="mapq.tmx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\mapq.tmx"/><file name="mapYesYes.tmx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\mapYesYes.tmx"/><file name="red.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\red.png"/><file name="robot1.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\robot1.png"/><file name="tileset 1.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\tileset 1.png"/><file name="tileset_x1.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\tileset_x1.png"/><file name="white_background.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\white_background.png"/><file name="yellow.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\yellow.png"/><file name="1645519570740.jpg" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\1645519570740.jpg"/><file name="1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg"/><file name="button_white.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\button_white.png"/><file name="photo_2024-07-05_11-59-00.jpg" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\photo_2024-07-05_11-59-00.jpg"/><file name="straight road.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\straight road.png"/><file name="straight road.psd" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\straight road.psd"/><file name="straight road.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\straight road.tsx"/><file name="Tower 07.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\Tower 07.tsx"/><file name="turn road 2.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\turn road 2.png"/><file name="turn road 2.psd" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\turn road 2.psd"/><file name="turn road 3.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\turn road 3.png"/><file name="turn road.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\turn road.png"/><file name="turn road.psd" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\turn road.psd"/><file name="turn road.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\turn road.tsx"/><file name="Без имени-1.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\Без имени-1.png"/><file name="Без имени-1.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\Без имени-1.tsx"/><file name="Без имени-2 (1).png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\Без имени-2 (1).png"/><file name="Без имени-2 (1).tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\Без имени-2 (1).tsx"/><file name="Без имени-2.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\Без имени-2.png"/><file name="безымянный.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\безымянный.png"/><file name="безымянный.tmx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\безымянный.tmx"/><file name="фывфыв.png" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\фывфыв.png"/><file name="фывфыв.psb" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\фывфыв.psb"/><file name="фывфыв.tsx" path="C:\Users\L1d0ff\StudioProjects\Bootcamp\assets\фывфыв.tsx"/></source></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\L1d0ff\StudioProjects\Bootcamp\android\src\debug\assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\L1d0ff\StudioProjects\Bootcamp\android\build\intermediates\shader_assets\debug\compileDebugShaders\out"/></dataSet></merger>
+\ No newline at end of file
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Student\StudioProjects\Bootcamp\assets"><file name="fonts/Montserrat-Bold.ttf" path="C:\Users\Student\StudioProjects\Bootcamp\assets\fonts\Montserrat-Bold.ttf"/><file name="images/background.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\background.png"/><file name="images/black_button.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\black_button.png"/><file name="images/blue.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\blue.png"/><file name="images/button_white.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\button_white.png"/><file name="images/green.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\green.png"/><file name="images/red.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\red.png"/><file name="images/robot1.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\robot1.png"/><file name="images/white_background.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\white_background.png"/><file name="images/yellow.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\images\yellow.png"/><file name="soon/фывфыв.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\soon\фывфыв.png"/><file name="soon/фывфыв.psb" path="C:\Users\Student\StudioProjects\Bootcamp\assets\soon\фывфыв.psb"/><file name="sounds/laser-blast_zjrhvyvd.mp3" path="C:\Users\Student\StudioProjects\Bootcamp\assets\sounds\laser-blast_zjrhvyvd.mp3"/><file name="sounds/laser-scan_fjjawtv_.mp3" path="C:\Users\Student\StudioProjects\Bootcamp\assets\sounds\laser-scan_fjjawtv_.mp3"/><file name="tilemap/123123.tsx" path="C:\Users\Student\StudioProjects\Bootcamp\assets\tilemap\123123.tsx"/><file name="tilemap/13.tsx" path="C:\Users\Student\StudioProjects\Bootcamp\assets\tilemap\13.tsx"/><file name="tilemap/mapq (2).tmx" path="C:\Users\Student\StudioProjects\Bootcamp\assets\tilemap\mapq (2).tmx"/><file name="tilemap/tileset 1.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\tilemap\tileset 1.png"/><file name="tilemap/tileset_x1.png" path="C:\Users\Student\StudioProjects\Bootcamp\assets\tilemap\tileset_x1.png"/></source></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Student\StudioProjects\Bootcamp\android\src\debug\assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Student\StudioProjects\Bootcamp\android\build\intermediates\shader_assets\debug\compileDebugShaders\out"/></dataSet></merger>
+\ No newline at end of file
+Index: android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<merger version=\"3\"><dataSet config=\"main\" ignore_pattern=\"!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~\"><source path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\src\\main\\shaders\"/></dataSet><dataSet config=\"debug\" ignore_pattern=\"!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~\"><source path=\"C:\\Users\\L1d0ff\\StudioProjects\\Bootcamp\\android\\src\\debug\\shaders\"/></dataSet></merger>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+--- a/android/build/intermediates/incremental/mergeDebugShaders/merger.xml	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/incremental/mergeDebugShaders/merger.xml	(date 1720513984779)
+@@ -1,2 +1,2 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\L1d0ff\StudioProjects\Bootcamp\android\src\main\shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\L1d0ff\StudioProjects\Bootcamp\android\src\debug\shaders"/></dataSet></merger>
+\ No newline at end of file
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Student\StudioProjects\Bootcamp\android\src\main\shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Student\StudioProjects\Bootcamp\android\src\debug\shaders"/></dataSet></merger>
+\ No newline at end of file
+Index: android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>1<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n2<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n3    package=\"com.mygdx.game\"\r\n4    android:versionCode=\"1\"\r\n5    android:versionName=\"1.0\" >\r\n6\r\n7    <uses-sdk\r\n8        android:minSdkVersion=\"19\"\r\n9        android:targetSdkVersion=\"35\" />\r\n10\r\n11    <uses-feature\r\n11-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:5:5-78\r\n12        android:glEsVersion=\"0x00020000\"\r\n12-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:5:19-51\r\n13        android:required=\"true\" />\r\n13-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:5:52-75\r\n14\r\n15    <application\r\n15-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:7:5-27:19\r\n16        android:allowBackup=\"true\"\r\n16-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:8:9-35\r\n17        android:appCategory=\"game\"\r\n17-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:12:9-35\r\n18        android:debuggable=\"true\"\r\n19        android:extractNativeLibs=\"true\"\r\n20        android:fullBackupContent=\"true\"\r\n20-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:9:9-41\r\n21        android:icon=\"@drawable/ic_launcher\"\r\n21-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:10:9-45\r\n22        android:isGame=\"true\"\r\n22-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:11:9-30\r\n23        android:label=\"@string/app_name\"\r\n23-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:13:9-41\r\n24        android:theme=\"@style/AppTheme\" >\r\n24-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:14:9-40\r\n25        <activity\r\n25-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:16:9-26:20\r\n26            android:name=\"com.mygdx.game.AndroidLauncher\"\r\n26-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:17:13-58\r\n27            android:configChanges=\"keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout\"\r\n27-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:20:13-107\r\n28            android:exported=\"true\"\r\n28-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:21:13-36\r\n29            android:label=\"@string/app_name\"\r\n29-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:18:13-45\r\n30            android:screenOrientation=\"landscape\" >\r\n30-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:19:13-50\r\n31            <intent-filter>\r\n31-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:22:13-25:29\r\n32                <action android:name=\"android.intent.action.MAIN\" />\r\n32-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:23:17-69\r\n32-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:23:25-66\r\n33\r\n34                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n34-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:24:17-77\r\n34-->C:\\Users\\Student\\StudioProjects\\Bootcamp\\android\\AndroidManifest.xml:24:27-74\r\n35            </intent-filter>\r\n36        </activity>\r\n37    </application>\r\n38\r\n39</manifest>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt b/android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt
+--- a/android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt	(date 1720513983707)
+@@ -31,31 +31,32 @@
+ 22-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:11:9-30
+ 23        android:label="@string/app_name"
+ 23-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:13:9-41
+-24        android:theme="@style/AppTheme" >
+-24-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:14:9-40
+-25        <activity
+-25-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:16:9-26:20
+-26            android:name="com.mygdx.game.AndroidLauncher"
+-26-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:17:13-58
+-27            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
+-27-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:20:13-107
+-28            android:exported="true"
+-28-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:21:13-36
+-29            android:label="@string/app_name"
+-29-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:18:13-45
+-30            android:screenOrientation="landscape" >
+-30-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:19:13-50
+-31            <intent-filter>
+-31-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:22:13-25:29
+-32                <action android:name="android.intent.action.MAIN" />
+-32-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:17-69
+-32-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:25-66
+-33
+-34                <category android:name="android.intent.category.LAUNCHER" />
+-34-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:17-77
+-34-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:27-74
+-35            </intent-filter>
+-36        </activity>
+-37    </application>
+-38
+-39</manifest>
++24        android:testOnly="true"
++25        android:theme="@style/AppTheme" >
++25-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:14:9-40
++26        <activity
++26-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:16:9-26:20
++27            android:name="com.mygdx.game.AndroidLauncher"
++27-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:17:13-58
++28            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
++28-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:20:13-107
++29            android:exported="true"
++29-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:21:13-36
++30            android:label="@string/app_name"
++30-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:18:13-45
++31            android:screenOrientation="landscape" >
++31-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:19:13-50
++32            <intent-filter>
++32-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:22:13-25:29
++33                <action android:name="android.intent.action.MAIN" />
++33-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:17-69
++33-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:23:25-66
++34
++35                <category android:name="android.intent.category.LAUNCHER" />
++35-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:17-77
++35-->C:\Users\Student\StudioProjects\Bootcamp\android\AndroidManifest.xml:24:27-74
++36            </intent-filter>
++37        </activity>
++38    </application>
++39
++40</manifest>
+Index: local.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>## This file must *NOT* be checked into Version Control Systems,\r\n# as it contains information specific to your local configuration.\r\n#\r\n# Location of the SDK. This is only used by Gradle.\r\n# For customization when using a Version Control System, please read the\r\n# header note.\r\n#Mon Jul 08 17:51:45 MSK 2024\r\nsdk.dir=C\\:\\\\Users\\\\L1d0ff\\\\AppData\\\\Local\\\\Android\\\\Sdk\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/local.properties b/local.properties
+--- a/local.properties	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/local.properties	(date 1720513478869)
+@@ -4,5 +4,5 @@
+ # Location of the SDK. This is only used by Gradle.
+ # For customization when using a Version Control System, please read the
+ # header note.
+-#Mon Jul 08 17:51:45 MSK 2024
+-sdk.dir=C\:\\Users\\L1d0ff\\AppData\\Local\\Android\\Sdk
++#Tue Jul 09 11:24:38 MSK 2024
++sdk.dir=C\:\\Users\\Student\\AppData\\Local\\Android\\Sdk
+Index: android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.mygdx.game\"\r\n    android:versionCode=\"1\"\r\n    android:versionName=\"1.0\" >\r\n\r\n    <uses-sdk\r\n        android:minSdkVersion=\"19\"\r\n        android:targetSdkVersion=\"35\" />\r\n\r\n    <uses-feature\r\n        android:glEsVersion=\"0x00020000\"\r\n        android:required=\"true\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:appCategory=\"game\"\r\n        android:debuggable=\"true\"\r\n        android:extractNativeLibs=\"true\"\r\n        android:fullBackupContent=\"true\"\r\n        android:icon=\"@drawable/ic_launcher\"\r\n        android:isGame=\"true\"\r\n        android:label=\"@string/app_name\"\r\n        android:theme=\"@style/AppTheme\" >\r\n        <activity\r\n            android:name=\"com.mygdx.game.AndroidLauncher\"\r\n            android:configChanges=\"keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout\"\r\n            android:exported=\"true\"\r\n            android:label=\"@string/app_name\"\r\n            android:screenOrientation=\"landscape\" >\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml b/android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml
+--- a/android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml	(date 1720513983705)
+@@ -21,6 +21,7 @@
+         android:icon="@drawable/ic_launcher"
+         android:isGame="true"
+         android:label="@string/app_name"
++        android:testOnly="true"
+         android:theme="@style/AppTheme" >
+         <activity
+             android:name="com.mygdx.game.AndroidLauncher"
+Index: android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.mygdx.game\"\r\n    android:versionCode=\"1\"\r\n    android:versionName=\"1.0\" >\r\n\r\n    <uses-sdk\r\n        android:minSdkVersion=\"19\"\r\n        android:targetSdkVersion=\"35\" />\r\n\r\n    <uses-feature\r\n        android:glEsVersion=\"0x00020000\"\r\n        android:required=\"true\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:appCategory=\"game\"\r\n        android:debuggable=\"true\"\r\n        android:extractNativeLibs=\"true\"\r\n        android:fullBackupContent=\"true\"\r\n        android:icon=\"@drawable/ic_launcher\"\r\n        android:isGame=\"true\"\r\n        android:label=\"@string/app_name\"\r\n        android:theme=\"@style/AppTheme\" >\r\n        <activity\r\n            android:name=\"com.mygdx.game.AndroidLauncher\"\r\n            android:configChanges=\"keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout\"\r\n            android:exported=\"true\"\r\n            android:label=\"@string/app_name\"\r\n            android:screenOrientation=\"landscape\" >\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml b/android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml
+--- a/android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml	(date 1720513984677)
+@@ -21,6 +21,7 @@
+         android:icon="@drawable/ic_launcher"
+         android:isGame="true"
+         android:label="@string/app_name"
++        android:testOnly="true"
+         android:theme="@style/AppTheme" >
+         <activity
+             android:name="com.mygdx.game.AndroidLauncher"
+Index: .gradle/config.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Sun Jul 07 10:49:41 MSK 2024\r\njava.home=C\\:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/.gradle/config.properties b/.gradle/config.properties
+--- a/.gradle/config.properties	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/.gradle/config.properties	(date 1720513460063)
+@@ -1,2 +1,2 @@
+-#Sun Jul 07 10:49:41 MSK 2024
+-java.home=C\:\\Program Files\\Android\\Android Studio\\jbr
++#Tue Jul 09 11:24:19 MSK 2024
++java.home=D\:\\Program Files\\android studio\\jbr
+Index: android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.mygdx.game\"\r\n    android:versionCode=\"1\"\r\n    android:versionName=\"1.0\" >\r\n\r\n    <uses-sdk\r\n        android:minSdkVersion=\"19\"\r\n        android:targetSdkVersion=\"35\" />\r\n\r\n    <uses-feature\r\n        android:glEsVersion=\"0x00020000\"\r\n        android:required=\"true\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:appCategory=\"game\"\r\n        android:debuggable=\"true\"\r\n        android:extractNativeLibs=\"true\"\r\n        android:fullBackupContent=\"true\"\r\n        android:icon=\"@drawable/ic_launcher\"\r\n        android:isGame=\"true\"\r\n        android:label=\"@string/app_name\"\r\n        android:theme=\"@style/AppTheme\" >\r\n        <activity\r\n            android:name=\"com.mygdx.game.AndroidLauncher\"\r\n            android:configChanges=\"keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout\"\r\n            android:exported=\"true\"\r\n            android:label=\"@string/app_name\"\r\n            android:screenOrientation=\"landscape\" >\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml b/android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml
+--- a/android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml	(revision 7b5234cbe6559eeeb5555d47f72631cdde9c0614)
++++ b/android/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml	(date 1720513984755)
+@@ -21,6 +21,7 @@
+         android:icon="@drawable/ic_launcher"
+         android:isGame="true"
+         android:label="@string/app_name"
++        android:testOnly="true"
+         android:theme="@style/AppTheme" >
+         <activity
+             android:name="com.mygdx.game.AndroidLauncher"

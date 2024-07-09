@@ -3,11 +3,17 @@ package com.mygdx.game.utility;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.ui.Money;
 
+import java.sql.Time;
+
 public class GameSession {
     public GameState state;
 
     long nextEnemySpawnTime;
+    long nextEnemySpawnTime2 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME2;
+    long nextEnemySpawnTime3 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME3;
     int countReleasedEnemies = 0;
+    int countReleasedEnemies2 = 0;
+    int countReleasedEnemies3 = 0;
 
     boolean levelFlag = true;
     private int level = 0;
@@ -45,14 +51,34 @@ public class GameSession {
     public boolean shouldSpawnEnemy() {
         if (countReleasedEnemies < GameSettings.ENEMY_COUNT) {
             if (nextEnemySpawnTime <= TimeUtils.millis()) {
-                System.out.println(GameSettings.ENEMY_COUNT);
-                System.out.println(countReleasedEnemies);
                 nextEnemySpawnTime = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME;
                 countReleasedEnemies++;
                 return true;
             }
         } else {
             startRestTime = TimeUtils.millis();
+        }
+        return false;
+    }
+
+    public boolean shouldSpawnEnemy2() {
+        if (countReleasedEnemies2 < GameSettings.ENEMY2_COUNT) {
+            if (nextEnemySpawnTime2 <= TimeUtils.millis()) {
+                nextEnemySpawnTime2 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME2;
+                countReleasedEnemies2++;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean shouldSpawnEnemy3() {
+        if (countReleasedEnemies3 < GameSettings.ENEMY3_COUNT) {
+            if (nextEnemySpawnTime3 <= TimeUtils.millis()) {
+                nextEnemySpawnTime3 = TimeUtils.millis() + GameSettings.ENEMY_SPAWN_TIME3;
+                countReleasedEnemies3++;
+                return true;
+            }
         }
         return false;
     }
@@ -64,6 +90,8 @@ public class GameSession {
         } else {
             if (levelFlag) {
                 countReleasedEnemies = 0;
+                countReleasedEnemies2 = 0;
+                countReleasedEnemies3 = 0;
                 levelUp();
                 levelFlag = false;
             }
@@ -73,22 +101,22 @@ public class GameSession {
 
     public void eliminationRegistration(Money balance) {
         balance.addBalance(50);
-
     }
 
     public void levelUp() {
         level++;
-        if (GameSettings.ENEMY_SPAWN_TIME >= 700) {
-            GameSettings.ENEMY_SPAWN_TIME -= 200;
-        }
-        GameSettings.ENEMY_SPEED += 0.3f;
+        //if (GameSettings.ENEMY_SPAWN_TIME >= 1000) {
+         //   GameSettings.ENEMY_SPAWN_TIME -= 200;
+        //}
+        //GameSettings.ENEMY_SPEED += 0.2f;
         GameSettings.ENEMY_COUNT++;
+        GameSettings.ENEMY2_COUNT++;
+        //GameSettings.ENEMY2_SPEED += 0.1f;
     }
 
     public int getLevel() {
         return level;
     }
-
     public void setLevel(int level) {
         this.level = level;
     }

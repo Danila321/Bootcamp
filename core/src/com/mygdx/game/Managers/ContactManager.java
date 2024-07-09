@@ -28,7 +28,7 @@ public class ContactManager {
                 int cDef2 = fixB.getFilterData().categoryBits;
 
                 if (cDef == GameSettings.BASE_BULLET_BIT && cDef2 == GameSettings.ENEMY_BIT){
-                    System.out.println(((BulletObject) fixA.getUserData()).getDamage());
+                    //System.out.println(((BulletObject) fixA.getUserData()).getDamage());
                     ((GameObject) fixA.getUserData()).hit(GameSettings.BASE_BULLET_DAMAGE);
                     ((GameObject) fixB.getUserData()).hit(((BulletObject) fixA.getUserData()).getDamage());
                 }

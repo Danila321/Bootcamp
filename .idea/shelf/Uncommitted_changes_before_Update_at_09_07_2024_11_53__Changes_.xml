@@ -1,0 +1,694 @@
+<changelist name="Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]" date="1720515210852" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09.07.2024 11:53 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-1.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/blue.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/turn road 2.psd" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/M_NZd9mj4Kui5sfo_CjxzTPCZTI=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/MyGdxGame.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/MyGdxGame.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/MyGdxGame.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/button_white.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/black_button.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/GameScreen$1.class.uniqueId1" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/green.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/robot1.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/file-system.probe" />
+    <option name="AFTER_PATH" value=".gradle/file-system.probe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/file-system.probe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/fileHashes/resourceHashesCache.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.6/fileHashes/resourceHashesCache.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/resourceHashesCache.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/straight road.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/turn road.psd" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/turn road.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapYesYes.tmx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/mapq.tmx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/red.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/GameScreen.class.uniqueId6" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/1686932803_bogatyr-club-p-oboi-vai-arkein-pinterest-2.jpg.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-2.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road 2.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapq.tmx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-2 (1).png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/c2GmkWjNRCChRg0kUtSfWO6GzwM=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/checksums/sha1-checksums.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.6/checksums/sha1-checksums.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/sha1-checksums.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/fileHashes/fileHashes.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.6/fileHashes/fileHashes.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/fileHashes.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/turn road 2.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/1645519570740.jpg" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/GameResources.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/turn road.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/white_background.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/base.jar" />
+    <option name="AFTER_PATH" value="android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/base.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/base.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/tileset 1.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/2JCZtGmEmZLHe7Hcw4BPaApb9xM=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/turn road 3.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/безымянный.tmx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/13.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/white_background.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/TextView.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/TextView.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/TextView.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/blue.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/oM+yDv0lfXAr9Otvw3ykeaH7Esw=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/MyGdxGame.class.uniqueId7" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/robot1.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-2 (1).tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/green.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" />
+    <option name="AFTER_PATH" value="android/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/resources-debug.ap_" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/mapq (2).tmx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/red.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/GameResources.class.uniqueId3" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="AFTER_PATH" value="core/build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/previous-compilation-data.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/yellow.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/Tower 07.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-1.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/screens/MenuScreen.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/screens/MenuScreen.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/MenuScreen.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/Enemy.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/button_white.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/безымянный.tmx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/ZQ4oPX0+b48xO+2xJvL4XN_DBWI=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/tileset_x1.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/merge-state" />
+    <option name="AFTER_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/merge-state" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/merge-state" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/map.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/BaseTowerObject.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/BaseTowerObject.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/BaseTowerObject.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/black_button.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/back.jpg.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/MainHeroObject.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/MainHeroObject.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/MainHeroObject.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/GameSession.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/executionHistory/executionHistory.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.6/executionHistory/executionHistory.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/executionHistory.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Tower 07.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-2.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/BaseTowerObject.class.uniqueId2" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/HPE_NVpatQ4V+HZChQnImuNfvsA=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/kIrk1XbqQVcDgJySUuXDTHsjmh4=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/outputFiles.bin" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/outputFiles.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/outputFiles.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/SettingsScreen.class.uniqueId0" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road 3.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/gamefield/GameField.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/executionHistory/executionHistory.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.6/executionHistory/executionHistory.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/executionHistory.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/classes/java/main/com/mygdx/game/screens/GameScreen.class" />
+    <option name="AFTER_PATH" value="core/build/classes/java/main/com/mygdx/game/screens/GameScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/GameScreen.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/checksums/md5-checksums.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.6/checksums/md5-checksums.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/md5-checksums.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/123123.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameSettings.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameSettings.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/GameSettings.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/безымянный.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/straight road.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="desktop/build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="AFTER_PATH" value="desktop/build/tmp/compileJava/previous-compilation-data.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/previous-compilation-data1.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/EnemyObject.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/objects/EnemyObject.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/EnemyObject.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/straight road.psd" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/MenuScreen.class.uniqueId5" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/x29AZU91_fgF4kzcvHiarGcGcTw=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/tileset 1.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/screens/GameScreen.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/screens/GameScreen.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/GameScreen.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/ImageView.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/ui/ImageView.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/ImageView.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/K_e_S7VVCZiTBufTz6ZxfPiTXVo=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/photo_2024-07-05_11-59-00.jpg.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/back.jpg" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameResourses.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/фывфыв.psb" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/123123.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/P0ACGnmpd1R+pwEcTxGitvHKZP4=" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/classes/java/main/com/mygdx/game/utility/GameSession.class" />
+    <option name="AFTER_PATH" value="core/build/classes/java/main/com/mygdx/game/utility/GameSession.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/GameSession.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/mapq (2).tmx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-2 (1).tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/buildOutputCleanup.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road.psd.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/фывфыв.psb.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/libs/core-1.0.jar" />
+    <option name="AFTER_PATH" value="core/build/libs/core-1.0.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/core-1.0.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road 2.psd.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/mygdx/game/AndroidLauncher.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/objects/GameObject.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/13.tsx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/tmp/compileJava/compileTransaction/stash-dir/AudioManager.class.uniqueId4" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/fileHashes/fileHashes.bin" />
+    <option name="AFTER_PATH" value=".gradle/8.6/fileHashes/fileHashes.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/fileHashes.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/straight road.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/безымянный.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/8.6/checksums/checksums.lock" />
+    <option name="AFTER_PATH" value=".gradle/8.6/checksums/checksums.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/checksums.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/yellow.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/straight road.psd.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/map.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-1.png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/mapYesYes.tmx" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/photo_2024-07-05_11-59-00.jpg" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameResources.dex" />
+    <option name="AFTER_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/utility/GameResources.dex" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/GameResources.dex" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/turn road.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/assets/debug/mergeDebugAssets/Без имени-2 (1).png" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/Без имени-1.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/straight road.tsx.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/.transforms/4f9f8625bfab2eac5e91b4c9a1e91813/transformed/main/com/mygdx/game/gamefield/Tile.dex" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/classes/java/main/com/mygdx/game/screens/GameScreen$1.class" />
+    <option name="AFTER_PATH" value="core/build/classes/java/main/com/mygdx/game/screens/GameScreen$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_11_53_[Changes]/GameScreen$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/1645519570740.jpg.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="android/build/intermediates/compressed_assets/debug/compressDebugAssets/out/assets/tileset_x1.png.jar" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

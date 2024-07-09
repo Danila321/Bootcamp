@@ -21,11 +21,12 @@ import com.mygdx.game.utility.GameSettings;
 public class MyGdxGame extends Game {
 	public World world;
 
-	public BitmapFont commonWhiteFont, commonRedFont, largeWhiteFont, commonBlackFont, smallRedFont;
+	public BitmapFont commonWhiteFont, commonRedFont, largeWhiteFont, commonBlackFont, smallRedFont,
+	largeRedFont;
 
 	public Vector3 touch;
 	public SpriteBatch batch;
-	public OrthographicCamera camera;
+	public static OrthographicCamera camera;
 	public GameScreen gameScreen;
 	float accumulator = 0;
 	public MenuScreen menuScreen;
@@ -40,11 +41,13 @@ public class MyGdxGame extends Game {
 		commonWhiteFont = FontBuilder.generate(24, Color.WHITE, GameResources.FONT_PATH);
 		commonRedFont = FontBuilder.generate(24, Color.RED, GameResources.FONT_PATH);
 		largeWhiteFont = FontBuilder.generate(52, Color.WHITE, GameResources.FONT_PATH);
+		largeRedFont = FontBuilder.generate(48, Color.RED, GameResources.FONT_PATH);
 		commonBlackFont = FontBuilder.generate(24, Color.BLACK, GameResources.FONT_PATH);
 		smallRedFont = FontBuilder.generate(20, Color.RED, GameResources.FONT_PATH);
 		commonRedFont.getData().setScale(1f, -1f);
 		commonWhiteFont.getData().setScale(1f, -1f);
 		largeWhiteFont.getData().setScale(1f, -1f);
+		largeRedFont.getData().setScale(1f, -1f);
 		commonBlackFont.getData().setScale(1f, -1f);
 		smallRedFont.getData().setScale(1f, -1f);
 		camera = new OrthographicCamera();
