@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BaseTowerObject extends GameObject {
+    public static int levelNumber;
     AudioManager audioManager;
     public int attackCoolDown;
     public float attackRadius;
@@ -35,6 +36,7 @@ public class BaseTowerObject extends GameObject {
         tempX = getX();
         tempY = getY();
         audioManager = new AudioManager();
+        int levelNumber = 1;
     }
 
     @Override
