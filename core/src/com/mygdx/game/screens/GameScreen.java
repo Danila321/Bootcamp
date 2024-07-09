@@ -269,14 +269,14 @@ public class GameScreen extends ScreenAdapter {
                     if (pauseButton.isHit(touchPos.x, touchPos.y)) {
                         gameSession.pauseGame();
                     }
-                    if (isUpgradeMenuExecuted && upgradeButton.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= levelCost(touchPos.x, touchPos.y)){
-                        balance.reduceBalance(levelCost(x_cord, y_cord));
+                    if (isUpgradeMenuExecuted && upgradeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
+                        gameSession.reduceBalance(levelCost(x_cord, y_cord));
                         isUpgradeMenuExecuted = false;
                     }
-                    if (isUpgradeMenuExecuted && sellButton.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= levelCost(touchPos.x, touchPos.y)){
+                    if (isUpgradeMenuExecuted && sellButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
                         isUpgradeMenuExecuted = false;
                     }
-                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y) && balance.getBalance() >= levelCost(touchPos.x, touchPos.y)){
+                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
                         isUpgradeMenuExecuted = false;
                     }
                     if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
@@ -319,7 +319,7 @@ public class GameScreen extends ScreenAdapter {
                         if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isMenuExecuted = true;
                         }
-                        if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1) && balance.getBalance() >= levelCost(touchPos.x, touchPos.y)) {
+                        if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)) {
                             isUpgradeMenuExecuted = true;
                         }
                     }
