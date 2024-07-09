@@ -41,7 +41,6 @@ public class GameScreen extends ScreenAdapter {
     MainHeroObject hero;
     ArrayList<BaseTowerObject> towerArray;
     ArrayList<EnemyObject> enemyArray;
-    BaseTowerObject baseTower;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
     boolean isUpgradeMenuExecuted = false;
@@ -100,7 +99,7 @@ public class GameScreen extends ScreenAdapter {
         tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
         tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
 
-        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
+        balanceTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
         balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
         notificationTextView = new TextView(myGdxGame.largeRedFont, 380, 60);
 
@@ -278,7 +277,7 @@ public class GameScreen extends ScreenAdapter {
     public int levelCost(float tx, float ty) {
         for (BaseTowerObject towerObject : towerArray) {
             if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 && ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
-                return towerObject.levelNumber * 300;
+                return towerObject.getLevelNumber() * 300;
             }
         }
         return 300;
@@ -293,12 +292,23 @@ public class GameScreen extends ScreenAdapter {
                     if (pauseButton.isHit(touchPos.x, touchPos.y)) {
                         gameSession.pauseGame();
                     }
-                    if (isUpgradeMenuExecuted && upgradeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
-                        gameSession.reduceBalance(levelCost(x_cord, y_cord));
-                        isUpgradeMenuExecuted = false;
+                    for (BaseTowerObject tower : towerArray) {
+                        if (isUpgradeMenuExecuted && upgradeButton.isHit(touchPos.x, touchPos.y)
+                                && gameSession.getBalance() >= levelCost((int) x_cord, (int) y_cord)) {
+                            gameSession.reduceBalance(levelCost((int) x_cord, (int) y_cord));
+                            tower.setLevelNumber(tower.getLevelNumber() + 1);
+                            tower.damage += 2;
+                            isUpgradeMenuExecuted = false;
+                        }
                     }
-                    if (isUpgradeMenuExecuted && sellButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
-                        isUpgradeMenuExecuted = false;
+                    //for (BaseTowerObject tower : towerArray) {
+                    for (int i = 0; i < towerArray.size(); i++) {
+                        if (isUpgradeMenuExecuted && sellButton.isHit(touchPos.x, touchPos.y)) {
+                            gameSession.addBalance((towerArray.get(i).getLevelNumber() * GameSettings.TOWER1_COST) / 2);
+                            myGdxGame.world.destroyBody(towerArray.get(i).body);
+                            towerArray.remove(i--);
+                            isUpgradeMenuExecuted = false;
+                        }
                     }
                     if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
                         isUpgradeMenuExecuted = false;
@@ -343,7 +353,7 @@ public class GameScreen extends ScreenAdapter {
                         if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isMenuExecuted = true;
                         }
-                        if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)) {
+                        if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isUpgradeMenuExecuted = true;
                         }
                     }

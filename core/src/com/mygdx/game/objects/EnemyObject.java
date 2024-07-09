@@ -74,15 +74,15 @@ public class EnemyObject extends GameObject {
 
     public void draw(SpriteBatch batch) {
         float barWidth = 50;
-        float barHeight = 10;
+        float barHeight = 20;
         float barX = getX() - barWidth / 2;
         float barY = getY() + 20;
         float healthPercentage = (float) EnemyObject.livesLeft / EnemyObject.maxHealth;
 
         drawer.setColor(Color.WHITE);
-        drawer.line(getX() * GameSettings.MAP_SCALE, getY() * GameSettings.MAP_SCALE - 100, getX() * GameSettings.MAP_SCALE + barWidth, getY() * GameSettings.MAP_SCALE - 100);
-        drawer.setColor(Color.valueOf("#7CFC00"));
-        drawer.filledRectangle(getX() * GameSettings.MAP_SCALE, getY() * GameSettings.MAP_SCALE - 108, barWidth * healthPercentage, barHeight);
+        drawer.line(getX() * GameSettings.MAP_SCALE, getY() * GameSettings.MAP_SCALE - 15, getX() * GameSettings.MAP_SCALE + barWidth, getY() * GameSettings.MAP_SCALE - 15);
+        drawer.setColor(Color.valueOf("#03fc07 "));
+        drawer.filledRectangle(getX() * GameSettings.MAP_SCALE, getY() * GameSettings.MAP_SCALE - 15, barWidth * healthPercentage, barHeight);
 
 
 

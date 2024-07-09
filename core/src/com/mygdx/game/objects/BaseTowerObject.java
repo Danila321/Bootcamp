@@ -2,12 +2,10 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector4;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Managers.AudioManager;
 import com.mygdx.game.Managers.MemoryManager;
-import com.mygdx.game.screens.SettingsScreen;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
 
@@ -15,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BaseTowerObject extends GameObject {
-    public static int levelNumber;
+    private int levelNumber;
     AudioManager audioManager;
     public int attackCoolDown;
     public float attackRadius;
@@ -31,12 +29,12 @@ public class BaseTowerObject extends GameObject {
         this.world = world;
         attackCoolDown = GameSettings.BASE_TOWER_ATTACK_COOL_DOWN;
         attackRadius = GameSettings.BASE_TOWER_ATTACK_RADIUS;
-        this.damage = damage;
+        levelNumber = 1;
+        this.damage = damage * levelNumber;
         bulletArray = new ArrayList<>();
         tempX = getX();
         tempY = getY();
         audioManager = new AudioManager();
-        int levelNumber = 1;
     }
 
     @Override
@@ -107,5 +105,12 @@ public class BaseTowerObject extends GameObject {
             setY(tempY);
             setX(tempX);
         }
+    }
+
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+    public void setLevelNumber(int level) {
+        levelNumber = level;
     }
 }
