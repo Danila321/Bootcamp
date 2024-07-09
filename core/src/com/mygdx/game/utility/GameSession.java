@@ -16,7 +16,6 @@ public class GameSession {
     int countReleasedEnemies2;
     int countReleasedEnemies3;
 
-    int countReleasedEnemies;
     boolean levelFlag = true;
     private int level;
     long startRestTime;

@@ -50,7 +50,7 @@ public class GameScreen extends ScreenAdapter {
     //Play UI
     ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton;
     ImageView unitMenu, tower1, tower2, tower3, liveImageView;
-    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView;
+    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView;
 
     //Paused UI
     ImageView fullBlackoutView;
@@ -282,10 +282,6 @@ public class GameScreen extends ScreenAdapter {
             }
         }
         return 300;
-    }
-
-    private boolean haveMoney() {
-        return balance.getBalance() > 0;
     }
 
     private void handleInput() {

@@ -25,7 +25,7 @@ public class MyGdxGame extends Game {
 	largeRedFont;
 
 	public Vector3 touch;
-	public SpriteBatch batch;
+	public static SpriteBatch batch;
 	public static OrthographicCamera camera;
 	public GameScreen gameScreen;
 	float accumulator = 0;
