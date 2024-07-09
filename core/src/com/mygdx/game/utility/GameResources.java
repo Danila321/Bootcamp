@@ -26,6 +26,6 @@ public class GameResources {
     //звуки
     public static final String TOWER_CREATE = "sounds/laser-scan_fjjawtv_.mp3";
     public static final String SHOOT_SOUND_PATH = "sounds/laser-blast_zjrhvyvd.mp3";
-    public static final String BACKGROUND_MUSIC_PATH = "sounds/laser-blast_zjrhvyvd.mp3";
+    public static final String BACKGROUND_MUSIC_PATH = "sounds/MFG - Mystic Dawn hsm_(mp3-gorilla.ru).mp3";
 
 }

@@ -37,8 +37,8 @@ public class GameSession {
         sessionStartTime += TimeUtils.millis() - pauseStartTime;
     }
 
-    public void endGame() {
-        state = GameState.ENDED;
+    public void demiseGame() {
+        state = GameState.DEMISE;
 
     }
 

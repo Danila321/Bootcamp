@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.Managers.AudioManager;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.ui.ButtonView;
 import com.mygdx.game.ui.ImageView;
@@ -42,7 +43,7 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-
+        AudioManager.playMusic();
     }
 
     @Override
