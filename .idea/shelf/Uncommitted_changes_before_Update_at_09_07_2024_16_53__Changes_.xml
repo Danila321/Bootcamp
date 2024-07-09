@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_09_07_2024_16_53_[Changes]" date="1720533213988" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_16_53_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09.07.2024 16:53 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="core/build/classes/java/main/com/mygdx/game/screens/MenuScreen.class" />
+    <option name="AFTER_PATH" value="core/build/classes/java/main/com/mygdx/game/screens/MenuScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_07_2024_16_53_[Changes]/MenuScreen.class" />
+  </binary>
+</changelist>

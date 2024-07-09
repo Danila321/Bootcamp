@@ -61,7 +61,7 @@ public class BaseTowerObject extends GameObject {
             int minVal = Integer.MAX_VALUE;
             EnemyObject target = null;
             for (EnemyObject enemy : enemyArray) {
-                Vector2 posEnemy = new Vector2(enemy.getX(), enemy.getY());
+                Vector2 posEnemy = new Vector2(enemy.getX() * GameSettings.MAP_SCALE, enemy.getY() * GameSettings.MAP_SCALE);
                 Vector2 pos = new Vector2(getX(), getY());
                 float distancePos = pos.cpy().nor().dst(posEnemy);
                 if (distancePos >= GameSettings.BASE_TOWER_ATTACK_RADIUS && distancePos < minVal) {
@@ -72,6 +72,7 @@ public class BaseTowerObject extends GameObject {
             }
             if (target != null) {
                 audioManager.shootSound.play(0.05f * MemoryManager.SoundValue());
+                target.hit(damage);
                 BulletObject bullet = new BulletObject(getX() - 35, getY() - 35,
                         -15, -15,
                         direction.scl(GameSettings.BULLET_VELOCITY),

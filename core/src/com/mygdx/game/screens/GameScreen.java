@@ -334,6 +334,16 @@ public class GameScreen extends ScreenAdapter {
                     }
                     if (homeButton.isHit(touchPos.x, touchPos.y)) {
                         myGdxGame.setScreen(myGdxGame.menuScreen);
+                        ArrayList<Integer> recordsTable = MemoryManager.loadRecordsTable();
+                        if (recordsTable == null) {
+                            recordsTable = new ArrayList<>();
+                        }
+                        int foundIdx = 0;
+                        for (; foundIdx < recordsTable.size(); foundIdx++) {
+                            if (recordsTable.get(foundIdx) < gameSession.getLevel()) break;
+                        }
+                        recordsTable.add(foundIdx, gameSession.getLevel());
+                        MemoryManager.saveTableOfRecords(recordsTable);
                     }
                     break;
                 case ENDED:

@@ -1,6 +1,9 @@
 package com.mygdx.game.utility;
 
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.Managers.MemoryManager;
+
+import java.util.ArrayList;
 
 public class GameSession {
     public GameState state;
@@ -35,6 +38,16 @@ public class GameSession {
 
     public void endGame() {
         state = GameState.ENDED;
+        ArrayList<Integer> recordsTable = MemoryManager.loadRecordsTable();
+        if (recordsTable == null) {
+            recordsTable = new ArrayList<>();
+        }
+        int foundIdx = 0;
+        for (; foundIdx < recordsTable.size(); foundIdx++) {
+            if (recordsTable.get(foundIdx) < getLevel()) break;
+        }
+        recordsTable.add(foundIdx, getLevel());
+        MemoryManager.saveTableOfRecords(recordsTable);
     }
 
     public boolean shouldSpawnEnemy() {

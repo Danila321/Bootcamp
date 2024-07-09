@@ -65,9 +65,19 @@ public class MenuScreen extends ScreenAdapter {
         startGameButton.draw(myGdxGame.batch);
         settingsButton.draw(myGdxGame.batch);
         exitButton.draw(myGdxGame.batch);
-        myGdxGame.batch.end();
 
-        //recordsListView.setRecords(MemoryManager.loadRecordsTable());
+        try {
+            recordsListView.setRecords(MemoryManager.loadRecordsTable());
+        } catch (Exception e){
+
+        }
+        if (MemoryManager.loadRecordsTable() != null){
+
+            recordsListView.draw(myGdxGame.batch);
+        }
+
+        recordsTextView.draw(myGdxGame.batch);
+        myGdxGame.batch.end();
     }
 
     private void handleInput() {
