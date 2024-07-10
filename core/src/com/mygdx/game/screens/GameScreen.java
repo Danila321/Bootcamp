@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -46,6 +47,32 @@ public class GameScreen extends ScreenAdapter {
     MainHeroObject hero;
     ArrayList<BaseTowerObject> towerArray;
     ArrayList<EnemyObject> enemyArray;
+    ArrayList<EnemyObject> enemyArray2;
+    ArrayList<EnemyObject> enemyArray3;
+    Pool<EnemyObject> enemyObjectPool = new Pool<EnemyObject>() {
+        @Override
+        protected EnemyObject newObject() {
+            return new EnemyObject("images/robot1.png", myGdxGame.world, path,
+                    (int) startPos.x, (int) startPos.y, 32, 32,
+                    GameSettings.ENEMY_SPEED, 5);
+        }
+    };
+    Pool<EnemyObject> enemyObject2Pool = new Pool<EnemyObject>() {
+        @Override
+        protected EnemyObject newObject() {
+            return new EnemyObject("images/blue.png",
+                    myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
+                    64, 64, GameSettings.ENEMY2_SPEED, 8);
+        }
+    };
+    Pool<EnemyObject> enemyObject3Pool = new Pool<EnemyObject>() {
+        @Override
+        protected EnemyObject newObject() {
+            return new EnemyObject(    "images/red.png",
+                    myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
+                    96, 96, GameSettings.ENEMY3_SPEED, 20);
+        }
+    };
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
     boolean isClickerSmall = false;
@@ -78,6 +105,8 @@ public class GameScreen extends ScreenAdapter {
 
         towerArray = new ArrayList<>();
         enemyArray = new ArrayList<>();
+        enemyArray2 = new ArrayList<>();
+        enemyArray3 = new ArrayList<>();
         hero = new MainHeroObject(1230, 490, 100, 100,
                 GameResources.blue_square, myGdxGame.world);
 
@@ -192,24 +221,15 @@ public class GameScreen extends ScreenAdapter {
         levelTextView.draw(MyGdxGame.batch);
         livesTextView.draw(MyGdxGame.batch);
 
-        for (EnemyObject enemy : enemyArray) {
-            if (!(gameSession.state == GameState.PAUSED || gameSession.state == GameState.ENDED)) {
-                enemy.update(2);
-            }
-            enemy.draw(MyGdxGame.batch);
-            if (enemy.needToHit()) {
-                hero.hit(enemy.getMaxHealth());
-            }
-            TextView HPLeft = new TextView(myGdxGame.smallRedFont,
-                    enemy.getX() * GameSettings.MAP_SCALE,
-                    enemy.getY() * GameSettings.MAP_SCALE,
-                    enemy.getLiveLeft() + " / " + enemy.getMaxHealth());
-            HPLeft.draw(MyGdxGame.batch);
-        }
+        drawFunc(enemyArray);
+        drawFunc(enemyArray2);
+        drawFunc(enemyArray3);
 
         for (BaseTowerObject tower : towerArray) {
             tower.draw(MyGdxGame.batch);
             tower.shoot(enemyArray);
+            tower.shoot(enemyArray2);
+            tower.shoot(enemyArray3);
             tower.updateBullets();
             tower.putInBox();
         }
@@ -276,28 +296,6 @@ public class GameScreen extends ScreenAdapter {
 
         if (gameSession.state == GameState.PLAYING) {
             update();
-
-            if (!gameSession.isRest()) {
-                if (gameSession.shouldSpawnEnemy()) {
-                    EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
-                            (int) startPos.x, (int) startPos.y, 32, 32,
-                            GameSettings.ENEMY_SPEED, 5);
-                    enemyArray.add(enemy);
-                }
-                if (gameSession.shouldSpawnEnemy2() && gameSession.getLevel() % 3 == 0) {
-                    EnemyObject enemy2 = new EnemyObject("images/blue.png",
-                            myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            64, 64, GameSettings.ENEMY2_SPEED, 8);
-                    enemyArray.add(enemy2);
-                }
-                if (gameSession.shouldSpawnEnemy3() && gameSession.getLevel() % 10 == 0) {
-                    EnemyObject enemy3 = new EnemyObject("images/red.png",
-                            myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            96, 96, GameSettings.ENEMY3_SPEED, 20);
-                    enemyArray.add(enemy3);
-                }
-
-            }
 
             if (!hero.isAlive()) {
                 gameSession.endGame();
@@ -442,7 +440,7 @@ public class GameScreen extends ScreenAdapter {
             }
         }
 
-        Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        Vector3 touchPos = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         isClickerSmall = Gdx.input.isTouched() && (isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y);
     }
 
@@ -494,7 +492,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void update() {
-        Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();
+        /*Iterator<EnemyObject> enemyObjectIterator = enemyArray.iterator();
 
         while (enemyObjectIterator.hasNext()) {
 
@@ -503,20 +501,107 @@ public class GameScreen extends ScreenAdapter {
                 gameSession.addBalance(50);
                 myGdxGame.world.destroyBody(nextEnemy.body);
                 enemyObjectIterator.remove();
+                enemyObjectPool.free(nextEnemy);
                 System.out.println("DELETED");
             }
         }
 
-        if (!hero.isAlive()) {
-            System.out.println("DEAD!");
+        Iterator<EnemyObject> enemyObject2Iterator = enemyArray2.iterator();
+
+        while (enemyObject2Iterator.hasNext()) {
+
+            EnemyObject nextEnemy = enemyObject2Iterator.next();
+            if (!nextEnemy.isAlive()) {
+                gameSession.addBalance(50);
+                myGdxGame.world.destroyBody(nextEnemy.body);
+                enemyObject2Iterator.remove();
+                enemyObjectPool.free(nextEnemy);
+                System.out.println("DELETED2");
+            }
         }
 
+        Iterator<EnemyObject> enemyObject3Iterator = enemyArray3.iterator();
+
+        while (enemyObject3Iterator.hasNext()) {
+
+            EnemyObject nextEnemy = enemyObject3Iterator.next();
+            if (!nextEnemy.isAlive()) {
+                gameSession.addBalance(50);
+                myGdxGame.world.destroyBody(nextEnemy.body);
+                enemyObject3Iterator.remove();
+                enemyObjectPool.free(nextEnemy);
+                System.out.println("DELETED3");
+            }
+        }*/
+
+        if (!gameSession.isRest()) {
+            if (gameSession.shouldSpawnEnemy()) {
+                EnemyObject enemy = enemyObjectPool.obtain();
+                enemy.init((int)startPos.x, (int)startPos.y);
+                enemyArray.add(enemy);
+            }
+            if (gameSession.shouldSpawnEnemy2() && gameSession.getLevel() % 3 == 0) {
+                EnemyObject enemy2 = enemyObject2Pool.obtain();
+                enemy2.init((int) startPos.x, (int) startPos.y);
+                enemyArray2.add(enemy2);
+            }
+            if (gameSession.shouldSpawnEnemy3() && gameSession.getLevel() % 10 == 0) {
+                EnemyObject enemy3 = enemyObject3Pool.obtain();
+                enemy3.init((int) startPos.x, (int) startPos.y);
+                enemyArray3.add(enemy3);
+            }
+
+            EnemyObject enemy;
+            int len = enemyArray.size();
+            for (int i = len; --i >= 0;) {
+                enemy = enemyArray.get(i);
+                if (!enemy.alive) {
+                    enemyArray.remove(i);
+                    gameSession.addBalance(50);
+                    myGdxGame.world.destroyBody(enemy.body);
+                    System.out.println("DELETED");
+                    enemyObjectPool.free(enemy);
+                }
+            }
+            EnemyObject enemy2;
+            int len2 = enemyArray2.size();
+            for (int i = len2; --i >= 0;) {
+                enemy2 = enemyArray2.get(i);
+                if (!enemy2.isAlive()) {
+                    enemyArray2.remove(i);
+                    gameSession.addBalance(50);
+                    myGdxGame.world.destroyBody(enemy2.body);
+                    System.out.println("DELETED");
+                    enemyObject3Pool.free(enemy2);
+                }
+            }
+            EnemyObject enemy3;
+            int len3 = enemyArray3.size();
+            for (int i = len3; --i >= 0;) {
+                enemy3 = enemyArray3.get(i);
+                if (!enemy3.alive) {
+                    enemyArray3.remove(i);
+                    gameSession.addBalance(50);
+                    myGdxGame.world.destroyBody(enemy3.body);
+                    System.out.println("DELETED");
+                    enemyObject3Pool.free(enemy3);
+                }
+            }
+        }
     }
 
     private void restartGame() {
         for (int i = 0; i < enemyArray.size(); i++) {
             myGdxGame.world.destroyBody(enemyArray.get(i).body);
             enemyArray.remove(i--);
+        }
+        for (int i = 0; i < enemyArray2.size(); i++) {
+            myGdxGame.world.destroyBody(enemyArray2.get(i).body);
+            enemyArray2.remove(i--);
+        }
+        for (int i = 0; i < enemyArray3.size(); i++) {
+            myGdxGame.world.destroyBody(enemyArray3.get(i).body);
+            enemyArray3.remove(i--);
         }
 
         for (int i = 0; i < towerArray.size(); i++) {
@@ -538,5 +623,22 @@ public class GameScreen extends ScreenAdapter {
         myGdxGame.dispose();
         clicker.dispose();
         clickerSmall.dispose();
+    }
+
+    private void drawFunc(ArrayList<EnemyObject> arrayList) {
+        for (EnemyObject enemy : arrayList) {
+            if (!(gameSession.state == GameState.PAUSED || gameSession.state == GameState.ENDED)) {
+                enemy.update(2);
+            }
+            enemy.draw(MyGdxGame.batch);
+            if (enemy.needToHit()) {
+                hero.hit(enemy.getMaxHealth());
+            }
+            TextView HPLeft = new TextView(myGdxGame.smallRedFont,
+                    enemy.getX() * GameSettings.MAP_SCALE,
+                    enemy.getY() * GameSettings.MAP_SCALE,
+                    enemy.getLiveLeft() + " / " + enemy.getMaxHealth());
+            HPLeft.draw(MyGdxGame.batch);
+        }
     }
 }

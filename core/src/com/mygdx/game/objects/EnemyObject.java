@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Pool;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.utility.Path;
 import com.mygdx.game.utility.GameSettings;
@@ -14,7 +15,7 @@ import com.mygdx.game.utility.GameSettings;
 import space.earlygrey.shapedrawer.ShapeDrawer;
 
 
-public class EnemyObject extends GameObject {
+public class EnemyObject extends GameObject implements Pool.Poolable {
     private int currentIndex;
     private float speed;
     ShapeDrawer drawer;
@@ -23,6 +24,7 @@ public class EnemyObject extends GameObject {
     public  int livesLeft;
     public  int maxHealth;
     public boolean needToHitPLayer;
+    public boolean alive;
     Vector2 positionT;
     public ShapeRenderer shapeRenderer, shapeRenderer2;
     Texture texture;
@@ -33,12 +35,13 @@ public class EnemyObject extends GameObject {
     public EnemyObject(String texturePath, World world, Path path, int x, int y, int width,
                        int height, float speed, int health) {
         super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, 1000000000, world);
-        currentIndex = 0;
         this.speed = speed;
         this.path = path;
         maxHealth = health;
         livesLeft = health;
+        currentIndex = 0;
         needToHitPLayer = false;
+        alive = false;
         shapeRenderer = new ShapeRenderer();
         shapeRenderer2 = new ShapeRenderer();
         texture = new Texture("images/background.png");
@@ -49,16 +52,16 @@ public class EnemyObject extends GameObject {
 
         framesArray = new Texture[] {
                 new Texture("soon/anim/images/asdfasdf-walk_00.png"),
-                new Texture("soon/anim/images/asdfasdf-walk_03.png"),
+                //new Texture("soon/anim/images/asdfasdf-walk_03.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_05.png"),
-                new Texture("soon/anim/images/asdfasdf-walk_08.png"),
-                new Texture("soon/anim/images/asdfasdf-walk_10.png"),
+                //new Texture("soon/anim/images/asdfasdf-walk_08.png"),
+                //new Texture("soon/anim/images/asdfasdf-walk_10.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_12.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_17.png"),
         };
     }
 
-    public void update(float deltaTime) {
+    public void update(float delta) {
 
         frameCounter++;
 
@@ -79,8 +82,6 @@ public class EnemyObject extends GameObject {
             hit(MainHeroObject.heroDamage);
             needToHitPLayer = true;
         }
-
-
     }
 
     public void setSpeed(int speed){
@@ -108,8 +109,15 @@ public class EnemyObject extends GameObject {
         if (frameCounter++ == framesArray.length * frameMultiplier - 1) frameCounter = 0;
     }
 
+    private void aliveCheck() {
+        if (0 > livesLeft) {
+            alive = false;
+        }
+        alive = true;
+    }
     public boolean isAlive() {
-        return livesLeft > 0;
+        aliveCheck();
+        return alive;
     }
 
     public int getLiveLeft() {
@@ -129,4 +137,17 @@ public class EnemyObject extends GameObject {
         return needToHitPLayer;
     }
 
+    public void init(int posX, int posY) {
+        setX(posX);
+        setY(posY);
+        alive = true;
+    }
+    @Override
+    public void reset() {
+        setX(0);
+        setY(0);
+        currentIndex = 0;
+        needToHitPLayer = false;
+        alive = false;
+    }
 }
