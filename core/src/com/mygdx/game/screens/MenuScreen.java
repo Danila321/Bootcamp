@@ -49,7 +49,7 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        AudioManager.playMusic();
+
     }
 
     @Override
@@ -101,5 +101,6 @@ public class MenuScreen extends ScreenAdapter {
     @Override
     public void dispose () {
         gameName.dispose();
+        myGdxGame.dispose();
     }
 }

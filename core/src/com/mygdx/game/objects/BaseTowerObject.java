@@ -24,11 +24,11 @@ public class BaseTowerObject extends GameObject {
     public ArrayList<BulletObject> bulletArray;
     private final int tempX, tempY;
 
-    public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world, int damage) {
+    public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world, int damage, int attackRadius) {
         super(texturePath, x, y, width, height, GameSettings.BASE_TOWER_BIT, 1000000, world);
         this.world = world;
         attackCoolDown = GameSettings.BASE_TOWER_ATTACK_COOL_DOWN;
-        attackRadius = GameSettings.BASE_TOWER_ATTACK_RADIUS;
+        this.attackRadius = attackRadius;
         levelNumber = 1;
         this.damage = damage * levelNumber;
         bulletArray = new ArrayList<>();
@@ -62,7 +62,8 @@ public class BaseTowerObject extends GameObject {
                 Vector2 posEnemy = new Vector2(enemy.getX() * GameSettings.MAP_SCALE, enemy.getY() * GameSettings.MAP_SCALE);
                 Vector2 pos = new Vector2(getX(), getY());
                 float distancePos = pos.cpy().nor().dst(posEnemy);
-                if (distancePos >= GameSettings.BASE_TOWER_ATTACK_RADIUS && distancePos < minVal) {
+                System.out.println(attackRadius);
+                if (distancePos <= attackRadius && distancePos < minVal) {
                     minVal = (int) distancePos;
                     target = enemy;
                     direction = posEnemy.sub(pos).cpy().nor();
