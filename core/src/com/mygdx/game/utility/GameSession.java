@@ -33,7 +33,7 @@ public class GameSession {
         countReleasedEnemies = 0;
         countReleasedEnemies2 = 0;
         countReleasedEnemies3 = 0;
-        level = 0;
+        level = 1;
         startRestTime = 0;
     }
 

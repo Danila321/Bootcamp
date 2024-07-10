@@ -16,6 +16,11 @@ public class GameResources {
     //public static String WHITE = "white_background.png";
     //public static String BLACK = "dark_background (1).png";
     //public static String close_button = "CLOSE_BUTTON.png";
+    public static String TOWER_IMG_PATH = "images/red_tower_1.png";
+    public static String TOWER_IMG_PATH2 = "images/red_tower_2.png";
+    public static String TOWER_IMG_PATH3 = "images/red_tower_3.png";
+    public static String TOWER_IMG_PATH4 = "images/blue_tower_2.png";
+    public static String TOWER_IMG_PATH5 = "images/blue_tower_3.png";
     public static final String BUTTON = "images/black_button.png";
 
     public static final String FONT_PATH = "fonts/Montserrat-Bold.ttf";

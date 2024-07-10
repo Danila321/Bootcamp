@@ -30,7 +30,7 @@ public class BaseTowerObject extends GameObject {
         attackCoolDown = GameSettings.BASE_TOWER_ATTACK_COOL_DOWN;
         attackRadius = GameSettings.BASE_TOWER_ATTACK_RADIUS;
         levelNumber = 1;
-        this.damage = damage * levelNumber;
+        this.damage = damage;
         bulletArray = new ArrayList<>();
         tempX = getX();
         tempY = getY();
@@ -112,5 +112,8 @@ public class BaseTowerObject extends GameObject {
     }
     public void setLevelNumber(int level) {
         levelNumber = level;
+    }
+    public int getDamage() {
+        return damage;
     }
 }

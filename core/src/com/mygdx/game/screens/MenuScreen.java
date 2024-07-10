@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Managers.MemoryManager;
 import com.mygdx.game.Managers.AudioManager;
@@ -82,7 +83,7 @@ public class MenuScreen extends ScreenAdapter {
 
     private void handleInput() {
         if (Gdx.input.justTouched()) {
-            Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            Vector3 touchPos = MyGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (startGameButton.isHit(touchPos.x, touchPos.y)) {
                 myGdxGame.setScreen(myGdxGame.gameScreen);

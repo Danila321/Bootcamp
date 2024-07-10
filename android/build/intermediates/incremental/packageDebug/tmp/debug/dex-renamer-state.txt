@@ -1,13 +1,13 @@
-#Tue Jul 09 17:47:38 MSK 2024
-base.0=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\11\\classes.dex
-base.2=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\13\\classes.dex
-base.3=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\2\\classes.dex
-base.4=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\4\\classes.dex
-base.5=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\6\\classes.dex
-base.6=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\9\\classes.dex
-base.7=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.8=C\:\\Users\\Student\\AndroidStudioProjects\\Bootcamp\\android\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+#Wed Jul 10 17:00:36 MSK 2024
+base.0=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\11\\classes.dex
+base.2=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\13\\classes.dex
+base.3=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\2\\classes.dex
+base.4=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\4\\classes.dex
+base.5=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\6\\classes.dex
+base.6=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\9\\classes.dex
+base.7=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.8=D\:\\Users\\Student\\StudioProjects\\android\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
 path.0=classes.dex
 path.1=11/classes.dex
 path.2=13/classes.dex
