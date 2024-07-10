@@ -101,5 +101,6 @@ public class MenuScreen extends ScreenAdapter {
     @Override
     public void dispose () {
         gameName.dispose();
+        myGdxGame.dispose();
     }
 }

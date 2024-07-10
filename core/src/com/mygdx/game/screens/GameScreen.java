@@ -503,5 +503,6 @@ public class GameScreen extends ScreenAdapter {
         unitMenu.dispose();
         tiledMap.dispose();
         notificationTextView.dispose();
+        myGdxGame.dispose();
     }
 }
