@@ -49,7 +49,7 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        AudioManager.playMusic();
+
     }
 
     @Override

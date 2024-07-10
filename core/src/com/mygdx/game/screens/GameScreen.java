@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Managers.ContactManager;
 import com.mygdx.game.Managers.MemoryManager;
 import com.mygdx.game.objects.MainHeroObject;
@@ -34,10 +35,11 @@ public class GameScreen extends ScreenAdapter {
     GameSession gameSession;
     ContactManager contactManager;
     AudioManager audioManager;
-    
+    boolean needToNotify;
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
+    float startNotify;
     MainHeroObject hero;
     ArrayList<BaseTowerObject> towerArray;
     ArrayList<EnemyObject> enemyArray;
@@ -49,7 +51,7 @@ public class GameScreen extends ScreenAdapter {
     //Play UI
     ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton;
     ImageView unitMenu, tower1, tower2, tower3, liveImageView;
-    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView;
+    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView, balanceBlackTextView, noMoneyTextView;
 
     //Paused UI
     ImageView fullBlackoutView;
@@ -99,8 +101,10 @@ public class GameScreen extends ScreenAdapter {
         tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
         tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
 
-        balanceTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
         balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
+        balanceBlackTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
+        noMoneyTextView = new TextView(myGdxGame.largeRedFont, 380, 640, "YOU HAVE NO MONEY");
         notificationTextView = new TextView(myGdxGame.largeRedFont, 380, 60);
 
         liveImageView = new ImageView(170, 77, GameResources.red_square, -22, 25);
@@ -161,6 +165,7 @@ public class GameScreen extends ScreenAdapter {
 
         notificationTextView.setText("ENEMY HAS PASSED!!!");
         balanceTextView.setText("Money: " + gameSession.getBalance());
+        balanceBlackTextView.setText("Money: " + gameSession.getBalance());
         balanceRedTextView.setText("Money: " + gameSession.getBalance());
 
         levelTextView.setText("Wave: " + gameSession.getLevel());
@@ -208,11 +213,7 @@ public class GameScreen extends ScreenAdapter {
             drawMenuUpgrade();
         }
 
-        if (gameSession.getBalance() > 0) {
-            balanceTextView.draw(myGdxGame.batch);
-        } else {
-            balanceRedTextView.draw(myGdxGame.batch);
-        }
+
 
         pauseButton.draw(myGdxGame.batch);
 
@@ -232,6 +233,17 @@ public class GameScreen extends ScreenAdapter {
             notificationTextView.draw(myGdxGame.batch);
         }
 
+        if (gameSession.getBalance() >= 500 && !isMenuExecuted && !isUpgradeMenuExecuted) {
+            balanceTextView.draw(myGdxGame.batch);
+        } if (gameSession.getBalance() >= 500 && (isMenuExecuted || isUpgradeMenuExecuted)){
+            balanceBlackTextView.draw(myGdxGame.batch);
+
+        }
+        if (gameSession.getBalance() < 500) {
+            balanceRedTextView.draw(myGdxGame.batch);
+            noMoneyTextView.draw(myGdxGame.batch);
+        }
+
         myGdxGame.batch.end();
     }
 
@@ -240,6 +252,7 @@ public class GameScreen extends ScreenAdapter {
 
         if (gameSession.state == GameState.PLAYING) {
             update();
+
 
             if (!gameSession.isRest()) {
                 if (gameSession.shouldSpawnEnemy()) {
@@ -269,9 +282,9 @@ public class GameScreen extends ScreenAdapter {
 
             myGdxGame.stepWorld();
         }
-
         draw();
         handleInput();
+
     }
 
     public int levelCost(float tx, float ty) {
@@ -282,6 +295,7 @@ public class GameScreen extends ScreenAdapter {
         }
         return 300;
     }
+
 
     private void handleInput() {
         if (Gdx.input.justTouched()) {
@@ -313,41 +327,50 @@ public class GameScreen extends ScreenAdapter {
                     if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
                         isUpgradeMenuExecuted = false;
                     }
-                    if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() >= GameSettings.TOWER1_COST) {
-                        gameSession.reduceBalance(GameSettings.TOWER1_COST);
-                        BaseTowerObject baseTower = new BaseTowerObject(
-                                x_cord, y_cord,
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.yellow_square, myGdxGame.world, GameSettings.TOWER1_DAMAGE);
-                        towerArray.add(baseTower);
-                        audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
-                        isMenuExecuted = false;
+                    if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)) {
+                        if (gameSession.getBalance() >= GameSettings.TOWER1_COST){
+                            gameSession.reduceBalance(GameSettings.TOWER1_COST);
+                            BaseTowerObject baseTower = new BaseTowerObject(
+                                    x_cord, y_cord,
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    GameResources.yellow_square, myGdxGame.world, GameSettings.TOWER1_DAMAGE,
+                                    350);
+                            towerArray.add(baseTower);
+                            audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
+                            isMenuExecuted = false;
+                        }
+
                     }
-                    if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() >= GameSettings.TOWER2_COST) {
-                        gameSession.reduceBalance(GameSettings.TOWER2_COST);
-                        BaseTowerObject baseTower2 = new BaseTowerObject(
-                                x_cord, y_cord,
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.green_square, myGdxGame.world, GameSettings.TOWER2_DAMAGE);
-                        towerArray.add(baseTower2);
-                        audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
-                        isMenuExecuted = false;
+                    if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)) {
+                        if (gameSession.getBalance() >= GameSettings.TOWER2_COST){
+                            gameSession.reduceBalance(GameSettings.TOWER2_COST);
+                            BaseTowerObject baseTower2 = new BaseTowerObject(
+                                    x_cord, y_cord,
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    GameResources.green_square, myGdxGame.world, GameSettings.TOWER2_DAMAGE,
+                                    20);
+                            towerArray.add(baseTower2);
+                            audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
+                            isMenuExecuted = false;
+                        }
+
                     }
-                    if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() >= GameSettings.TOWER3_COST) {
-                        gameSession.reduceBalance(GameSettings.TOWER3_COST);
-                        BaseTowerObject baseTower3 = new BaseTowerObject(
-                                x_cord, y_cord,
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.blue_square, myGdxGame.world, GameSettings.TOWER3_DAMAGE);
-                        towerArray.add(baseTower3);
-                        audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
-                        isMenuExecuted = false;
+                    if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)) {
+                        if(gameSession.getBalance() >= GameSettings.TOWER3_COST){
+                            gameSession.reduceBalance(GameSettings.TOWER3_COST);
+                            BaseTowerObject baseTower3 = new BaseTowerObject(
+                                    x_cord, y_cord,
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    GameResources.blue_square, myGdxGame.world, GameSettings.TOWER3_DAMAGE,
+                                    30);
+                            towerArray.add(baseTower3);
+                            audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
+                            isMenuExecuted = false;
+                        }
+
                     }
                     if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted && !isUpgradeMenuExecuted) {
                         if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
@@ -472,6 +495,8 @@ public class GameScreen extends ScreenAdapter {
 
         gameSession.startGame();
     }
+
+
 
     @Override
     public void dispose() {
