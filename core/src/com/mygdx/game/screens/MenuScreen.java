@@ -32,7 +32,7 @@ public class MenuScreen extends ScreenAdapter {
         this.myGdxGame = myGdxGame;
 
         gameName = new TextView(myGdxGame.largeWhiteFont, 100, 167, "BLack square with rounded corners png");
-        //background = new ImageView(0, 0, GameResources.BACK, GameSettings.SCREEN_HEIGHT, GameSettings.SCREEN_WIDTH);
+        background = new ImageView(0, 0, GameResources.BACKGROUND, GameSettings.SCREEN_HEIGHT, GameSettings.SCREEN_WIDTH);
 
         startGameButton = new ButtonView(250, 300, 200, 68,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "START");
@@ -60,7 +60,7 @@ public class MenuScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
 
         myGdxGame.batch.begin();
-      //background.draw(myGdxGame.batch);
+        background.draw(myGdxGame.batch);
         gameName.draw(myGdxGame.batch);
         startGameButton.draw(myGdxGame.batch);
         settingsButton.draw(myGdxGame.batch);

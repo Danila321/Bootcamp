@@ -67,6 +67,7 @@ public class GameSession {
                 return true;
             }
         } else {
+            System.out.println("OK");
             startRestTime = TimeUtils.millis();
         }
         return false;
@@ -129,8 +130,6 @@ public class GameSession {
         }
         GameSettings.ENEMY_SPEED += 0.3f;
         GameSettings.ENEMY_COUNT++;
-        GameSettings.ENEMY2_COUNT++;
-        //GameSettings.ENEMY2_SPEED += 0.1f;
     }
 
     public int getLevel() {

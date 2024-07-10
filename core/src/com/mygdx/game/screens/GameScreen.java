@@ -34,7 +34,7 @@ public class GameScreen extends ScreenAdapter {
     GameSession gameSession;
     ContactManager contactManager;
     AudioManager audioManager;
-    
+
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
@@ -43,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
     ArrayList<EnemyObject> enemyArray;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
+    boolean isClickerSmall = false;
     boolean isUpgradeMenuExecuted = false;
     float x_cord = 0, y_cord = 0;
 
@@ -50,6 +51,7 @@ public class GameScreen extends ScreenAdapter {
     ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton;
     ImageView unitMenu, tower1, tower2, tower3, liveImageView;
     TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView;
+    ImageView clicker, clickerSmall;
 
     //Paused UI
     ImageView fullBlackoutView;
@@ -108,6 +110,8 @@ public class GameScreen extends ScreenAdapter {
         livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);
 
         unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
+        clicker = new ImageView(1100, 490, GameResources.clicker, 130, 130);
+        clickerSmall = new ImageView(1110, 500, GameResources.clicker, 110, 110);
 
         pauseButton = new ButtonView(
                 30, 20,
@@ -310,7 +314,7 @@ public class GameScreen extends ScreenAdapter {
                             isUpgradeMenuExecuted = false;
                         }
                     }
-                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)){
+                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() >= levelCost(touchPos.x, touchPos.y)) {
                         isUpgradeMenuExecuted = false;
                     }
                     if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
@@ -360,6 +364,9 @@ public class GameScreen extends ScreenAdapter {
                     if (closeButton.isHit(touchPos.x, touchPos.y)) {
                         isMenuExecuted = false;
                     }
+                    if ((isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y)) {
+                        gameSession.addBalance(2);
+                    }
                     break;
 
                 case PAUSED:
@@ -387,6 +394,9 @@ public class GameScreen extends ScreenAdapter {
                     break;
             }
         }
+
+        Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        isClickerSmall = Gdx.input.isTouched() && (isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y);
     }
 
     private boolean tileIsEmpty(int x, int y) {
@@ -427,6 +437,11 @@ public class GameScreen extends ScreenAdapter {
         tower2.draw(myGdxGame.batch);
         tower3.draw(myGdxGame.batch);
         closeButton.draw(myGdxGame.batch);
+        if (isClickerSmall) {
+            clickerSmall.draw(myGdxGame.batch);
+        } else {
+            clicker.draw(myGdxGame.batch);
+        }
     }
 
     public void drawMenuUpgrade() {
@@ -434,6 +449,11 @@ public class GameScreen extends ScreenAdapter {
         upgradeButton.draw(myGdxGame.batch);
         sellButton.draw(myGdxGame.batch);
         closeButton.draw(myGdxGame.batch);
+        if (isClickerSmall) {
+            clickerSmall.draw(myGdxGame.batch);
+        } else {
+            clicker.draw(myGdxGame.batch);
+        }
     }
 
     private void update() {
@@ -478,5 +498,7 @@ public class GameScreen extends ScreenAdapter {
         unitMenu.dispose();
         tiledMap.dispose();
         notificationTextView.dispose();
+        clicker.dispose();
+        clickerSmall.dispose();
     }
 }

@@ -20,8 +20,8 @@ public class EnemyObject extends GameObject {
     ShapeDrawer drawer;
 
     private Path path;
-    public static int livesLeft;
-    public static int maxHealth;
+    public  int livesLeft;
+    public  int maxHealth;
     public boolean needToHitPLayer;
     Vector2 positionT;
     public ShapeRenderer shapeRenderer, shapeRenderer2;
@@ -77,7 +77,7 @@ public class EnemyObject extends GameObject {
         float barHeight = 20;
         float barX = getX() - barWidth / 2;
         float barY = getY() + 20;
-        float healthPercentage = (float) EnemyObject.livesLeft / EnemyObject.maxHealth;
+        float healthPercentage = (float) livesLeft / maxHealth;
 
         drawer.setColor(Color.WHITE);
         drawer.line(getX() * GameSettings.MAP_SCALE, getY() * GameSettings.MAP_SCALE - 15, getX() * GameSettings.MAP_SCALE + barWidth, getY() * GameSettings.MAP_SCALE - 15);
