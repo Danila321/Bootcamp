@@ -10,8 +10,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
+
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Managers.ContactManager;
 import com.mygdx.game.Managers.MemoryManager;
 import com.mygdx.game.objects.MainHeroObject;
@@ -36,15 +37,18 @@ public class GameScreen extends ScreenAdapter {
     GameSession gameSession;
     ContactManager contactManager;
     AudioManager audioManager;
-    
+
+    boolean needToNotify;
     TiledMap tiledMap;
     Path path;
     Vector2 startPos;
+    float startNotify;
     MainHeroObject hero;
     ArrayList<BaseTowerObject> towerArray;
     ArrayList<EnemyObject> enemyArray;
     private OrthogonalTiledMapRenderer tiledMapRenderer;
     boolean isMenuExecuted = false;
+    boolean isClickerSmall = false;
     boolean isUpgradeMenuExecuted = false;
     boolean needToColorRed = false;
     long redStarttime;
@@ -53,7 +57,8 @@ public class GameScreen extends ScreenAdapter {
     //Play UI
     ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton;
     ImageView unitMenu, tower1, tower2, tower3, liveImageView;
-    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView, towerLevelTextView, towerDamageTextView;
+    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView, towerLevelTextView, towerDamageTextView, balanceBlackTextView, noMoneyTextView;
+    ImageView clicker, clickerSmall;
 
     //Paused UI
     ImageView fullBlackoutView;
@@ -103,8 +108,10 @@ public class GameScreen extends ScreenAdapter {
         tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
         tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
 
-        balanceTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
         balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
+        balanceBlackTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
+        noMoneyTextView = new TextView(myGdxGame.largeRedFont, 380, 640, "YOU HAVE NO MONEY");
         notificationTextView = new TextView(myGdxGame.largeRedFont, 380, 60);
         towerLevelTextView = new TextView(myGdxGame.commonBlackFont, 1050, 100);
         towerDamageTextView = new TextView(myGdxGame.commonBlackFont, 1050, 140);
@@ -114,6 +121,8 @@ public class GameScreen extends ScreenAdapter {
         livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);
 
         unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
+        clicker = new ImageView(1100, 490, GameResources.clicker, 130, 130);
+        clickerSmall = new ImageView(1110, 500, GameResources.clicker, 110, 110);
 
         pauseButton = new ButtonView(
                 30, 20,
@@ -167,6 +176,7 @@ public class GameScreen extends ScreenAdapter {
 
         notificationTextView.setText("ENEMY HAS PASSED!!!");
         balanceTextView.setText("Money: " + gameSession.getBalance());
+        balanceBlackTextView.setText("Money: " + gameSession.getBalance());
         balanceRedTextView.setText("Money: " + gameSession.getBalance());
         levelTextView.setText("Wave: " + gameSession.getLevel());
 
@@ -219,9 +229,7 @@ public class GameScreen extends ScreenAdapter {
             }
         }
 
-
-
-        pauseButton.draw(MyGdxGame.batch);
+        pauseButton.draw(myGdxGame.batch);
 
         if (gameSession.state == GameState.PAUSED) {
             fullBlackoutView.draw(MyGdxGame.batch);
@@ -248,7 +256,19 @@ public class GameScreen extends ScreenAdapter {
             notificationTextView.draw(MyGdxGame.batch);
         }
 
-        MyGdxGame.batch.end();
+        if (gameSession.getBalance() >= 500 && !isMenuExecuted && !isUpgradeMenuExecuted) {
+            balanceTextView.draw(myGdxGame.batch);
+        }
+        if (gameSession.getBalance() >= 500 && (isMenuExecuted || isUpgradeMenuExecuted)) {
+            balanceBlackTextView.draw(myGdxGame.batch);
+
+        }
+        if (gameSession.getBalance() < 500) {
+            balanceRedTextView.draw(myGdxGame.batch);
+            noMoneyTextView.draw(myGdxGame.batch);
+        }
+
+        myGdxGame.batch.end();
     }
 
     @Override
@@ -391,6 +411,9 @@ public class GameScreen extends ScreenAdapter {
                         isUpgradeMenuExecuted = false;
                         isMenuExecuted = false;
                     }
+                    if ((isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y)) {
+                        gameSession.addBalance(2);
+                    }
                     break;
 
                 case PAUSED:
@@ -418,6 +441,9 @@ public class GameScreen extends ScreenAdapter {
                     break;
             }
         }
+
+        Vector2 touchPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+        isClickerSmall = Gdx.input.isTouched() && (isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y);
     }
 
     private boolean tileIsEmpty(int x, int y) {
@@ -509,5 +535,8 @@ public class GameScreen extends ScreenAdapter {
         unitMenu.dispose();
         tiledMap.dispose();
         notificationTextView.dispose();
+        myGdxGame.dispose();
+        clicker.dispose();
+        clickerSmall.dispose();
     }
 }

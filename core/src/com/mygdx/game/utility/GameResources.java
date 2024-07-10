@@ -9,6 +9,7 @@ public class GameResources {
     public static final String green_square = "images/green.png";
     public static final String yellow_square = "images/yellow.png";
     public static final String WHITE_BUTTON = "images/button_white.png";
+    public static final String clicker = "images/scrub.png";
 
 
     //public static String ENEMY = "enemy_0.png";

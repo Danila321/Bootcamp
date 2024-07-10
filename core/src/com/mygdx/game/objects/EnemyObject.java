@@ -20,12 +20,16 @@ public class EnemyObject extends GameObject {
     ShapeDrawer drawer;
 
     private Path path;
-    public static int livesLeft;
-    public static int maxHealth;
+    public  int livesLeft;
+    public  int maxHealth;
     public boolean needToHitPLayer;
     Vector2 positionT;
     public ShapeRenderer shapeRenderer, shapeRenderer2;
     Texture texture;
+
+    Texture[] framesArray;
+    public int frameCounter;
+
     public EnemyObject(String texturePath, World world, Path path, int x, int y, int width,
                        int height, float speed, int health) {
         super(texturePath, x, y, width, height, GameSettings.ENEMY_BIT, 1000000000, world);
@@ -43,9 +47,20 @@ public class EnemyObject extends GameObject {
         drawer.setDefaultLineWidth(5);
         drawer.setColor(Color.RED);
 
+        framesArray = new Texture[] {
+                new Texture("soon/anim/images/asdfasdf-walk_00.png"),
+                new Texture("soon/anim/images/asdfasdf-walk_03.png"),
+                new Texture("soon/anim/images/asdfasdf-walk_05.png"),
+                new Texture("soon/anim/images/asdfasdf-walk_08.png"),
+                new Texture("soon/anim/images/asdfasdf-walk_10.png"),
+                new Texture("soon/anim/images/asdfasdf-walk_12.png"),
+                new Texture("soon/anim/images/asdfasdf-walk_17.png"),
+        };
     }
 
     public void update(float deltaTime) {
+
+        frameCounter++;
 
         Vector2 position = new Vector2(getX(), getY());
         positionT = position;
@@ -77,7 +92,7 @@ public class EnemyObject extends GameObject {
         float barHeight = 20;
         float barX = getX() - barWidth / 2;
         float barY = getY() + 20;
-        float healthPercentage = (float) EnemyObject.livesLeft / EnemyObject.maxHealth;
+        float healthPercentage = (float) livesLeft / maxHealth;
 
         drawer.setColor(Color.WHITE);
         drawer.line(getX() * GameSettings.MAP_SCALE, getY() * GameSettings.MAP_SCALE - 15, getX() * GameSettings.MAP_SCALE + barWidth, getY() * GameSettings.MAP_SCALE - 15);
@@ -86,9 +101,11 @@ public class EnemyObject extends GameObject {
 
 
 
-        batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
-                getY() * GameSettings.MAP_SCALE, 32 * GameSettings.MAP_SCALE,
-                32 * GameSettings.MAP_SCALE);
+        int frameMultiplier = 10;
+        batch.draw(framesArray[frameCounter / frameMultiplier], getX() * GameSettings.MAP_SCALE,
+                getY() * GameSettings.MAP_SCALE - (-32 * GameSettings.MAP_SCALE), 32 * GameSettings.MAP_SCALE,
+                -32 * GameSettings.MAP_SCALE);
+        if (frameCounter++ == framesArray.length * frameMultiplier - 1) frameCounter = 0;
     }
 
     public boolean isAlive() {
@@ -111,4 +128,5 @@ public class EnemyObject extends GameObject {
     public boolean needToHit() {
         return needToHitPLayer;
     }
+
 }
