@@ -352,10 +352,9 @@ public class GameScreen extends ScreenAdapter {
                             isUpgradeMenuExecuted = false;
                         }
                     }
-                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y)){
+                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y)) {
                         isUpgradeMenuExecuted = false;
-                    }
-                    else if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
+                    } else if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
                             && gameSession.getBalance() >= GameSettings.TOWER1_COST) {
 
                         gameSession.reduceBalance(GameSettings.TOWER1_COST);
@@ -367,8 +366,7 @@ public class GameScreen extends ScreenAdapter {
                         towerArray.add(baseTower);
                         audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                         isMenuExecuted = false;
-                    }
-                    else if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
+                    } else if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
                             && gameSession.getBalance() >= GameSettings.TOWER2_COST) {
                         gameSession.reduceBalance(GameSettings.TOWER2_COST);
                         BaseTowerObject baseTower2 = new BaseTowerObject(
@@ -379,8 +377,7 @@ public class GameScreen extends ScreenAdapter {
                         towerArray.add(baseTower2);
                         audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                         isMenuExecuted = false;
-                    }
-                    else if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
+                    } else if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
                             && gameSession.getBalance() >= GameSettings.TOWER3_COST) {
                         gameSession.reduceBalance(GameSettings.TOWER3_COST);
                         BaseTowerObject baseTower3 = new BaseTowerObject(
@@ -391,16 +388,14 @@ public class GameScreen extends ScreenAdapter {
                         towerArray.add(baseTower3);
                         audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                         isMenuExecuted = false;
-                    }
-                    else if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted && !isUpgradeMenuExecuted) {
+                    } else if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted && !isUpgradeMenuExecuted) {
                         if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isMenuExecuted = true;
                         }
                         if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isUpgradeMenuExecuted = true;
                         }
-                    }
-                    else if (closeButton.isHit(touchPos.x, touchPos.y)) {
+                    } else if (closeButton.isHit(touchPos.x, touchPos.y)) {
                         isMenuExecuted = false;
                     } else if (isMenuExecuted && (button1.isHit(touchPos.x, touchPos.y)
                             && gameSession.getBalance() < GameSettings.TOWER1_COST) ||
@@ -484,6 +479,11 @@ public class GameScreen extends ScreenAdapter {
         tower2.draw(MyGdxGame.batch);
         tower3.draw(MyGdxGame.batch);
         closeButton.draw(MyGdxGame.batch);
+        if (isClickerSmall) {
+            clickerSmall.draw(myGdxGame.batch);
+        } else {
+            clicker.draw(myGdxGame.batch);
+        }
     }
 
     public void drawMenuUpgrade() {
@@ -491,6 +491,11 @@ public class GameScreen extends ScreenAdapter {
         upgradeButton.draw(MyGdxGame.batch);
         sellButton.draw(MyGdxGame.batch);
         closeButton.draw(MyGdxGame.batch);
+        if (isClickerSmall) {
+            clickerSmall.draw(myGdxGame.batch);
+        } else {
+            clicker.draw(myGdxGame.batch);
+        }
     }
 
     private void update() {
