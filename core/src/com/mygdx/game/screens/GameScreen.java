@@ -51,13 +51,17 @@ public class GameScreen extends ScreenAdapter {
     boolean isClickerSmall = false;
     boolean isUpgradeMenuExecuted = false;
     boolean needToColorRed = false;
-    long redStarttime;
+    long redStartTime;
     float x_cord = 0, y_cord = 0;
+    int clickerLevel = 1;
 
     //Play UI
-    ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton;
+    ButtonView button1, button2, button3, closeButton, pauseButton, sellButton, upgradeButton,
+            upgradeClickerButton;
     ImageView unitMenu, tower1, tower2, tower3, liveImageView;
-    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView, notificationTextView, towerLevelTextView, towerDamageTextView, balanceBlackTextView, noMoneyTextView;
+    TextView balanceTextView, balanceRedTextView, livesTextView, levelTextView,
+            notificationTextView, towerLevelTextView, towerDamageTextView, balanceBlackTextView,
+            noMoneyTextView, clickerLevelTextView;
     ImageView clicker, clickerSmall;
 
     //Paused UI
@@ -102,15 +106,17 @@ public class GameScreen extends ScreenAdapter {
                 GameResources.BUTTON, "DISASSEMBLE");
         upgradeButton = new ButtonView(1055, 200, 210, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "UPGRADE");
+        upgradeClickerButton = new ButtonView(1025, 400, 260, 50,
+                myGdxGame.commonWhiteFont, GameResources.BUTTON, "UPGRADE CLICK");
         closeButton = new ButtonView(1245, 20, 25, 25, GameResources.close_button);
 
         tower1 = new ImageView(1080, 60, GameResources.TOWER_IMG_PATH, 54, 100);
         tower2 = new ImageView(1080, 170, GameResources.TOWER_IMG_PATH4, 54, 100);
         tower3 = new ImageView(1080, 280, GameResources.TOWER_IMG_PATH7, 54, 100);
 
-        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
-        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
-        balanceBlackTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1055, 40);
+        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1055, 40);
+        balanceBlackTextView = new TextView(myGdxGame.commonBlackFont, 1055, 40);
         noMoneyTextView = new TextView(myGdxGame.largeRedFont, 380, 640, "YOU HAVE NO ROUGH");
         notificationTextView = new TextView(myGdxGame.largeRedFont, 380, 60);
         towerLevelTextView = new TextView(myGdxGame.commonBlackFont, 1050, 100);
@@ -123,6 +129,7 @@ public class GameScreen extends ScreenAdapter {
         unitMenu = new ImageView(1030, 0, GameResources.WHITE, 1000, 1000);
         clicker = new ImageView(1080, 490, GameResources.clicker, 150, 150);
         clickerSmall = new ImageView(1090, 500, GameResources.clicker, 130, 130);
+        clickerLevelTextView = new TextView(myGdxGame.commonBlackFont, 1050, 180);
 
         pauseButton = new ButtonView(
                 30, 20,
@@ -166,6 +173,7 @@ public class GameScreen extends ScreenAdapter {
         TmxMapLoader mapLoader = new TmxMapLoader();
         tiledMap = mapLoader.load("tilemap/mapq (2).tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, GameSettings.MAP_SCALE);
+        tiledMapRenderer.setView(MyGdxGame.camera.projection, 0, 0, GameSettings.SCREEN_WIDTH, -GameSettings.SCREEN_HEIGHT);
     }
 
     private void draw() {
@@ -174,12 +182,12 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
 
         MyGdxGame.batch.begin();
-
         notificationTextView.setText("ENEMY HAS PASSED!!!");
         balanceTextView.setText("Rough: " + gameSession.getBalance());
         balanceBlackTextView.setText("Rough: " + gameSession.getBalance());
         balanceRedTextView.setText("Rough: " + gameSession.getBalance());
         levelTextView.setText("Wave: " + gameSession.getLevel());
+        clickerLevelTextView.setText("Clicker lvl: " + clickerLevel);
 
         liveImageView.draw(MyGdxGame.batch);
         livesTextView.setText("Lives: " + hero.getLiveLeft());
@@ -192,29 +200,20 @@ public class GameScreen extends ScreenAdapter {
 
         levelTextView.draw(MyGdxGame.batch);
         livesTextView.draw(MyGdxGame.batch);
-
         for (EnemyObject enemy : enemyArray) {
-            if (!(gameSession.state == GameState.PAUSED || gameSession.state == GameState.ENDED)) {
-                enemy.update(2);
-            }
+
             enemy.draw(MyGdxGame.batch);
-            if (enemy.needToHit()) {
-                hero.hit(enemy.getMaxHealth());
-            }
+
             TextView HPLeft = new TextView(myGdxGame.smallRedFont,
                     enemy.getX() * GameSettings.MAP_SCALE,
                     enemy.getY() * GameSettings.MAP_SCALE,
                     enemy.getLiveLeft() + " / " + enemy.getMaxHealth());
             HPLeft.draw(MyGdxGame.batch);
         }
-
         for (BaseTowerObject tower : towerArray) {
             tower.draw(MyGdxGame.batch);
-            tower.shoot(enemyArray);
-            tower.updateBullets();
-            tower.putInBox();
-        }
 
+        }
         hero.draw(MyGdxGame.batch);
 
         if (isMenuExecuted) {
@@ -227,49 +226,65 @@ public class GameScreen extends ScreenAdapter {
                 towerLevelTextView.setText("Tower level: " + tower.getLevelNumber());
                 towerLevelTextView.draw(MyGdxGame.batch);
                 towerDamageTextView.draw(MyGdxGame.batch);
+                clickerLevelTextView.draw(MyGdxGame.batch);
             }
         }
 
-        pauseButton.draw(myGdxGame.batch);
-
-        if (gameSession.state == GameState.PAUSED) {
-            fullBlackoutView.draw(MyGdxGame.batch);
-            pauseTextView.draw(MyGdxGame.batch);
-            homeButton.draw(MyGdxGame.batch);
-            continueButton.draw(MyGdxGame.batch);
-        } else if (gameSession.state == GameState.ENDED) {
-            fullBlackoutView.draw(MyGdxGame.batch);
-            resultTextView.draw(MyGdxGame.batch);
-            homeButton2.draw(MyGdxGame.batch);
-        }
-
-
+        pauseButton.draw(MyGdxGame.batch);
         if (needToColorRed) {
             balanceRedTextView.draw(MyGdxGame.batch);
-        } else if (redStarttime - TimeUtils.millis() >= GameSettings.wasd) {
+        } else if (redStartTime - TimeUtils.millis() >= GameSettings.wasd) {
             needToColorRed = false;
             balanceTextView.draw(MyGdxGame.batch);
         } else {
             balanceTextView.draw(MyGdxGame.batch);
         }
-        hero.notifyCheck();
+
         if (MainHeroObject.needToNotify) {
             notificationTextView.draw(MyGdxGame.batch);
         }
 
         if (gameSession.getBalance() >= 500 && !isMenuExecuted && !isUpgradeMenuExecuted) {
-            balanceTextView.draw(myGdxGame.batch);
+            balanceTextView.draw(MyGdxGame.batch);
         }
         if (gameSession.getBalance() >= 500 && (isMenuExecuted || isUpgradeMenuExecuted)) {
-            balanceBlackTextView.draw(myGdxGame.batch);
+            balanceBlackTextView.draw(MyGdxGame.batch);
 
         }
         if (gameSession.getBalance() < 500) {
-            balanceRedTextView.draw(myGdxGame.batch);
-            noMoneyTextView.draw(myGdxGame.batch);
+            balanceRedTextView.draw(MyGdxGame.batch);
+            noMoneyTextView.draw(MyGdxGame.batch);
         }
+        switch (gameSession.state) {
+            case PLAYING:
+                for (EnemyObject enemy : enemyArray) {
+                    enemy.update(2);
+                    if (enemy.needToHit()) {
+                        hero.hit(enemy.getMaxHealth());
+                    }
 
-        myGdxGame.batch.end();
+                }
+                for (BaseTowerObject tower : towerArray) {
+                    tower.shoot(enemyArray);
+                    tower.updateBullets();
+                    tower.putInBox();
+                }
+                hero.notifyCheck();
+                break;
+            case ENDED:
+                fullBlackoutView.draw(MyGdxGame.batch);
+                resultTextView.draw(MyGdxGame.batch);
+                homeButton2.draw(MyGdxGame.batch);
+                break;
+            case PAUSED:
+                fullBlackoutView.draw(MyGdxGame.batch);
+                pauseTextView.draw(MyGdxGame.batch);
+                homeButton.draw(MyGdxGame.batch);
+                continueButton.draw(MyGdxGame.batch);
+                break;
+
+        }
+        MyGdxGame.batch.end();
     }
 
     @Override
@@ -288,13 +303,13 @@ public class GameScreen extends ScreenAdapter {
                 if (gameSession.shouldSpawnEnemy2() && gameSession.getLevel() % 3 == 0) {
                     EnemyObject enemy2 = new EnemyObject("images/enemy2.png",
                             myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            64, 64, GameSettings.ENEMY2_SPEED, GameSettings.ENEMY2_HEALTH);
+                            32, 32, GameSettings.ENEMY2_SPEED, GameSettings.ENEMY2_HEALTH);
                     enemyArray.add(enemy2);
                 }
                 if (gameSession.shouldSpawnEnemy3() && gameSession.getLevel() % 10 == 0) {
                     EnemyObject enemy3 = new EnemyObject("images/enemy3.png",
                             myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            96, 96, GameSettings.ENEMY3_SPEED, GameSettings.ENEMY3_HEALTH);
+                            32, 32, GameSettings.ENEMY3_SPEED, GameSettings.ENEMY3_HEALTH);
                     enemyArray.add(enemy3);
                 }
 
@@ -308,14 +323,17 @@ public class GameScreen extends ScreenAdapter {
         }
 
         draw();
+
         handleInput();
     }
 
     public int levelCost(float tx, float ty) {
         if (!towerArray.isEmpty()) {
             for (BaseTowerObject towerObject : towerArray) {
-                if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 && ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
-                    return towerObject.getLevelNumber() * 100;
+                if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 &&
+                        ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
+
+                    return towerObject.getLevelNumber() * 250;
                 }
             }
         }
@@ -349,7 +367,7 @@ public class GameScreen extends ScreenAdapter {
                         if (isUpgradeMenuExecuted && upgradeButton.isHit(touchPos.x, touchPos.y)
                                 && gameSession.getBalance() <= levelCost((int) x_cord, (int) y_cord)) {
                             needToColorRed = true;
-                            redStarttime = TimeUtils.millis();
+                            redStartTime = TimeUtils.millis();
                         }
                     }
                     for (int i = 0; i < towerArray.size(); i++) {
@@ -375,9 +393,11 @@ public class GameScreen extends ScreenAdapter {
                                     (int) (32 * GameSettings.MAP_SCALE),
                                     (int) (32 * GameSettings.MAP_SCALE),
                                     GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER1_DAMAGE);
+
                             towerArray.add(baseTower);
                             audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                             isMenuExecuted = false;
+
                         } else if (button2.isHit(touchPos.x, touchPos.y)
                                 && gameSession.getBalance() >= GameSettings.TOWER2_COST) {
                             gameSession.reduceBalance(GameSettings.TOWER2_COST);
@@ -386,9 +406,11 @@ public class GameScreen extends ScreenAdapter {
                                     (int) (32 * GameSettings.MAP_SCALE),
                                     (int) (32 * GameSettings.MAP_SCALE),
                                     GameResources.TOWER_IMG_PATH4, myGdxGame.world, GameSettings.TOWER2_DAMAGE);
+
                             towerArray.add(baseTower2);
                             audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                             isMenuExecuted = false;
+
                         } else if (button3.isHit(touchPos.x, touchPos.y)
                                 && gameSession.getBalance() >= GameSettings.TOWER3_COST) {
                             gameSession.reduceBalance(GameSettings.TOWER3_COST);
@@ -397,9 +419,11 @@ public class GameScreen extends ScreenAdapter {
                                     (int) (32 * GameSettings.MAP_SCALE),
                                     (int) (32 * GameSettings.MAP_SCALE),
                                     GameResources.TOWER_IMG_PATH7, myGdxGame.world, GameSettings.TOWER3_DAMAGE);
+
                             towerArray.add(baseTower3);
                             audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                             isMenuExecuted = false;
+
                         } else if (isMenuExecuted && (button1.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER1_COST) ||
                                 (button2.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER2_COST) ||
                                 (button3.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER3_COST)) {
@@ -420,7 +444,14 @@ public class GameScreen extends ScreenAdapter {
                         }
                     }
                     if ((isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y)) {
-                        gameSession.addBalance(2);
+                        gameSession.addBalance(clickerLevel * 2);
+                    }
+                    if ((isMenuExecuted || isUpgradeMenuExecuted) &&
+                            upgradeClickerButton.isHit(touchPos.x, touchPos.y) &&
+                            gameSession.getBalance() > (clickerLevel * 500)) {
+
+                        gameSession.reduceBalance((clickerLevel * 500));
+                        clickerLevel++;
                     }
                     break;
 
@@ -492,22 +523,24 @@ public class GameScreen extends ScreenAdapter {
         tower2.draw(MyGdxGame.batch);
         tower3.draw(MyGdxGame.batch);
         closeButton.draw(MyGdxGame.batch);
+        upgradeClickerButton.draw(MyGdxGame.batch);
         if (isClickerSmall) {
-            clickerSmall.draw(myGdxGame.batch);
+            clickerSmall.draw(MyGdxGame.batch);
         } else {
-            clicker.draw(myGdxGame.batch);
+            clicker.draw(MyGdxGame.batch);
         }
     }
 
     public void drawMenuUpgrade() {
         unitMenu.draw(MyGdxGame.batch);
         upgradeButton.draw(MyGdxGame.batch);
+        upgradeClickerButton.draw(MyGdxGame.batch);
         sellButton.draw(MyGdxGame.batch);
         closeButton.draw(MyGdxGame.batch);
         if (isClickerSmall) {
-            clickerSmall.draw(myGdxGame.batch);
+            clickerSmall.draw(MyGdxGame.batch);
         } else {
-            clicker.draw(myGdxGame.batch);
+            clicker.draw(MyGdxGame.batch);
         }
     }
 
@@ -521,12 +554,8 @@ public class GameScreen extends ScreenAdapter {
                 gameSession.addBalance(50);
                 myGdxGame.world.destroyBody(nextEnemy.body);
                 enemyObjectIterator.remove();
-                System.out.println("DELETED");
+                //System.out.println("DELETED");
             }
-        }
-
-        if (!hero.isAlive()) {
-            System.out.println("DEAD!");
         }
 
     }
