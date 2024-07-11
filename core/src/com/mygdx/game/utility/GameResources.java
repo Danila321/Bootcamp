@@ -10,6 +10,7 @@ public class GameResources {
     public static final String yellow_square = "images/yellow.png";*/
     public static final String WHITE_BUTTON = "images/button_white.png";
     public static final String clicker = "images/pngegg.png";
+    public static final String CAMERA_UI = "images/camera_ui.jpg";
     public static String close_button = "images/cancel_button.png";
     public static String TOWER_IMG_PATH = "images/red_tower_1 (2).png";
     public static String TOWER_IMG_PATH2 = "images/red_tower_2 (1).png";

@@ -40,7 +40,7 @@ public class DialogScreen implements Screen {
         this.game = game;
         this.batch = game.batch;
         this.font = game.commonWhiteFont;
-        this.background = new Texture(GameResources.BACKGROUND); // Путь к твоему фоновому изображению
+        this.background = new Texture(GameResources.CAMERA_UI); // Путь к твоему фоновому изображению
     }
 
     @Override
@@ -76,7 +76,7 @@ public class DialogScreen implements Screen {
         batch.setProjectionMatrix(game.camera.combined);
 
         batch.begin();
-        batch.draw(background, 0, 0, -GameSettings.SCREEN_WIDTH, -GameSettings.SCREEN_HEIGHT);
+        batch.draw(background, 0, 720, GameSettings.SCREEN_WIDTH, -GameSettings.SCREEN_HEIGHT);
 
         charTimer += delta;
         if (charTimer >= charDelay && !fullTextDisplayed) {
@@ -87,7 +87,7 @@ public class DialogScreen implements Screen {
                 fullTextDisplayed = true;
             }
         }
-        font.draw(batch, currentDisplayText, 50, GameSettings.SCREEN_HEIGHT - 150);
+        font.draw(batch, currentDisplayText, 100, GameSettings.SCREEN_HEIGHT - 150);
         batch.end();
     }
 

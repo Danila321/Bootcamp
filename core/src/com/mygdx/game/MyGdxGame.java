@@ -61,12 +61,14 @@ public class MyGdxGame extends Game {
 		gameScreen = new GameScreen(this);
 		menuScreen = new MenuScreen(this);
 		settingsScreen = new SettingsScreen(this);
-		if (MemoryManager.loadDialogue()){
-			setScreen(menuScreen);
+		/*if (MemoryManager.loadDialogue()){
+			setScreen(dialogScreen);
 		}
 		else {
 			setScreen(menuScreen);
-		}
+		}*/
+
+		setScreen(menuScreen);
 	}
 
 	@Override

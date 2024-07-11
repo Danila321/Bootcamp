@@ -36,8 +36,8 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
 
-        gameName = new TextView(myGdxGame.largeWhiteFont, 100, 167, "BLack square with rounded corners png");
-        background = new ImageView(0, 720, GameResources.BACKGROUND, GameSettings.SCREEN_HEIGHT, -720);
+        gameName = new TextView(myGdxGame.largeWhiteFont, 100, 167, "Scrap Defense");
+        background = new ImageView(0, 720, GameResources.BACKGROUND, -GameSettings.SCREEN_HEIGHT, GameSettings.SCREEN_WIDTH);
 
         startGameButton = new ButtonView(250, 300, 200, 68,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "START");
