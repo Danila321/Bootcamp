@@ -29,8 +29,11 @@ public class GameSettings {
     public static int ENEMY2_COUNT = 1;
     public static int ENEMY3_COUNT = 1;
     public static float ENEMY_SPEED = 1.0f;
-    public static float ENEMY2_SPEED = 2.0f;
+    public static float ENEMY2_SPEED = 1.0f;
     public static float ENEMY3_SPEED = 1.0f;
+    public static int ENEMY1_HEALTH = 4;
+    public static int ENEMY2_HEALTH = 9;
+    public static int ENEMY3_HEALTH = 19;
     public static long wasd = 1500;
 
     public static long WAVE_REST_TIME = 8000;
@@ -39,7 +42,7 @@ public class GameSettings {
     public static final int TOWER2_COST = 600;
     public static final int TOWER3_COST = 700;
 
-    public static final int TOWER1_DAMAGE = 2;
-    public static final int TOWER2_DAMAGE = 5;
-    public static final int TOWER3_DAMAGE = 10;
+    public static final int TOWER1_DAMAGE = 1;
+    public static final int TOWER2_DAMAGE = 3;
+    public static final int TOWER3_DAMAGE = 5;
 }

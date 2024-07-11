@@ -282,19 +282,19 @@ public class GameScreen extends ScreenAdapter {
                 if (gameSession.shouldSpawnEnemy()) {
                     EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
                             (int) startPos.x, (int) startPos.y, 32, 32,
-                            GameSettings.ENEMY_SPEED, 5);
+                            GameSettings.ENEMY_SPEED, GameSettings.ENEMY1_HEALTH);
                     enemyArray.add(enemy);
                 }
                 if (gameSession.shouldSpawnEnemy2() && gameSession.getLevel() % 3 == 0) {
                     EnemyObject enemy2 = new EnemyObject("images/enemy2.png",
                             myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            64, 64, GameSettings.ENEMY2_SPEED, 8);
+                            64, 64, GameSettings.ENEMY2_SPEED, GameSettings.ENEMY2_HEALTH);
                     enemyArray.add(enemy2);
                 }
                 if (gameSession.shouldSpawnEnemy3() && gameSession.getLevel() % 10 == 0) {
                     EnemyObject enemy3 = new EnemyObject("images/enemy3.png",
                             myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            96, 96, GameSettings.ENEMY3_SPEED, 20);
+                            96, 96, GameSettings.ENEMY3_SPEED, GameSettings.ENEMY3_HEALTH);
                     enemyArray.add(enemy3);
                 }
 
@@ -364,6 +364,7 @@ public class GameScreen extends ScreenAdapter {
                     if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y)  || !unitMenu.isHit(touchPos.x, touchPos.y)) {
                         isUpgradeMenuExecuted = false;
                     }
+
                     if (isMenuExecuted) {
                         if (button1.isHit(touchPos.x, touchPos.y)
                                 && gameSession.getBalance() >= GameSettings.TOWER1_COST) {

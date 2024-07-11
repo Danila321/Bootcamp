@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.Managers.AudioManager;
 import com.mygdx.game.Managers.MemoryManager;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.utility.GameResources;
 import com.mygdx.game.utility.GameSettings;
 
@@ -48,6 +49,9 @@ public class BaseTowerObject extends GameObject {
                 0, 0, // источник изображения (если используем текстурный атлас)
                 texture.getWidth(), texture.getHeight(), // размеры источника
                 false, false); // флаги отзеркаливания
+        for (BulletObject bullet : bulletArray) {
+            bullet.draw(MyGdxGame.batch);
+        }
     }
 
     private boolean needToShoot() {
@@ -75,18 +79,20 @@ public class BaseTowerObject extends GameObject {
             }
 
             if (target != null) {
-                updateRotation(new Vector2(target.getX()* GameSettings.MAP_SCALE, target.getY()* GameSettings.MAP_SCALE));
+                updateRotation(new Vector2(target.getX() * GameSettings.MAP_SCALE, target.getY() * GameSettings.MAP_SCALE));
                 audioManager.shootSound.play(0.05f * MemoryManager.SoundValue());
                 target.hit(damage);
                 direction = direction.scl(GameSettings.BULLET_VELOCITY);
-                BulletObject bullet = new BulletObject(getX() + direction.x, getY()  + direction.y,
+                BulletObject bullet = new BulletObject(getX() + direction.x, getY() + direction.y,
                         -15, -15,
                         direction,
                         GameResources.RED_BULLET_PATH, world, damage);
                 bulletArray.add(bullet);
+
             }
         }
     }
+
     public float getAngleToEnemy(Vector2 towerPosition, Vector2 enemyPosition) {
         float angle = MathUtils.atan2(enemyPosition.y - towerPosition.y, enemyPosition.x - towerPosition.x) * MathUtils.radiansToDegrees;
         return angle;
@@ -127,9 +133,11 @@ public class BaseTowerObject extends GameObject {
     public int getLevelNumber() {
         return levelNumber;
     }
+
     public void setLevelNumber(int level) {
         levelNumber = level;
     }
+
     public int getDamage() {
         return damage;
     }

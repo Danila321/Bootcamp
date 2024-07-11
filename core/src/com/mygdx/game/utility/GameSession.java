@@ -29,7 +29,7 @@ public class GameSession {
 
     public void startGame() {
         state = GameState.PLAYING;
-        balance = 10000;
+        balance = 1000;
         countReleasedEnemies = 0;
         countReleasedEnemies2 = 0;
         countReleasedEnemies3 = 0;
@@ -111,15 +111,15 @@ public class GameSession {
         }
     }
 
-    public int getBalance(){
+    public int getBalance() {
         return balance;
     }
 
-    public void addBalance(int balance){
+    public void addBalance(int balance) {
         this.balance += balance;
     }
 
-    public void reduceBalance(int balance){
+    public void reduceBalance(int balance) {
         this.balance -= balance;
     }
 
@@ -130,6 +130,16 @@ public class GameSession {
         }
         GameSettings.ENEMY_SPEED += 0.3f;
         GameSettings.ENEMY_COUNT++;
+        if (level % 2 == 0) {
+            GameSettings.ENEMY2_SPEED += 0.1f;
+            GameSettings.ENEMY2_COUNT++;
+            GameSettings.ENEMY1_HEALTH++;
+            GameSettings.ENEMY2_HEALTH++;
+        }
+        if (level % 5 == 0) {
+            GameSettings.ENEMY3_HEALTH++;
+            GameSettings.ENEMY3_SPEED += 0.1f;
+        }
     }
 
     public int getLevel() {
