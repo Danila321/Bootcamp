@@ -1,6 +1,7 @@
 package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -22,6 +23,7 @@ public class BaseTowerObject extends GameObject {
     Vector2 direction;
     public ArrayList<BulletObject> bulletArray;
     private final int tempX, tempY;
+    public float rotation;
 
     public BaseTowerObject(float x, float y, int width, int height, String texturePath, World world, int damage) {
         super(texturePath, x, y, width, height, GameSettings.BASE_TOWER_BIT, 1000000, world);
@@ -37,10 +39,15 @@ public class BaseTowerObject extends GameObject {
 
     @Override
     public void draw(SpriteBatch batch) {
-        super.draw(batch);
-        for (BulletObject bullet : bulletArray) {
-            bullet.draw(batch);
-        }
+        batch.draw(texture,
+                getX() - (width / 2f), getY() - (height / 2f), // позиция
+                width / 2f, height / 2f, // точка вращения
+                width, height, // размеры
+                1, 1, // масштаб
+                rotation, // угол вращения
+                0, 0, // источник изображения (если используем текстурный атлас)
+                texture.getWidth(), texture.getHeight(), // размеры источника
+                false, false); // флаги отзеркаливания
     }
 
     private boolean needToShoot() {
@@ -60,22 +67,34 @@ public class BaseTowerObject extends GameObject {
                 Vector2 posEnemy = new Vector2(enemy.getX() * GameSettings.MAP_SCALE, enemy.getY() * GameSettings.MAP_SCALE);
                 Vector2 pos = new Vector2(getX(), getY());
                 float distancePos = pos.cpy().nor().dst(posEnemy);
-                if (distancePos >= 300 && distancePos < minVal) {
+                if (distancePos >= GameSettings.BASE_TOWER_ATTACK_RADIUS && distancePos < minVal) {
                     minVal = (int) distancePos;
                     target = enemy;
                     direction = posEnemy.sub(pos).cpy().nor();
                 }
             }
+
             if (target != null) {
+                updateRotation(new Vector2(target.getX()* GameSettings.MAP_SCALE, target.getY()* GameSettings.MAP_SCALE));
                 audioManager.shootSound.play(0.05f * MemoryManager.SoundValue());
                 target.hit(damage);
-                BulletObject bullet = new BulletObject(getX() - 35, getY() - 35,
+                direction = direction.scl(GameSettings.BULLET_VELOCITY);
+                BulletObject bullet = new BulletObject(getX() + direction.x, getY()  + direction.y,
                         -15, -15,
-                        direction.scl(GameSettings.BULLET_VELOCITY),
-                        GameResources.red_square, world, damage);
+                        direction,
+                        GameResources.RED_BULLET_PATH, world, damage);
                 bulletArray.add(bullet);
             }
         }
+    }
+    public float getAngleToEnemy(Vector2 towerPosition, Vector2 enemyPosition) {
+        float angle = MathUtils.atan2(enemyPosition.y - towerPosition.y, enemyPosition.x - towerPosition.x) * MathUtils.radiansToDegrees;
+        return angle;
+    }
+
+    public void updateRotation(Vector2 enemyPosition) {
+        Vector2 towerPosition = new Vector2(getX(), getY());
+        this.rotation = getAngleToEnemy(towerPosition, enemyPosition);
     }
 
     public void updateBullets() {

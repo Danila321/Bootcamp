@@ -14,8 +14,8 @@ public class MainHeroObject extends GameObject {
 
     public MainHeroObject(int x, int y, int width, int height, String texturePath, World world) {
         super(texturePath, x, y, width, height, GameSettings.MAIN_HERO_BIT, 1000000, world);
-        maxHealth = 100;
-        livesLeft = 100;
+        maxHealth = 25;
+        livesLeft = 25;
         heroDamage = 25;
         needToNotify = false;
     }
