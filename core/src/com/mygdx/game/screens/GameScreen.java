@@ -92,25 +92,25 @@ public class GameScreen extends ScreenAdapter {
             }
         }
 
-        button1 = new ButtonView(1070, 100, 200, 50, myGdxGame.commonWhiteFont,
+        button1 = new ButtonView(1055, 110, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "500");
-        button2 = new ButtonView(1070, 200, 200, 50, myGdxGame.commonWhiteFont,
+        button2 = new ButtonView(1055, 220, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "600");
-        button3 = new ButtonView(1070, 300, 200, 50, myGdxGame.commonWhiteFont,
+        button3 = new ButtonView(1055, 330, 200, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "700");
-        sellButton = new ButtonView(1070, 300, 200, 50, myGdxGame.commonWhiteFont,
+        sellButton = new ButtonView(1055, 300, 210, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "DISASSEMBLE");
-        upgradeButton = new ButtonView(1070, 200, 200, 50, myGdxGame.commonWhiteFont,
+        upgradeButton = new ButtonView(1055, 200, 210, 50, myGdxGame.commonWhiteFont,
                 GameResources.BUTTON, "UPGRADE");
         closeButton = new ButtonView(1240, 20, 20, 20, GameResources.red_square);
 
-        tower1 = new ImageView(1100, 50, GameResources.yellow_square, 50, 50);
-        tower2 = new ImageView(1100, 150, GameResources.green_square, 50, 50);
-        tower3 = new ImageView(1100, 250, GameResources.blue_square, 50, 50);
+        tower1 = new ImageView(1080, 60, GameResources.yellow_square, 50, 50);
+        tower2 = new ImageView(1080, 170, GameResources.green_square, 50, 50);
+        tower3 = new ImageView(1080, 280, GameResources.blue_square, 50, 50);
 
-        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1075, 40);
-        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1075, 40);
-        balanceBlackTextView = new TextView(myGdxGame.commonBlackFont, 1075, 40);
+        balanceTextView = new TextView(myGdxGame.commonWhiteFont, 1050, 40);
+        balanceRedTextView = new TextView(myGdxGame.commonRedFont, 1050, 40);
+        balanceBlackTextView = new TextView(myGdxGame.commonBlackFont, 1050, 40);
         noMoneyTextView = new TextView(myGdxGame.largeRedFont, 380, 640, "YOU HAVE NO MONEY");
         notificationTextView = new TextView(myGdxGame.largeRedFont, 380, 60);
         towerLevelTextView = new TextView(myGdxGame.commonBlackFont, 1050, 100);
@@ -120,9 +120,9 @@ public class GameScreen extends ScreenAdapter {
         levelTextView = new TextView(myGdxGame.commonWhiteFont, 170, 40);
         livesTextView = new TextView(myGdxGame.commonWhiteFont, 200, 75);
 
-        unitMenu = new ImageView(1050, 0, GameResources.WHITE, 1000, 1000);
-        clicker = new ImageView(1100, 490, GameResources.clicker, 130, 130);
-        clickerSmall = new ImageView(1110, 500, GameResources.clicker, 110, 110);
+        unitMenu = new ImageView(1030, 0, GameResources.WHITE, 1000, 1000);
+        clicker = new ImageView(1080, 490, GameResources.clicker, 150, 150);
+        clickerSmall = new ImageView(1090, 500, GameResources.clicker, 130, 130);
 
         pauseButton = new ButtonView(
                 30, 20,
