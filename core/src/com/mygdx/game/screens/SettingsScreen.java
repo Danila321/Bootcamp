@@ -76,8 +76,12 @@ public class SettingsScreen extends ScreenAdapter {
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         ScreenUtils.clear(Color.CLEAR);
 
+        MemoryManager.saveSoundSettings(getSound());
+        MemoryManager.saveMusicSettings(getMusic());
         slider.setValue(MemoryManager.SoundValue());
         slider2.setValue(MemoryManager.MusicValue());
+
+
 
         myGdxGame.batch.begin();
 
@@ -122,6 +126,7 @@ public class SettingsScreen extends ScreenAdapter {
             AudioManager.updateMusicFlag(getMusic());
             MemoryManager.saveMusicSettings(getMusic());
             AudioManager.backgroundMusic.setVolume(0.01f * MemoryManager.MusicValue());
+            AudioManager.backgroundGameMusic.setVolume(0.01f * MemoryManager.MusicValue());
         }
 
     }

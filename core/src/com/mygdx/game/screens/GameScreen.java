@@ -158,6 +158,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        AudioManager.playgmMusic();
         restartGame();
     }
 
@@ -311,12 +312,19 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public int levelCost(float tx, float ty) {
-        for (BaseTowerObject towerObject : towerArray) {
-            if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 && ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
-                return towerObject.getLevelNumber() * 300;
+        if (!towerArray.isEmpty()) {
+            for (BaseTowerObject towerObject : towerArray) {
+                if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 && ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
+                    return towerObject.getLevelNumber() * 100;
+                }
             }
         }
-        return 300;
+        if (towerArray.isEmpty()) {
+            return 300;
+        }
+        else {
+            return 0;
+        }
     }
 
     private void handleInput() {
