@@ -294,25 +294,29 @@ public class GameScreen extends ScreenAdapter {
             update();
 
             if (!gameSession.isRest()) {
-                if (gameSession.shouldSpawnEnemy()) {
-                    EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
-                            (int) startPos.x, (int) startPos.y, 32, 32,
-                            GameSettings.ENEMY_SPEED, GameSettings.ENEMY1_HEALTH);
-                    enemyArray.add(enemy);
+                System.out.println(gameSession.getLevel());
+                if (gameSession.getLevel() % 10 == 0){
+                    if (gameSession.shouldSpawnEnemy3()) {
+                        EnemyObject enemy3 = new EnemyObject("images/red.png",
+                                myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
+                                32, 32, GameSettings.ENEMY3_SPEED, GameSettings.ENEMY3_HEALTH);
+                        enemyArray.add(enemy3);
+                    }
+                } else if (gameSession.getLevel() % 2 == 0){
+                    if (gameSession.shouldSpawnEnemy2()) {
+                        EnemyObject enemy2 = new EnemyObject("images/enemy2.png",
+                                myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
+                                32, 32, GameSettings.ENEMY2_SPEED, GameSettings.ENEMY2_HEALTH);
+                        enemyArray.add(enemy2);
+                    }
+                } else {
+                    if (gameSession.shouldSpawnEnemy()) {
+                        EnemyObject enemy = new EnemyObject("images/robot1.png", myGdxGame.world, path,
+                                (int) startPos.x, (int) startPos.y, 32, 32,
+                                GameSettings.ENEMY_SPEED, GameSettings.ENEMY1_HEALTH);
+                        enemyArray.add(enemy);
+                    }
                 }
-                if (gameSession.shouldSpawnEnemy2() && gameSession.getLevel() % 3 == 0) {
-                    EnemyObject enemy2 = new EnemyObject("images/enemy2.png",
-                            myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            32, 32, GameSettings.ENEMY2_SPEED, GameSettings.ENEMY2_HEALTH);
-                    enemyArray.add(enemy2);
-                }
-                if (gameSession.shouldSpawnEnemy3() && gameSession.getLevel() % 10 == 0) {
-                    EnemyObject enemy3 = new EnemyObject("images/enemy3.png",
-                            myGdxGame.world, path, (int) startPos.x, (int) startPos.y,
-                            32, 32, GameSettings.ENEMY3_SPEED, GameSettings.ENEMY3_HEALTH);
-                    enemyArray.add(enemy3);
-                }
-
             }
 
             if (!hero.isAlive()) {

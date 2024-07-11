@@ -29,11 +29,20 @@ public class GameSession {
 
     public void startGame() {
         state = GameState.PLAYING;
-        balance = 10000;
+        balance = 1000;
         countReleasedEnemies = 0;
         countReleasedEnemies2 = 0;
         countReleasedEnemies3 = 0;
-        level = 1;
+        GameSettings.ENEMY_COUNT = 2;
+        GameSettings.ENEMY2_COUNT = 2;
+        GameSettings.ENEMY3_COUNT = 1;
+        GameSettings.ENEMY_SPEED = 1.0f;
+        GameSettings.ENEMY2_SPEED = 1.0f;
+        GameSettings.ENEMY3_SPEED = 1.0f;
+        GameSettings.ENEMY1_HEALTH = 5;
+        GameSettings.ENEMY2_HEALTH = 10;
+        GameSettings.ENEMY3_HEALTH = 20;
+        level = 0;
         startRestTime = 0;
     }
 
@@ -67,7 +76,6 @@ public class GameSession {
                 return true;
             }
         } else {
-            //System.out.println("OK");
             startRestTime = TimeUtils.millis();
         }
         return false;
@@ -80,6 +88,8 @@ public class GameSession {
                 countReleasedEnemies2++;
                 return true;
             }
+        } else {
+            startRestTime = TimeUtils.millis();
         }
         return false;
     }
@@ -91,6 +101,8 @@ public class GameSession {
                 countReleasedEnemies3++;
                 return true;
             }
+        } else {
+            startRestTime = TimeUtils.millis();
         }
         return false;
     }
@@ -124,22 +136,29 @@ public class GameSession {
     }
 
     public void levelUp() {
-        level++;
-        if (GameSettings.ENEMY_SPAWN_TIME > 600) {
-            GameSettings.ENEMY_SPAWN_TIME -= 200;
-        }
-        GameSettings.ENEMY_SPEED += 0.3f;
-        GameSettings.ENEMY_COUNT++;
-        if (level % 2 == 0) {
-            GameSettings.ENEMY2_SPEED += 0.1f;
+        if (level % 10 == 0) {
+            GameSettings.ENEMY3_SPEED += 0.2f;
+            GameSettings.ENEMY3_HEALTH += 50;
+        } else if (level % 2 == 0) {
+            if (GameSettings.ENEMY_SPAWN_TIME2 > 600) {
+                GameSettings.ENEMY_SPAWN_TIME2 -= 200;
+            }
+            GameSettings.ENEMY2_HEALTH += 2;
+            if (GameSettings.ENEMY2_SPEED < 5f) {
+                GameSettings.ENEMY2_SPEED += 0.2f;
+            }
             GameSettings.ENEMY2_COUNT++;
+        } else {
+            if (GameSettings.ENEMY_SPAWN_TIME > 500) {
+                GameSettings.ENEMY_SPAWN_TIME -= 250;
+            }
             GameSettings.ENEMY1_HEALTH++;
-            GameSettings.ENEMY2_HEALTH++;
+            if (GameSettings.ENEMY_SPEED < 5f) {
+                GameSettings.ENEMY_SPEED += 0.3f;
+            }
+            GameSettings.ENEMY_COUNT++;
         }
-        if (level % 5 == 0) {
-            GameSettings.ENEMY3_HEALTH++;
-            GameSettings.ENEMY3_SPEED += 0.1f;
-        }
+        level++;
     }
 
     public int getLevel() {
