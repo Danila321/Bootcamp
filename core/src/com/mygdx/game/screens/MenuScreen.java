@@ -1,5 +1,9 @@
 package com.mygdx.game.screens;
 
+import static com.mygdx.game.Managers.AudioManager.backgroundGameMusic;
+import static com.mygdx.game.Managers.AudioManager.backgroundMusic;
+import static com.mygdx.game.screens.SettingsScreen.getMusic;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -33,7 +37,7 @@ public class MenuScreen extends ScreenAdapter {
         this.myGdxGame = myGdxGame;
 
         gameName = new TextView(myGdxGame.largeWhiteFont, 100, 167, "BLack square with rounded corners png");
-        background = new ImageView(0, 0, GameResources.BACKGROUND, GameSettings.SCREEN_HEIGHT, GameSettings.SCREEN_WIDTH);
+        background = new ImageView(0, 720, GameResources.BACKGROUND, GameSettings.SCREEN_HEIGHT, -720);
 
         startGameButton = new ButtonView(250, 300, 200, 68,
                 myGdxGame.commonBlackFont, GameResources.WHITE_BUTTON, "START");
@@ -50,7 +54,8 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-
+        AudioManager.playbgMusic();
+        backgroundGameMusic.stop();
     }
 
     @Override

@@ -43,4 +43,11 @@ public class MemoryManager {
         ArrayList<Integer> table = json.fromJson(ArrayList.class, scores);
         return table;
     }
+    public static void saveDialogue(boolean isDialogue){
+        preferences.putBoolean("isDialogue", isDialogue);
+        preferences.flush();
+    }
+    public static boolean loadDialogue(){
+        return preferences.getBoolean("isDialogue");
+    }
 }
