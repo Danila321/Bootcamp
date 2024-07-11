@@ -158,6 +158,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        AudioManager.playgmMusic();
         restartGame();
     }
 
@@ -311,12 +312,19 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public int levelCost(float tx, float ty) {
-        for (BaseTowerObject towerObject : towerArray) {
-            if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 && ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
-                return towerObject.getLevelNumber() * 300;
+        if (!towerArray.isEmpty()) {
+            for (BaseTowerObject towerObject : towerArray) {
+                if (tx >= towerObject.getX() - 16 && tx <= towerObject.getX() + 16 && ty >= towerObject.getY() - 16 && ty <= towerObject.getY() + 16) {
+                    return towerObject.getLevelNumber() * 100;
+                }
             }
         }
-        return 300;
+        if (towerArray.isEmpty()) {
+            return 300;
+        }
+        else {
+            return 0;
+        }
     }
 
     private void handleInput() {
@@ -388,26 +396,24 @@ public class GameScreen extends ScreenAdapter {
                         towerArray.add(baseTower3);
                         audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
                         isMenuExecuted = false;
-                    } else if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted && !isUpgradeMenuExecuted) {
+                    } else if (hasObjectCoordinates("tower", touchPos)) {
                         if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isMenuExecuted = true;
+                            isUpgradeMenuExecuted = false;
                         }
                         if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isUpgradeMenuExecuted = true;
+                            isMenuExecuted = false;
                         }
                     } else if (closeButton.isHit(touchPos.x, touchPos.y)) {
-                        isMenuExecuted = false;
-                    } else if (isMenuExecuted && (button1.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() < GameSettings.TOWER1_COST) ||
-                            (button2.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER2_COST) ||
-                            (button3.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER3_COST)) {
-                        isMenuExecuted = true;
-                    } else {
-                        isUpgradeMenuExecuted = false;
                         isMenuExecuted = false;
                     }
                     if ((isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y)) {
                         gameSession.addBalance(2);
+                    }
+                    else if ((isMenuExecuted || isUpgradeMenuExecuted) && touchPos.x < 1050 && !hasObjectCoordinates("tower", touchPos)){
+                        isMenuExecuted = false;
+                        isUpgradeMenuExecuted = false;
                     }
                     break;
 

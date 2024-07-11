@@ -29,7 +29,7 @@ public class GameSession {
 
     public void startGame() {
         state = GameState.PLAYING;
-        balance = 1000;
+        balance = 10000;
         countReleasedEnemies = 0;
         countReleasedEnemies2 = 0;
         countReleasedEnemies3 = 0;

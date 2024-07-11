@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.Managers.MemoryManager;
+import com.mygdx.game.screens.DialogScreen;
 import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.screens.MenuScreen;
 import com.mygdx.game.screens.SettingsScreen;
@@ -31,6 +33,7 @@ public class MyGdxGame extends Game {
 	float accumulator = 0;
 	public MenuScreen menuScreen;
 	public SettingsScreen settingsScreen;
+	public DialogScreen dialogScreen;
 
 	@Override
 	public void create() {
@@ -54,10 +57,16 @@ public class MyGdxGame extends Game {
 		camera.setToOrtho(true, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
 		batch = new SpriteBatch();
 
+		dialogScreen = new DialogScreen(this);
 		gameScreen = new GameScreen(this);
 		menuScreen = new MenuScreen(this);
 		settingsScreen = new SettingsScreen(this);
-		setScreen(menuScreen);
+		if (MemoryManager.loadDialogue()){
+			setScreen(menuScreen);
+		}
+		else {
+			setScreen(menuScreen);
+		}
 	}
 
 	@Override
