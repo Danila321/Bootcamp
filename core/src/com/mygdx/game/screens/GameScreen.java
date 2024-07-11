@@ -328,6 +328,7 @@ public class GameScreen extends ScreenAdapter {
                     if (pauseButton.isHit(touchPos.x, touchPos.y)) {
                         gameSession.pauseGame();
                     }
+
                     for (int i = 0; i < towerArray.size(); i++) {
                         if (isUpgradeMenuExecuted && upgradeButton.isHit(touchPos.x, touchPos.y)
                                 && gameSession.getBalance() >= levelCost((int) x_cord, (int) y_cord)) {
@@ -352,59 +353,62 @@ public class GameScreen extends ScreenAdapter {
                             isUpgradeMenuExecuted = false;
                         }
                     }
-                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y)) {
+                    if (isUpgradeMenuExecuted && closeButton.isHit(touchPos.x, touchPos.y)  || !unitMenu.isHit(touchPos.x, touchPos.y)) {
                         isUpgradeMenuExecuted = false;
-                    } else if (isMenuExecuted && button1.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() >= GameSettings.TOWER1_COST) {
+                    }
+                    if (isMenuExecuted) {
+                        if (button1.isHit(touchPos.x, touchPos.y)
+                                && gameSession.getBalance() >= GameSettings.TOWER1_COST) {
 
-                        gameSession.reduceBalance(GameSettings.TOWER1_COST);
-                        BaseTowerObject baseTower = new BaseTowerObject(
-                                x_cord, y_cord,
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER1_DAMAGE);
-                        towerArray.add(baseTower);
-                        audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
-                        isMenuExecuted = false;
-                    } else if (isMenuExecuted && button2.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() >= GameSettings.TOWER2_COST) {
-                        gameSession.reduceBalance(GameSettings.TOWER2_COST);
-                        BaseTowerObject baseTower2 = new BaseTowerObject(
-                                x_cord, y_cord,
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER2_DAMAGE);
-                        towerArray.add(baseTower2);
-                        audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
-                        isMenuExecuted = false;
-                    } else if (isMenuExecuted && button3.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() >= GameSettings.TOWER3_COST) {
-                        gameSession.reduceBalance(GameSettings.TOWER3_COST);
-                        BaseTowerObject baseTower3 = new BaseTowerObject(
-                                x_cord, y_cord,
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                (int) (32 * GameSettings.MAP_SCALE),
-                                GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER3_DAMAGE);
-                        towerArray.add(baseTower3);
-                        audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
-                        isMenuExecuted = false;
-                    } else if (hasObjectCoordinates("tower", touchPos) && !isMenuExecuted && !isUpgradeMenuExecuted) {
+                            gameSession.reduceBalance(GameSettings.TOWER1_COST);
+                            BaseTowerObject baseTower = new BaseTowerObject(
+                                    x_cord, y_cord,
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER1_DAMAGE);
+                            towerArray.add(baseTower);
+                            audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
+                            isMenuExecuted = false;
+                        } else if (button2.isHit(touchPos.x, touchPos.y)
+                                && gameSession.getBalance() >= GameSettings.TOWER2_COST) {
+                            gameSession.reduceBalance(GameSettings.TOWER2_COST);
+                            BaseTowerObject baseTower2 = new BaseTowerObject(
+                                    x_cord, y_cord,
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER2_DAMAGE);
+                            towerArray.add(baseTower2);
+                            audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
+                            isMenuExecuted = false;
+                        } else if (button3.isHit(touchPos.x, touchPos.y)
+                                && gameSession.getBalance() >= GameSettings.TOWER3_COST) {
+                            gameSession.reduceBalance(GameSettings.TOWER3_COST);
+                            BaseTowerObject baseTower3 = new BaseTowerObject(
+                                    x_cord, y_cord,
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    (int) (32 * GameSettings.MAP_SCALE),
+                                    GameResources.TOWER_IMG_PATH, myGdxGame.world, GameSettings.TOWER3_DAMAGE);
+                            towerArray.add(baseTower3);
+                            audioManager.towerCreateSound.play(0.6f * MemoryManager.SoundValue());
+                            isMenuExecuted = false;
+                        } else if (isMenuExecuted && (button1.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER1_COST) ||
+                                (button2.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER2_COST) ||
+                                (button3.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER3_COST)) {
+                            isMenuExecuted = true;
+                        } else if (closeButton.isHit(touchPos.x, touchPos.y) || !unitMenu.isHit(touchPos.x, touchPos.y)) {
+                            isMenuExecuted = false;
+                        }
+                    }
+
+                    if (hasObjectCoordinates("tower", touchPos)) {
                         if (tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
                             isMenuExecuted = true;
+                            isUpgradeMenuExecuted = false;
                         }
                         if (!tileIsEmpty((int) x_cord, (int) y_cord) && (x_cord != -1 && y_cord != -1)) {
+                            isMenuExecuted = false;
                             isUpgradeMenuExecuted = true;
                         }
-                    } else if (closeButton.isHit(touchPos.x, touchPos.y)) {
-                        isMenuExecuted = false;
-                    } else if (isMenuExecuted && (button1.isHit(touchPos.x, touchPos.y)
-                            && gameSession.getBalance() < GameSettings.TOWER1_COST) ||
-                            (button2.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER2_COST) ||
-                            (button3.isHit(touchPos.x, touchPos.y) && gameSession.getBalance() < GameSettings.TOWER3_COST)) {
-                        isMenuExecuted = true;
-                    } else {
-                        isUpgradeMenuExecuted = false;
-                        isMenuExecuted = false;
                     }
                     if ((isMenuExecuted || isUpgradeMenuExecuted) && clicker.isHit(touchPos.x, touchPos.y)) {
                         gameSession.addBalance(2);

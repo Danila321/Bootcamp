@@ -47,7 +47,7 @@ public class EnemyObject extends GameObject {
         drawer.setDefaultLineWidth(5);
         drawer.setColor(Color.RED);
 
-        framesArray = new Texture[] {
+        /*framesArray = new Texture[] {
                 new Texture("soon/anim/images/asdfasdf-walk_00.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_03.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_05.png"),
@@ -55,7 +55,7 @@ public class EnemyObject extends GameObject {
                 new Texture("soon/anim/images/asdfasdf-walk_10.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_12.png"),
                 new Texture("soon/anim/images/asdfasdf-walk_17.png"),
-        };
+        };*/
     }
 
     public void update(float deltaTime) {
@@ -101,11 +101,11 @@ public class EnemyObject extends GameObject {
 
 
 
-        int frameMultiplier = 10;
-        batch.draw(framesArray[frameCounter / frameMultiplier], getX() * GameSettings.MAP_SCALE,
+        //int frameMultiplier = 10;
+        batch.draw(getTexture(), getX() * GameSettings.MAP_SCALE,
                 getY() * GameSettings.MAP_SCALE - (-32 * GameSettings.MAP_SCALE), 32 * GameSettings.MAP_SCALE,
                 -32 * GameSettings.MAP_SCALE);
-        if (frameCounter++ == framesArray.length * frameMultiplier - 1) frameCounter = 0;
+        //if (frameCounter++ == framesArray.length * frameMultiplier - 1) frameCounter = 0;
     }
 
     public boolean isAlive() {
